@@ -36,3 +36,14 @@ The goal of this project is to create an application that enforces a well-define
 * As a site owner, I want the process behind the acquisition of new products/lines to be well-defined within the application to allow for clarity and ease-of-mind for all stakeholders in the process.
 * As a site owner, I want the process to be agreed upon by all stakeholders prior to development and for the process to be enforced.
 * As a site owner, I want every stage in the process to result in notificaitions being sent to the relevant stakeholders to inform them of changes or information that they need to add.
+
+### User Requirements and Expectations
+
+#### Requirements
+
+* **Login/Register system to add new users** - Each user entry should have a corresponding department and role so that only users of the relevant role/department to the new product can add the product information at that point in the process. Will also allow notifications to be sent to the relevant roles/departments when each step in the process advances.
+* **Forms to fill out details of new products/lines** - Forms will be different for each stage of the process and may differ in details required depending on department. New product form will require basic details of product. When sent to packaging department it will have different fields that they need to fill out etc.
+* **Table/Browser for users to fiew new products** - A data browser of some description where users can view/add/change the details of new products.
+* **Staging Process for new products** - When a new product is added it starts at a certain stage, when one department it advances to the next stage, then the next department fills out their details and it then advances to the next stage etc until reaches *Completed* stage.
+* **Email Notification System** - A facility that will notify the relevant departments of new products that have been added and ask for them to input their details before it can be advanced to the next stage.
+
