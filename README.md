@@ -47,3 +47,11 @@ The goal of this project is to create an application that enforces a well-define
 * **Staging Process for new products** - When a new product is added it starts at a certain stage, when one department it advances to the next stage, then the next department fills out their details and it then advances to the next stage etc until reaches *Completed* stage.
 * **Email Notification System** - A facility that will notify the relevant departments of new products that have been added and ask for them to input their details before it can be advanced to the next stage.
 
+#### Expectations
+
+* **Clear and Intuitive Navigation**
+* **Consistent and Visually Appealling Design/Colour Scheme**
+* **Transparent and Easily Understandable Data Structure**
+
+### Design Choices
+
