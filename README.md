@@ -55,3 +55,38 @@ The goal of this project is to create an application that enforces a well-define
 
 ### Design Choices
 
+### Wireframing
+
+### Data Structure
+
+## Features
+
+### Existing Features
+
+### Future Potential Features
+
+## Technologies Used
+
+### Languages
+
+* [HTML5](https://devdocs.io/html/)
+* [CSS3](https://devdocs.io/css/)
+* [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+* [Python 3.9](https://www.python.org/)
+
+### Frameworks/Libraries/Tools
+
+* [Heroku](https://www.heroku.com/)
+* [MongoDB](https://www.mongodb.com/)
+* [Git](https://git-scm.com/)
+* [GitHub](https://github.com/)
+* [jQuery - JavaScript](https://jquery.com/)
+* [Flask - Python](https://flask.palletsprojects.com/en/1.1.x/)
+* [Materialize v1 - CSS](https://materializecss.com/)
+* [emailJS](https://www.emailjs.com/)
+
+## Testing
+
+## Deployment
+
+## Credits
