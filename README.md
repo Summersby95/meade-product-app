@@ -23,3 +23,16 @@ To solve this it was decided that a formal, structured system for logging new pr
 ### Project Goals
 
 The goal of this project is to create an application that enforces a well-defined procedure when new products/lines are started by the company. This procedure will ensure all stakeholders in the production process are aware of all the information relevant to the product and are not left in the dark. This will be facilitated in the appliaction through a portal (interface) which allows the user to see all the information for new products that are starting. Any new products/lines will be added to the system, starting with the commercial team who will fill out the details of the product that they are aware of, notifications will then be sent to the other departments (Packaging, Quality Control) who will fill out their details for the new product. Once after all departments have signed off on the product in the application will production on it will commence.
+
+### User Goals
+
+### User Stories
+
+### Site Owner Goals
+
+* As a site owner, I want the application to be easy to navigate and controls to feel intuitive.
+* As a site owner, I want the database structure to be consistent, easy to maintain and allow for new parameters to be added to the acquisition process easily.
+* As a site owner, I want the users to be easily able to see the new products and all the relevant information for them. (data browser)
+* As a site owner, I want the process behind the acquisition of new products/lines to be well-defined within the application to allow for clarity and ease-of-mind for all stakeholders in the process.
+* As a site owner, I want the process to be agreed upon by all stakeholders prior to development and for the process to be enforced.
+* As a site owner, I want every stage in the process to result in notificaitions being sent to the relevant stakeholders to inform them of changes or information that they need to add.
