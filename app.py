@@ -21,8 +21,8 @@ mongo = PyMongo(app)
 
 @app.route("/")
 def hello():
-    products = list(mongo.db.products.find())
-    return "Hello World"
+    users = list(mongo.db.users.find())
+    return render_template("upcoming_products.html", users=users)
 
 
 if __name__ == "__main__":
