@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+
+    {% if users %} 
+        {% for user in users %}
+            <h3>{{ user.username }}</h3>
+            <h3>{{ user.f_name }}</h3>
+            <h3>{{ user.l_name }}</h3>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}
