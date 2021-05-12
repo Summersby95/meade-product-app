@@ -19,3 +19,13 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
+@app.route("/")
+def hello():
+    products = list(mongo.db.products.find())
+    return "Hello World"
+
+
+if __name__ == "__main__":
+    app.run(host=os.environ.get("IP"),
+            port=int(os.environ.get("PORT")),
+            debug=True)
