@@ -22,7 +22,7 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
-def hello():
+def get_upcoming():
     products = list(mongo.db.products.find().sort([
         ('start_date', pymongo.ASCENDING)
     ]))
