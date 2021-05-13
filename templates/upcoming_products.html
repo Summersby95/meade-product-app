@@ -5,7 +5,7 @@
 
     <h4>Confirmed <i class="material-icons">check</i></h4>
 
-    <table class="highlight">
+    <table class="highlight responsive-table">
         <thead>
 
             {% if products %}
@@ -21,6 +21,8 @@
                         {% endif %}
 
                     {% endfor %}
+
+                    <th>Actions</th>
 
                 </tr>
 
@@ -47,6 +49,12 @@
 
                             {% endfor %}
 
+                            <td>
+                                <a href="{{ url_for('view_product', product_id=product._id) }}" class="btn waves-effect green accent-3">
+                                    <i class="material-icons right">format_list_bulleted</i> View Product
+                                </a>
+                            </td>
+
                         </tr>
 
                     {% endif %}
@@ -62,7 +70,7 @@
 
     <h4>Pending Approval <i class="material-icons">report</i></h4>
 
-    <table class="highlight">
+    <table class="highlight responsive-table">
         <thead>
 
             {% if products %}
@@ -78,6 +86,9 @@
                         {% endif %}
 
                     {% endfor %}
+
+                    <th>Actions</th>
+                    <th></th>
 
                 </tr>
 
@@ -103,6 +114,17 @@
                                 {% endif %}
 
                             {% endfor %}
+
+                            <td>
+                                <a href="{{ url_for('view_product', product_id=product._id) }}" class="btn waves-effect green accent-3">
+                                    <i class="material-icons right">format_list_bulleted</i> View Product
+                                </a>
+                            </td>
+                            <td>
+                                <a href="#" class="btn waves-effect blue accent-3">
+                                    <i class="material-icons right">edit</i> Add Details
+                                </a>
+                            </td>
 
                         </tr>
 
