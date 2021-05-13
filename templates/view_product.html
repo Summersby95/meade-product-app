@@ -1,0 +1,33 @@
+{% extends "base.html" %} 
+{% block content %} 
+
+    <h3 class="center-align">Product Details</h3>
+
+    <h4><i class="material-icons">credit_card</i> Commercial Details</h4>
+
+    {% if product %} 
+
+        <div class="row" id="product-details">
+
+            {% for field, value in product.items() %} 
+
+                {% if field != "_id" %} 
+                    <div class="col s2">
+                        <strong>{{ field.replace("_", " ").title() }}</strong>
+                    </div>
+                    <div class="col s4">
+                        {{ value }}
+                    </div>
+                {% endif %}
+
+            {% endfor %}
+
+        </div>
+
+    {% endif %}
+
+    <hr>
+
+    <h4><i class="material-icons">card_giftcard</i> Packaging Details</h4>
+
+{% endblock %}
