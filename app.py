@@ -39,6 +39,15 @@ def view_product(product_id):
     return render_template("view_product.html", product=product)
 
 
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    departments = list(mongo.db.departments.find().sort([
+        ('department_name', pymongo.ASCENDING)
+    ]))
+
+    return render_template("register.html", departments=departments)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
