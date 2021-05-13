@@ -7,14 +7,25 @@
 
     <table class="highlight">
         <thead>
-            <tr>
-                <th>Product Name</th>
-                <th>Department</th>
-                <th>Customer</th>
-                <th>Status</th>
-                <th>Start Date</th>
-                <th>Created By</th>
-            </tr>
+
+            {% if products %}
+                    
+                <tr>
+
+                    {% for field, value in products[0].items() %}
+
+                        {% if field != "_id" %}
+
+                            <th>{{ field.replace("_", " ").title() }}</th>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                </tr>
+
+            {% endif %}
+
         </thead>
         <tbody>
 
@@ -25,16 +36,20 @@
                     {% if product.status == "Complete - Production Ready" %}
                     
                         <tr>
-                            <td>{{ product.product_name }}</td>
-                            <td>{{ product.department }}</td>
-                            <td>{{ product.customer }}</td>
-                            <td>{{ product.status }}</td>
-                            <td>{{ product.start_date }}</td>
-                            <td>{{ product.created_by }}</td>
+
+                            {% for field, value in product.items() %}
+
+                                {% if field != "_id" %}
+
+                                    <td>{{ value }}</td>
+
+                                {% endif %}
+
+                            {% endfor %}
+
                         </tr>
 
                     {% endif %}
-                    
 
                 {% endfor %}
 
@@ -49,30 +64,46 @@
 
     <table class="highlight">
         <thead>
-            <tr>
-                <th>Product Name</th>
-                <th>Department</th>
-                <th>Customer</th>
-                <th>Status</th>
-                <th>Start Date</th>
-                <th>Created By</th>
-            </tr>
+
+            {% if products %}
+                    
+                <tr>
+
+                    {% for field, value in products[0].items() %}
+
+                        {% if field != "_id" %}
+
+                            <th>{{ field.replace("_", " ").title() }}</th>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                </tr>
+
+            {% endif %}
+
         </thead>
         <tbody>
 
             {% if products %}
 
                 {% for product in products %}
-                    
+
                     {% if product.status != "Complete - Production Ready" %}
-                            
+                    
                         <tr>
-                            <td>{{ product.product_name }}</td>
-                            <td>{{ product.department }}</td>
-                            <td>{{ product.customer }}</td>
-                            <td>{{ product.status }}</td>
-                            <td>{{ product.start_date }}</td>
-                            <td>{{ product.created_by }}</td>
+
+                            {% for field, value in product.items() %}
+                            
+                                {% if field != "_id" %}
+
+                                    <td>{{ value }}</td>
+
+                                {% endif %}
+
+                            {% endfor %}
+
                         </tr>
 
                     {% endif %}
