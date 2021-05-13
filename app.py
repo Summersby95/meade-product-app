@@ -23,8 +23,10 @@ mongo = PyMongo(app)
 
 @app.route("/")
 def hello():
-    users = list(mongo.db.users.find())
-    return render_template("upcoming_products.html", users=users)
+    products = list(mongo.db.products.find().sort([
+        ('start_date', pymongo.ASCENDING)
+    ]))
+
 
 
 if __name__ == "__main__":
