@@ -33,6 +33,12 @@ def get_upcoming():
     return render_template("upcoming_products.html", products=products)
 
 
+@app.route("/view_product/<product_id>")
+def view_product(product_id):
+    product = mongo.db.products.find_one({"_id": ObjectId(product_id)})
+    return render_template("view_product.html", product=product)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
