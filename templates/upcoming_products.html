@@ -1,12 +1,87 @@
 {% extends "base.html" %}
 {% block content %}
 
-    {% if users %} 
-        {% for user in users %}
-            <h3>{{ user.username }}</h3>
-            <h3>{{ user.f_name }}</h3>
-            <h3>{{ user.l_name }}</h3>
-        {% endfor %}
-    {% endif %}
+    <h3 class="center-align">Upcoming Products</h3>
+
+    <h4>Confirmed <i class="material-icons">check</i></h4>
+
+    <table class="highlight">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Department</th>
+                <th>Customer</th>
+                <th>Status</th>
+                <th>Start Date</th>
+                <th>Created By</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% if products %}
+
+                {% for product in products %}
+
+                    {% if product.status == "Complete - Production Ready" %}
+                    
+                        <tr>
+                            <td>{{ product.product_name }}</td>
+                            <td>{{ product.department }}</td>
+                            <td>{{ product.customer }}</td>
+                            <td>{{ product.status }}</td>
+                            <td>{{ product.start_date }}</td>
+                            <td>{{ product.created_by }}</td>
+                        </tr>
+
+                    {% endif %}
+                    
+
+                {% endfor %}
+
+            {% endif %}
+
+        </tbody>
+    </table>
+
+    <br><hr>
+
+    <h4>Pending Approval <i class="material-icons">report</i></h4>
+
+    <table class="highlight">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Department</th>
+                <th>Customer</th>
+                <th>Status</th>
+                <th>Start Date</th>
+                <th>Created By</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% if products %}
+
+                {% for product in products %}
+                    
+                    {% if product.status != "Complete - Production Ready" %}
+                            
+                        <tr>
+                            <td>{{ product.product_name }}</td>
+                            <td>{{ product.department }}</td>
+                            <td>{{ product.customer }}</td>
+                            <td>{{ product.status }}</td>
+                            <td>{{ product.start_date }}</td>
+                            <td>{{ product.created_by }}</td>
+                        </tr>
+
+                    {% endif %}
+
+                {% endfor %}
+
+            {% endif %}
+
+        </tbody>
+    </table>
 
 {% endblock %}
