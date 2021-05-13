@@ -1,3 +1,18 @@
-body {
-    
+.nav-extended .nav-wrapper .brand-logo {
+    bottom: 0;
+    top: 0;
 }
+
+.nav-extended .nav-wrapper .brand-logo img {
+    height: 64px;
+}
+
+@media (max-width: 600px) {
+    .nav-extended .nav-wrapper .brand-logo img {
+        height: 55px;
+    }
+}
+/* 
+.container {
+    border-radius: 10px;
+} */
