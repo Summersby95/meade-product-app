@@ -27,6 +27,10 @@ def hello():
         ('start_date', pymongo.ASCENDING)
     ]))
 
+    for product in products:
+        product["start_date"] = product["start_date"].strftime("%d %B %Y")
+
+    return render_template("upcoming_products.html", products=products)
 
 
 if __name__ == "__main__":
