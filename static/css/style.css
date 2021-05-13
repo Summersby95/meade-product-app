@@ -12,6 +12,11 @@
         height: 55px;
     }
 }
+
+#product-details {
+    line-height: 40px;
+}
+
 /* 
 .container {
     border-radius: 10px;
