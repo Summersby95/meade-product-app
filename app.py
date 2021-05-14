@@ -23,6 +23,10 @@ mongo = PyMongo(app)
 
 @app.route("/")
 def get_upcoming():
+    if not(session.get("user")):
+        flash("Please login to view this content")
+        return redirect(url_for("login"))
+
     products = list(mongo.db.products.find().sort([
         ('start_date', pymongo.ASCENDING)
     ]))
@@ -35,6 +39,10 @@ def get_upcoming():
 
 @app.route("/view_product/<product_id>")
 def view_product(product_id):
+    if not(session.get("user")):
+        flash("Please login to view this content")
+        return redirect(url_for("login"))
+    
     product = mongo.db.products.find_one({"_id": ObjectId(product_id)})
     return render_template("view_product.html", product=product)
 
