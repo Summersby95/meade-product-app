@@ -1,9 +1,9 @@
 {% extends "base.html" %} 
 {% block content %} 
 
-    <h3 class="center-align">Customer Select <i class="material-icons">control_point</i></h3>
+    <h3 class="center-align">Create Product <i class="material-icons">control_point</i></h3>
 
-    <form action="" method="POST">
+    <form action="{{ url_for('customer_select') }}" method="POST">
         <div class="card-panel">
             <div class="row">
                 <div class="input-field col s12">
