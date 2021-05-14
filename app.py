@@ -47,6 +47,19 @@ def view_product(product_id):
     return render_template("view_product.html", product=product)
 
 
+@app.route("/create_product/customer_select")
+def customer_select():
+    if not(session.get("user")):
+        flash("Please login to view this content")
+        return redirect(url_for("login"))
+    elif session["role"] != "Commercial":
+        flash("You do not have permission to create products")
+        return redirect(url_for("get_upcoming"))
+
+    customers = mongo.db.customers.find().sort('customer_name', pymongo.ASCENDING)
+    return render_template("customer_select.html", customers=customers)
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if session.get("user"):
