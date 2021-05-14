@@ -65,6 +65,15 @@ def customer_select():
     return render_template("customer_select.html", customers=customers)
 
 
+@app.route("/create_product/product_details/<customer_id>", methods=["GET", "POST"])
+def product_details(customer_id):
+    if not(session.get("user")):
+        flash("Please login to view this content")
+        return redirect(url_for("login"))
+    elif session["role"] != "Commercial":
+        flash("You do not have permission to create products")
+        return redirect(url_for("get_upcoming"))
+    
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if session.get("user"):
