@@ -74,6 +74,8 @@ def product_details(customer_id):
         flash("You do not have permission to create products")
         return redirect(url_for("get_upcoming"))
     
+    customer_name = mongo.db.customers.find_one({"_id": ObjectId(customer_id)})["customer_name"]
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if session.get("user"):
