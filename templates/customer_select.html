@@ -10,7 +10,7 @@
                     <i class="material-icons prefix">domain</i>
                     <select name="customer" id="customer">
                         {% for customer in customers %} 
-                            <option value="{{ customer.customer_name }}">{{ customer.customer_name }}</option>
+                            <option value="{{ customer._id }}">{{ customer.customer_name }}</option>
                         {% endfor %}
                     </select>
                     <label for="customer">Customer</label>
