@@ -80,6 +80,8 @@ def register():
             mongo.db.users.insert_one(user)
 
             session["user"] = request.form.get("username")
+            session["department"] = request.form.get("department")
+            session["role"] = request.form.get("role")
             flash("Registration Successful")
             return redirect(url_for("get_upcoming"))
 
