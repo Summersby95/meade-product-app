@@ -49,6 +49,10 @@ def view_product(product_id):
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    if session.get("user"):
+        flash("You are already logged in")
+        return redirect(url_for("get_upcoming"))
+
     if request.method == "POST":
         user_exists = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()}
