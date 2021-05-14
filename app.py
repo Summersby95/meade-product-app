@@ -93,6 +93,33 @@ def register():
     return render_template("register.html", departments=departments, roles=roles)
 
 
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if session.get("user"):
+        flash("You are already logged in")
+        return redirect(url_for("get_upcoming"))
+
+    if request.method == "POST":
+        user_exists = mongo.db.users.find_one(
+            {"username": request.form.get("username")}
+        )
+
+        if user_exists:
+            if check_password_hash(user_exists["password"], request.form.get("password")):
+                session["user"] = request.form.get("username")
+                session["department"] = user_exists["department"]
+                session["role"] = user_exists["role"]
+                flash("You are logged in as {}".format(request.form.get("username")))
+                return redirect(url_for("get_upcoming"))
+            else:
+                flash("Incorrect Username/Password")
+                return redirect(url_for("login"))
+        else:
+            flash("Incorrect Username/Password")
+            return redirect(url_for("login"))
+
+    return render_template("login.html")
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
