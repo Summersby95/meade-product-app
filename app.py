@@ -47,7 +47,7 @@ def view_product(product_id):
     return render_template("view_product.html", product=product)
 
 
-@app.route("/create_product/customer_select")
+@app.route("/create_product/customer_select", methods=["GET", "POST"])
 def customer_select():
     if not(session.get("user")):
         flash("Please login to view this content")
