@@ -1,0 +1,21 @@
+{% extends "base.html" %} 
+{% block content %} 
+
+    <h3 class="center-align">Customer Select <i class="material-icons">control_point</i></h3>
+
+    <form action="" method="POST">
+        <div class="card-panel">
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">domain</i>
+                    <select name="customer" id="customer">
+                        {% for customer in customers %} 
+                            <option value="{{ customer.customer_name }}">{{ customer.customer_name }}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="customer">Customer</label>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}
