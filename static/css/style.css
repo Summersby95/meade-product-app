@@ -19,6 +19,10 @@
     line-height: 40px;
 }
 
+.flashes h4 {
+    font-family: 'Nunito Sans';
+}
+
 /* 
 .container {
     border-radius: 10px;
