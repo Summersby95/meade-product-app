@@ -81,6 +81,15 @@ def product_details(customer_id):
         "department": session["department"]
     })
 
+    for field in field_list["commercial_details"]:
+        if (field["field_type"] == "multiselect") or (field["field_type"] == "select"):
+            if field["options_type"] == "table":
+                field["options"] = mongo.db[field["table_name"]].find()
+
+    return render_template("commercial_product_details.html", customer_name=customer_name, field_list=field_list)
+    
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if session.get("user"):
