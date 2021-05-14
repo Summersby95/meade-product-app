@@ -44,7 +44,21 @@
                             <option value="{{ department.department_name }}">{{ department.department_name }}</option>
                         {% endfor %}
                     </select>
-                    <label for="department">Task Category</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">people</i>
+                    <select id="role" name="role" class="validate" required>
+                        <option value="" disabled selected>Choose your role</option>
+                        {% for role in roles %} 
+                            <option value="{{ role.role_name }}">{{ role.role_name }}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="role">Role</label>
+                </div>
+                <div class="input-field col s12 offset-m3 m6">
+                    <i class="material-icons prefix">security</i>
+                    <input type="password" name="meade_password" id="meade_password" class="validate" required>
+                    <label for="meade_password">Meade Passcode</label>
                 </div>
             </div>
             <div class="row">
