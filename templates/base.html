@@ -20,21 +20,47 @@
                     <i class="material-icons">menu</i>
                 </a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="">Home</a></li>
-                    <li><a href="">View Upcoming Products</a></li>
-                    <li><a href="">Create New Product</a></li>
-                    <li><a href="">My Tasks</a></li>
-                    <li><a href="">Log In</a></li>
+                    {% if session.user %} 
+
+                        <li><a href="{{ url_for('get_upcoming') }}">Home</a></li>
+                        <li><a href="{{ url_for('get_upcoming') }}">View Upcoming Products</a></li>
+                        {% if session.role == "Commercial" %}
+
+                            <li><a href="{{ url_for('customer_select') }}">Create New Product</a></li>
+
+                        {% endif %}
+                        <li><a href="">My Tasks</a></li>
+                        <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+
+                    {% else %} 
+
+                        <li><a href="{{ url_for('login') }}">Log In</a></li>
+                        <li><a href="{{ url_for('register') }}">Register</a></li>
+
+                    {% endif %}
                 </ul>
             </div>
         </nav>
 
         <ul class="sidenav" id="mobile-sidenav">
-            <li><a href="">Home</a></li>
-            <li><a href="">View Upcoming Products</a></li>
-            <li><a href="">Create New Product</a></li>
-            <li><a href="">My Tasks</a></li>
-            <li><a href="">Log In</a></li>
+            {% if session.user %} 
+
+                <li><a href="{{ url_for('get_upcoming') }}">Home</a></li>
+                <li><a href="{{ url_for('get_upcoming') }}">View Upcoming Products</a></li>
+                {% if session.role == "Commercial" %}
+
+                    <li><a href="{{ url_for('customer_select') }}">Create New Product</a></li>
+
+                {% endif %}
+                <li><a href="">My Tasks</a></li>
+                <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+
+            {% else %} 
+
+                <li><a href="{{ url_for('login') }}">Log In</a></li>
+                <li><a href="{{ url_for('register') }}">Register</a></li>
+
+            {% endif %}
         </ul>
     </header>
     <section>
