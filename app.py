@@ -56,6 +56,11 @@ def customer_select():
         flash("You do not have permission to create products")
         return redirect(url_for("get_upcoming"))
 
+    if request.method == "POST":
+        return redirect(
+            url_for("product_details", customer_id=request.form.get("customer"))
+        )
+
     customers = mongo.db.customers.find().sort('customer_name', pymongo.ASCENDING)
     return render_template("customer_select.html", customers=customers)
 
