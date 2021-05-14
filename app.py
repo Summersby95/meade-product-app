@@ -76,7 +76,9 @@ def register():
         ('department_name', pymongo.ASCENDING)
     ]))
 
-    return render_template("register.html", departments=departments)
+    roles = list(mongo.db.roles.find().sort('role_name', pymongo.ASCENDING))
+
+    return render_template("register.html", departments=departments, roles=roles)
 
 
 if __name__ == "__main__":
