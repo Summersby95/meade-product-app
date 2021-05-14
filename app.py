@@ -76,6 +76,11 @@ def product_details(customer_id):
     
     customer_name = mongo.db.customers.find_one({"_id": ObjectId(customer_id)})["customer_name"]
 
+    field_list = mongo.db.form_fields.find_one({
+        "customer": customer_name, 
+        "department": session["department"]
+    })
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if session.get("user"):
