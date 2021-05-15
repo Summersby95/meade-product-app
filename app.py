@@ -100,6 +100,15 @@ def product_details(customer_id):
             "created_by": user["f_name"] + " " + user["l_name"],
             "created_on": datetime.now()
         }
+        
+        for field in field_list["commercial_details"]:
+            if field["field_type"] == "input":
+                product[field["field_name"]] = request.form.get(field["field_name"])
+            elif field["field_type"] == "multiselect":
+                product[field["field_name"]] = []
+                for value in request.form.getlist(field["field_name"]):
+                    product[field["field_name"]].append(value)
+
     for field in field_list["commercial_details"]:
         if (field["field_type"] == "multiselect") or (field["field_type"] == "select"):
             if field["options_type"] == "table":
