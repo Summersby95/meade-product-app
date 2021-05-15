@@ -80,13 +80,16 @@ def product_details(customer_id):
     elif session["role"] != "Commercial":
         flash("You do not have permission to create products")
         return redirect(url_for("get_upcoming"))
-    
+
     customer_name = mongo.db.customers.find_one({"_id": ObjectId(customer_id)})["customer_name"]
 
     field_list = mongo.db.form_fields.find_one({
         "customer": customer_name, 
         "department": session["department"]
     })
+
+    if request.method == "POST":
+        user = mongo.db.users.find_one({"username": session["user"]})
 
     for field in field_list["commercial_details"]:
         if (field["field_type"] == "multiselect") or (field["field_type"] == "select"):
