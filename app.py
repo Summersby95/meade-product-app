@@ -91,6 +91,15 @@ def product_details(customer_id):
     if request.method == "POST":
         user = mongo.db.users.find_one({"username": session["user"]})
 
+        product = {
+            "product_name": request.form.get("product_name"),
+            "department": session["department"],
+            "customer": customer_name,
+            "status": "Pending - Awaiting Many",
+            "start_date": datetime.strptime(request.form.get("start_date"), '%d %B, %Y'),
+            "created_by": user["f_name"] + " " + user["l_name"],
+            "created_on": datetime.now()
+        }
     for field in field_list["commercial_details"]:
         if (field["field_type"] == "multiselect") or (field["field_type"] == "select"):
             if field["options_type"] == "table":
