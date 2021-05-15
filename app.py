@@ -109,6 +109,11 @@ def product_details(customer_id):
                 for value in request.form.getlist(field["field_name"]):
                     product[field["field_name"]].append(value)
 
+        mongo.db.products.insert_one(product)
+        flash("Product Successfully Added")
+        return redirect(url_for('get_upcoming'))
+    
+
     for field in field_list["commercial_details"]:
         if (field["field_type"] == "multiselect") or (field["field_type"] == "select"):
             if field["options_type"] == "table":
