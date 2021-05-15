@@ -119,7 +119,7 @@ def product_details(customer_id):
             if field["options_type"] == "table":
                 field["options"] = mongo.db[field["table_name"]].find()
 
-    return render_template("commercial_product_details.html", customer_name=customer_name, field_list=field_list)
+    return render_template("commercial_product_details.html", customer_id=customer_id, field_list=field_list)
     
 
 
