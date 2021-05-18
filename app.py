@@ -51,20 +51,20 @@ def view_product(product_id):
 
 @app.route("/create_product/customer_select", methods=["GET", "POST"])
 def customer_select():
-    if not(session.get("user")):
+    if not(security.check_login()):
         flash("Please login to view this content")
         return redirect(url_for("login"))
     elif session["role"] != "Commercial":
         flash("You do not have permission to create products")
         return redirect(url_for("get_upcoming"))
+    else:
+        if request.method == "POST":
+            return redirect(
+                url_for("product_details", customer_id=request.form.get("customer"))
+            )
 
-    if request.method == "POST":
-        return redirect(
-            url_for("product_details", customer_id=request.form.get("customer"))
-        )
-
-    customers = mongo.db.customers.find().sort('customer_name', pymongo.ASCENDING)
-    return render_template("customer_select.html", customers=customers)
+        customers = mongo.db.customers.find().sort('customer_name', pymongo.ASCENDING)
+        return render_template("customer_select.html", customers=customers)
 
 
 @app.route("/create_product/product_details/<customer_id>", methods=["GET", "POST"])
