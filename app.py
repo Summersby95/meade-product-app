@@ -69,26 +69,28 @@ def customer_select():
 
 @app.route("/create_product/product_details/<customer_id>", methods=["GET", "POST"])
 def product_details(customer_id):
-    if not(session.get("user")):
+    if not(security.check_login()):
         flash("Please login to view this content")
         return redirect(url_for("login"))
     elif session["role"] != "Commercial":
         flash("You do not have permission to create products")
         return redirect(url_for("get_upcoming"))
-    
-    customer_name = mongo.db.customers.find_one({"_id": ObjectId(customer_id)})["customer_name"]
+    else:
+        customer_name = mongo.db.customers.find_one({"_id": ObjectId(customer_id)})["customer_name"]
 
-    field_list = mongo.db.form_fields.find_one({
+        field_list = mongo.db.form_fields.find_one({
+            "customer": customer_name, 
         "customer": customer_name, 
-        "department": session["department"]
-    })
+            "customer": customer_name, 
+            "department": session["department"]
+        })
 
-    for field in field_list["commercial_details"]:
-        if (field["field_type"] == "multiselect") or (field["field_type"] == "select"):
-            if field["options_type"] == "table":
-                field["options"] = mongo.db[field["table_name"]].find()
+        for field in field_list["commercial_details"]:
+            if (field["field_type"] == "multiselect") or (field["field_type"] == "select"):
+                if field["options_type"] == "table":
+                    field["options"] = mongo.db[field["table_name"]].find()
 
-    return render_template("commercial_product_details.html", customer_name=customer_name, field_list=field_list)
+        return render_template("commercial_product_details.html", customer_name=customer_name, field_list=field_list)
     
 
 
