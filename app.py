@@ -80,8 +80,6 @@ def product_details(customer_id):
 
         field_list = mongo.db.form_fields.find_one({
             "customer": customer_name, 
-        "customer": customer_name, 
-            "customer": customer_name, 
             "department": session["department"]
         })
 
@@ -96,7 +94,7 @@ def product_details(customer_id):
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    if session.get("user"):
+    if security.check_login():
         flash("You are already logged in")
         return redirect(url_for("get_upcoming"))
 
@@ -144,7 +142,7 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    if session.get("user"):
+    if security.check_login():
         flash("You are already logged in")
         return redirect(url_for("get_upcoming"))
 
