@@ -26,7 +26,14 @@ mongo = PyMongo(app)
 @app.route("/")
 def get_upcoming():
     if security.check_login():
-        products = list(mongo.db.products.find().sort([
+        products = list(mongo.db.products.find({}, {
+            "product_name": 1,
+            "department": 1,
+            "customer": 1,
+            "status": 1,
+            "start_date": 1,
+            "created_by": 1
+        }).sort([
             ('start_date', pymongo.ASCENDING)
         ]))
 
@@ -83,12 +90,38 @@ def product_details(customer_id):
             "department": session["department"]
         })
 
-        for field in field_list["commercial_details"]:
-            if (field["field_type"] == "multiselect") or (field["field_type"] == "select"):
-                if field["options_type"] == "table":
-                    field["options"] = mongo.db[field["table_name"]].find()
+        if request.method == "POST":
+            user = mongo.db.users.find_one({"username": session["user"]})
 
-        return render_template("commercial_product_details.html", customer_name=customer_name, field_list=field_list)
+            product = {
+                "product_name": request.form.get("product_name"),
+                "department": session["department"],
+                "customer": customer_name,
+                "status": "Pending - Awaiting Many",
+                "start_date": datetime.strptime(request.form.get("start_date"), '%d %B, %Y'),
+                "created_by": user["f_name"] + " " + user["l_name"],
+                "created_on": datetime.now()
+            }
+            
+            for field in field_list["commercial_details"]:
+                if field["field_type"] == "input":
+                    product[field["field_name"]] = request.form.get(field["field_name"])
+                elif field["field_type"] == "multiselect":
+                    product[field["field_name"]] = []
+                    for value in request.form.getlist(field["field_name"]):
+                        product[field["field_name"]].append(value)
+
+            mongo.db.products.insert_one(product)
+            flash("Product Successfully Added")
+            return redirect(url_for('get_upcoming'))
+    
+
+    for field in field_list["commercial_details"]:
+        if (field["field_type"] == "multiselect") or (field["field_type"] == "select"):
+            if field["options_type"] == "table":
+                field["options"] = mongo.db[field["table_name"]].find()
+
+    return render_template("commercial_product_details.html", customer_id=customer_id, field_list=field_list)
     
 
 
