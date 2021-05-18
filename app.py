@@ -25,18 +25,18 @@ mongo = PyMongo(app)
 
 @app.route("/")
 def get_upcoming():
-    if not(session.get("user")):
+    if security.check_login():
+        products = list(mongo.db.products.find().sort([
+            ('start_date', pymongo.ASCENDING)
+        ]))
+
+        for product in products:
+            product["start_date"] = product["start_date"].strftime("%d %B %Y")
+
+        return render_template("upcoming_products.html", products=products)
+    else:
         flash("Please login to view this content")
         return redirect(url_for("login"))
-
-    products = list(mongo.db.products.find().sort([
-        ('start_date', pymongo.ASCENDING)
-    ]))
-
-    for product in products:
-        product["start_date"] = product["start_date"].strftime("%d %B %Y")
-
-    return render_template("upcoming_products.html", products=products)
 
 
 @app.route("/view_product/<product_id>")
