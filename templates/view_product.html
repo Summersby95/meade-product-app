@@ -15,6 +15,9 @@
                     <div class="col s12 m6 row">
                         <div class="col s4">
                             <strong>{{ field.replace("_", " ").title() }}</strong>
+                            {% if {"role_name": field.capitalize()} in roles  if not any %} 
+                                TRUE
+                            {% endif %}
                         </div>
                         <div class="col s8">
                             <!-- check if value is list or string -->
