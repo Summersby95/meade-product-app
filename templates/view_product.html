@@ -15,9 +15,6 @@
                     <div class="col s12 m6 row">
                         <div class="col s4">
                             <strong>{{ field.replace("_", " ").title() }}</strong>
-                            {% if {"role_name": field.capitalize()} in roles  if not any %} 
-                                TRUE
-                            {% endif %}
                         </div>
                         <div class="col s8">
                             <!-- check if value is list or string -->
@@ -38,6 +35,37 @@
 
     <hr>
 
-    <h4><i class="material-icons">card_giftcard</i> Packaging Details</h4>
+    {% for role in roles %} 
+
+        <h4><i class="material-icons">card_giftcard</i> {{ role.role_name }} Details</h4>
+
+        {% if product[role.role_name.lower()] %} 
+
+            <div class="row">
+
+                {% for field, value in product[role.role_name.lower()].items() %} 
+
+                    <div class="col s12 m6 row">
+                        <div class="col s4">
+                            <strong>{{ field.replace("_", " ").title() }}</strong>
+                        </div>
+                        <div class="col s8">
+                            {{ value }}
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %} 
+
+            <h5 class="center-align">No {{ role.role_name }} Details Submitted Yet</h5>
+
+        {% endif %}
+
+        <hr>
+
+    {% endfor %}
 
 {% endblock %}
