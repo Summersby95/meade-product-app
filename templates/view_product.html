@@ -9,14 +9,21 @@
 
         <div class="row" id="product-details">
 
-            {% for field, value in product.items() %} 
+            {% for field, value in product.items() %}
 
                 {% if field != "_id" %} 
-                    <div class="col s2">
-                        <strong>{{ field.replace("_", " ").title() }}</strong>
-                    </div>
-                    <div class="col s4">
-                        {{ value }}
+                    <div class="col s12 m6 row">
+                        <div class="col s4">
+                            <strong>{{ field.replace("_", " ").title() }}</strong>
+                        </div>
+                        <div class="col s8">
+                            <!-- check if value is list or string -->
+                            {% if value is iterable and (value is not string and value is not mapping) %}
+                                {{ ", ".join(value) }}
+                            {% else %} 
+                                {{ value }}
+                            {% endif %} 
+                        </div>
                     </div>
                 {% endif %}
 
