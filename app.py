@@ -50,7 +50,10 @@ def get_upcoming():
 def view_product(product_id):
     if security.check_login():
         product = mongo.db.products.find_one({"_id": ObjectId(product_id)})
-        return render_template("view_product.html", product=product)
+        roles = list(mongo.db.roles.find({
+            "role_name": {"$nin": ["Admin", "Commercial", "Management"]}
+        }))
+        return render_template("view_product.html", product=product, roles=roles)
     else:
         flash("Please login to view this content")
         return redirect(url_for("login"))
