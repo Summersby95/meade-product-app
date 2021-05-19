@@ -90,3 +90,6 @@ The goal of this project is to create an application that enforces a well-define
 ## Deployment
 
 ## Credits
+
+https://jinja.palletsprojects.com/en/3.0.x/templates/#comparisons
+https://stackoverflow.com/questions/11947325/how-to-test-for-a-list-in-jinja2
