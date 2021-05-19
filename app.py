@@ -112,6 +112,30 @@ def product_details(customer_id):
                         product[field["field_name"]].append(value)
 
             mongo.db.products.insert_one(product)
+
+            email_group = mongo.db.users.find({
+                "department": { "$in": [session["department"], "All"] },
+                "username": { "$ne": session["user"] }
+            }, {
+                "email": 1
+            })
+
+            email_group_array = []
+
+            for email in email_group:
+                email_group_array.append(email["email"])
+
+            message = """
+            A new product has been created for your department. 
+
+            Product Name: %s
+            User: %s
+            
+            Please login to the Meade Product App to view it: https://meade-product-app.herokuapp.com/
+            """ % (request.form.get("product_name"), user["f_name"] + " " + user["l_name"])
+
+            email_func.send_email(email_group_array, "A New Product Has Been Created", message)
+
             flash("Product Successfully Added")
             return redirect(url_for('get_upcoming'))
     
