@@ -164,6 +164,17 @@ def my_tasks():
         else:
             role_fil = {}
 
+        products = list(mongo.db.products.find({"$and": [prod_fil, role_fil, 
+        {(session["role"].lower()): {"$exists": False}}]}, {
+            "product_name": 1,
+            "department": 1,
+            "customer": 1,
+            "status": 1,
+            "start_date": 1,
+            "created_by": 1
+        }).sort([
+            ('start_date', pymongo.ASCENDING)
+        ]))
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if security.check_login():
