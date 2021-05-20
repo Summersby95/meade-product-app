@@ -33,3 +33,41 @@
 
     {% endif %}
 
+    <hr>
+
+    {% for role in roles %} 
+
+        {% if role.role_name != session.role %} 
+
+            <h4><i class="material-icons">card_giftcard</i> {{ role.role_name }} Details</h4>
+
+            {% if product[role.role_name.lower()] %} 
+
+                <div class="row">
+
+                    {% for field, value in product[role.role_name.lower()].items() %} 
+
+                        <div class="col s12 m6 row">
+                            <div class="col s4">
+                                <strong>{{ field.replace("_", " ").title() }}</strong>
+                            </div>
+                            <div class="col s8">
+                                {{ value }}
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %} 
+
+                <h5 class="center-align">No {{ role.role_name }} Details Submitted Yet</h5>
+
+            {% endif %}
+
+            <hr>
+
+        {% endif %}
+
+    {% endfor %}
