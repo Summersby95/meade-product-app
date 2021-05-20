@@ -38,7 +38,7 @@
                         <div class="input-field col s12 m6">
                             <select multiple name="{{ field.field_name }}" id="{{ field.field_name }}" required>
                                 {% for option in field.options %} 
-                                    <option value="{{ option.name }}">{{ option.name }}</option>
+                                    <option value="{{ option }}">{{ option }}</option>
                                 {% endfor %}
                             </select>
                             <label for="{{ field.field_name }}">{{ field.field_name.replace("_", " ").title() }}</label>
