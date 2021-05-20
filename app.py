@@ -175,6 +175,13 @@ def my_tasks():
         }).sort([
             ('start_date', pymongo.ASCENDING)
         ]))
+
+        return render_template("my_tasks.html", products=products)
+    else:
+        flash("Please login to view this content")
+        return redirect(url_for("login"))
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if security.check_login():
