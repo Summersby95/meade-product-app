@@ -153,6 +153,16 @@ def product_details(customer_id):
 
 @app.route("/my_tasks")
 def my_tasks():
+    if security.check_login():
+        if session["department"] == "All":
+            prod_fil = {}
+        else:
+            prod_fil = {"department": session["department"]}
+
+        if session["role"] == "Commercial":
+            role_fil = {"status": "Pending - Awaiting Commercial Sign Off"}
+        else:
+            role_fil = {}
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
