@@ -202,6 +202,21 @@ def add_product_details(product_id):
         roles = list(mongo.db.roles.find({
             "role_name": {"$nin": ["Admin", "Commercial", "Management"]}
         }))
+
+        for field in field_list[role.lower() + "_details"]:
+            if (field["field_type"] == "multiselect") or (field["field_type"] == "select"):
+                if field["options_type"] == "table":
+                    options_table = mongo.db[field["table_name"]].find()
+                    field["options"] = []
+                    for option in options_table:
+                        field["options"].append(option["name"])
+
+        return render_template("add_product_details.html", product=product, field_list=field_list, roles=roles)
+    else:
+        flash("Please login to view this content")
+        return redirect(url_for("login"))
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if security.check_login():
