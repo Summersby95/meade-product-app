@@ -29,7 +29,7 @@
                             <li><a href="{{ url_for('customer_select') }}">Create New Product</a></li>
 
                         {% endif %}
-                        <li><a href="">My Tasks</a></li>
+                        <li><a href="{{ url_for('my_tasks') }}">My Tasks</a></li>
                         <li><a href="{{ url_for('logout') }}">Log Out</a></li>
 
                     {% else %} 
@@ -52,7 +52,7 @@
                     <li><a href="{{ url_for('customer_select') }}">Create New Product</a></li>
 
                 {% endif %}
-                <li><a href="">My Tasks</a></li>
+                <li><a href="{{ url_for('my_tasks') }}">My Tasks</a></li>
                 <li><a href="{{ url_for('logout') }}">Log Out</a></li>
 
             {% else %} 
