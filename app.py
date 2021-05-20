@@ -203,6 +203,24 @@ def add_product_details(product_id):
             "role_name": {"$nin": ["Admin", "Commercial", "Management"]}
         }))
 
+        details = {}
+
+        if request.method == "POST":
+            for field in field_list[role.lower()+"_details"]:
+                if field["field_type"] == "input" or field["field_type"] == "select":
+                    details[field["field_name"]] = request.form.get(field["field_name"])
+                elif field["field_type"] == "multiselect":
+                    details[field["field_name"]] = []
+                    for value in request.form.getlist(field["field_name"]):
+                        details[field["field_name"]].append(value)
+            
+            mongo.db.products.update_one({"_id": ObjectId(product_id)}, {
+                "$set": {role.lower(): details}
+            })
+
+            flash("Product Details Added Successfully")
+            return redirect(url_for("my_tasks"))
+
         for field in field_list[role.lower() + "_details"]:
             if (field["field_type"] == "multiselect") or (field["field_type"] == "select"):
                 if field["options_type"] == "table":
