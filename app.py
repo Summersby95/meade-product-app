@@ -151,6 +151,8 @@ def product_details(customer_id):
     return render_template("commercial_product_details.html", customer_id=customer_id, field_list=field_list)
     
 
+@app.route("/my_tasks")
+def my_tasks():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
