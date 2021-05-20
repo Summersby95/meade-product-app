@@ -1,0 +1,73 @@
+{% extends "base.html" %} 
+{% block content %} 
+
+    <h3 class="center-align">My Tasks</h3>
+
+    <h5>The Following Products Require <strong><i>{{ session.role }}</i></strong> Details</h5>
+
+    <hr>
+
+    <table class="highlight responsive-table">
+        <thead>
+
+            {% if products %}
+                    
+                <tr>
+
+                    {% for field, value in products[0].items() %}
+
+                        {% if field != "_id" %}
+
+                            <th>{{ field.replace("_", " ").title() }}</th>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                    <th>Actions</th>
+                    <th></th>
+
+                </tr>
+
+            {% endif %}
+
+        </thead>
+        <tbody>
+
+            {% if products %}
+
+                {% for product in products %}
+                    
+                    <tr>
+
+                        {% for field, value in product.items() %}
+
+                            {% if field != "_id" %}
+
+                                <td>{{ value }}</td>
+
+                            {% endif %}
+
+                        {% endfor %}
+
+                        <td>
+                            <a href="{{ url_for('view_product', product_id=product._id) }}" class="btn waves-effect green accent-3">
+                                <i class="material-icons right">format_list_bulleted</i> View Product
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#" class="btn waves-effect blue accent-3">
+                                <i class="material-icons right">edit</i> Add Details
+                            </a>
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+            {% endif %}
+
+        </tbody>
+    </table>
+
+{% endblock %}
