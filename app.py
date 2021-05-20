@@ -185,6 +185,23 @@ def my_tasks():
         return redirect(url_for("login"))
 
 
+@app.route("/add_product_details/<product_id>", methods=["GET", "POST"])
+def add_product_details(product_id):
+    if security.check_login():
+        role = session["role"]
+        
+        product = mongo.db.products.find_one({"_id": ObjectId(product_id)})
+
+        customer = product["customer"]
+        department = product["department"]
+
+        field_list = mongo.db.form_fields.find_one({
+            "$and": [{"customer": customer}, {"department": department}]
+        }, {(role.lower() + "_details"): 1})
+
+        roles = list(mongo.db.roles.find({
+            "role_name": {"$nin": ["Admin", "Commercial", "Management"]}
+        }))
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if security.check_login():
