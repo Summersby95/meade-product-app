@@ -146,7 +146,10 @@ def product_details(customer_id):
     for field in field_list["commercial_details"]:
         if (field["field_type"] == "multiselect") or (field["field_type"] == "select"):
             if field["options_type"] == "table":
-                field["options"] = mongo.db[field["table_name"]].find()
+                options_table = mongo.db[field["table_name"]].find()
+                field["options"] = []
+                for option in options_table:
+                    field["options"].append(option["name"])
 
     return render_template("commercial_product_details.html", customer_id=customer_id, field_list=field_list)
     
