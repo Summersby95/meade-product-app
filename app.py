@@ -231,20 +231,27 @@ def my_tasks():
         return redirect(url_for("login"))
 
 
+# Add Product Details Route
 @app.route("/add_product_details/<product_id>", methods=["GET", "POST"])
 def add_product_details(product_id):
     if security.check_login():
+        # the form for adding product details will differ depending on the product and the role 
+        # of the user
         role = session["role"]
         
         product = mongo.db.products.find_one({"_id": ObjectId(product_id)})
 
+        # we get the customer and department from the product object
         customer = product["customer"]
         department = product["department"]
 
+        # we get the field_list by searching with the customer and department
+        # we only want the fields that are relevant for this user's role
         field_list = mongo.db.form_fields.find_one({
             "$and": [{"customer": customer}, {"department": department}]
         }, {(role.lower() + "_details"): 1})
 
+        # we get a list of roles to cycle through when we are building the details tabs
         roles = list(mongo.db.roles.find({
             "role_name": {"$nin": ["Admin", "Commercial", "Management"]}
         }))
@@ -252,10 +259,13 @@ def add_product_details(product_id):
         
 
         if request.method == "POST":
+            # we need the user's first and last name to put in the "added_by" field
             user = mongo.db.users.find_one({"username": session["user"]})
 
+            # we start with an empty details dictionary
             details = {}
 
+            # we cycle through the field_list and put all the details into the details dictionary
             for field in field_list[role.lower()+"_details"]:
                 if field["field_type"] == "input" or field["field_type"] == "select":
                     details[field["field_name"]] = request.form.get(field["field_name"])
@@ -264,21 +274,31 @@ def add_product_details(product_id):
                     for value in request.form.getlist(field["field_name"]):
                         details[field["field_name"]].append(value)
             
+            # we then add the "added_by" and "date_added" fields to the dictionary so we know
+            # when it was last updated
             details["added_by"] = user["f_name"] + " " + user["l_name"]
             details["date_added"] = datetime.now()
             
+            # we then update the product and create an object of the role name which is equal to the 
+            # dictionary we just created
             mongo.db.products.update_one({"_id": ObjectId(product_id)}, {
                 "$set": {role.lower(): details}
             })
 
+            # after updating we get the product object from the database again so that we can check 
+            # what roles have submitted their information and which have not
             product = mongo.db.products.find_one({"_id": ObjectId(product_id)})
 
             outstanding_roles = []
 
+            # we cycle through the roles and check if an object of the role exists within the product
             for role in roles:
                 if not (role["role_name"].lower() in product):
                     outstanding_roles.append(role["role_name"])
             
+            # if there are no outstanding roles left to input information then the product is ready 
+            # to be signed off by commercial, if not then we give it the status of
+            # "Pending - Awaiting " followed by the roles that have yet to submit information
             if len(outstanding_roles) == 0:
                 status = "Pending - Awaiting Commercial Sign Off"
             else:
