@@ -96,6 +96,7 @@ def customer_select():
         return render_template("customer_select.html", customers=customers)
 
 
+# Create Product Product Details Route
 @app.route("/create_product/product_details/<customer_id>", methods=["GET", "POST"])
 def product_details(customer_id):
     if not(security.check_login()):
@@ -105,8 +106,10 @@ def product_details(customer_id):
         flash("You do not have permission to create products")
         return redirect(url_for("get_upcoming"))
     else:
+        # get customer name using customer_id passed to url
         customer_name = mongo.db.customers.find_one({"_id": ObjectId(customer_id)})["customer_name"]
 
+        # get field_list from form_fields table, searching on the customer name and department
         field_list = mongo.db.form_fields.find_one({
             "customer": customer_name, 
             "department": session["department"]
@@ -115,6 +118,7 @@ def product_details(customer_id):
         if request.method == "POST":
             user = mongo.db.users.find_one({"username": session["user"]})
 
+            # Create product base details, common for all new products
             product = {
                 "product_name": request.form.get("product_name"),
                 "department": session["department"],
@@ -125,6 +129,10 @@ def product_details(customer_id):
                 "created_on": datetime.now()
             }
             
+            # From field_list, cycle through fields (which were used to build form) and get
+            # value from post form with that field name and add detail to product dict
+            # if it's a multiselect then create an list object and append every 
+            # selected value to end of list
             for field in field_list["commercial_details"]:
                 if field["field_type"] == "input":
                     product[field["field_name"]] = request.form.get(field["field_name"])
@@ -133,8 +141,12 @@ def product_details(customer_id):
                     for value in request.form.getlist(field["field_name"]):
                         product[field["field_name"]].append(value)
 
+            # insert product dict into products table
             mongo.db.products.insert_one(product)
 
+            # create email group to notify of new product creation
+            # we only want to notify users of the same department or of the "All" department
+            # we also only want the email attribute of the users
             email_group = mongo.db.users.find({
                 "department": { "$in": [session["department"], "All"] },
                 "username": { "$ne": session["user"] }
@@ -142,11 +154,13 @@ def product_details(customer_id):
                 "email": 1
             })
 
+            # convert dict into array of email addresses
             email_group_array = []
 
             for email in email_group:
                 email_group_array.append(email["email"])
 
+            # create message to send to users
             message = """
             A new product has been created for your department. 
 
@@ -156,6 +170,7 @@ def product_details(customer_id):
             Please login to the Meade Product App to view it: https://meade-product-app.herokuapp.com/
             """ % (request.form.get("product_name"), user["f_name"] + " " + user["l_name"])
 
+            # call send_email function (view email_func.py) with email list, subject and message
             email_func.send_email(email_group_array, "A New Product Has Been Created", message)
 
             flash("Product Successfully Added")
