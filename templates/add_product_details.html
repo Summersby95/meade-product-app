@@ -52,7 +52,11 @@
                                 <strong>{{ field.replace("_", " ").title() }}</strong>
                             </div>
                             <div class="col s8">
-                                {{ value }}
+                                {% if value is iterable and (value is not string and value is not mapping) %}
+                                    {{ ", ".join(value) }}
+                                {% else %}  
+                                    {{ value }}
+                                {% endif %} 
                             </div>
                         </div>
 
