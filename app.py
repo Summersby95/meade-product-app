@@ -71,15 +71,22 @@ def view_product(product_id):
         return redirect(url_for("login"))
 
 
+# Create Product Customer Select Route
 @app.route("/create_product/customer_select", methods=["GET", "POST"])
 def customer_select():
     if not(security.check_login()):
         flash("Please login to view this content")
         return redirect(url_for("login"))
     elif session["role"] != "Commercial":
+        # Only a member of the commercial team has permission to create products
         flash("You do not have permission to create products")
         return redirect(url_for("get_upcoming"))
     else:
+        # This view simply allows the user to select the customer the product is for
+        # We do this first because the details required for a new product depend 
+        # on the customer of the product. Therefore, to build the form with the 
+        # correct fields we must first get the user to select the customer
+        # the department is defined by the users attributes
         if request.method == "POST":
             return redirect(
                 url_for("product_details", customer_id=request.form.get("customer"))
