@@ -203,9 +203,13 @@ def add_product_details(product_id):
             "role_name": {"$nin": ["Admin", "Commercial", "Management"]}
         }))
 
-        details = {}
+        
 
         if request.method == "POST":
+            user = mongo.db.users.find_one({"username": session["user"]})
+
+            details = {}
+
             for field in field_list[role.lower()+"_details"]:
                 if field["field_type"] == "input" or field["field_type"] == "select":
                     details[field["field_name"]] = request.form.get(field["field_name"])
