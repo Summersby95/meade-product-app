@@ -22,10 +22,14 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
-
+# Default Route
 @app.route("/")
 def get_upcoming():
+    # The check login function (in the security.py file) checks that the user is logged in
+    # All views are locked to the user unless they are logged in, they will be directed to the login screen
     if security.check_login():
+        # get product list from products table, we only want certain columns, the rest will be
+        # viewable in the view_product route, we also order by start_date to show urgent ones first
         products = list(mongo.db.products.find({}, {
             "product_name": 1,
             "department": 1,
@@ -37,11 +41,13 @@ def get_upcoming():
             ('start_date', pymongo.ASCENDING)
         ]))
 
+        # we convert the start_date, which is a datetime object in the database, to a string
         for product in products:
             product["start_date"] = product["start_date"].strftime("%d %B %Y")
 
         return render_template("upcoming_products.html", products=products)
     else:
+        # if the user is not logged in we redirect them to the login screen
         flash("Please login to view this content")
         return redirect(url_for("login"))
 
