@@ -218,6 +218,9 @@ def add_product_details(product_id):
                     for value in request.form.getlist(field["field_name"]):
                         details[field["field_name"]].append(value)
             
+            details["added_by"] = user["f_name"] + " " + user["l_name"]
+            details["date_added"] = datetime.now()
+            
             mongo.db.products.update_one({"_id": ObjectId(product_id)}, {
                 "$set": {role.lower(): details}
             })
