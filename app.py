@@ -177,6 +177,10 @@ def product_details(customer_id):
             return redirect(url_for('get_upcoming'))
     
 
+    # search the commercial_details objects in the field_list, if the field is a select 
+    # or multiselect and has the "options_type" of "table" it means that it is using a table for 
+    # options so we call the options from the table and create a list to store the options in and 
+    # append it to the field object
     for field in field_list["commercial_details"]:
         if (field["field_type"] == "multiselect") or (field["field_type"] == "select"):
             if field["options_type"] == "table":
@@ -186,7 +190,7 @@ def product_details(customer_id):
                     field["options"].append(option["name"])
 
     return render_template("commercial_product_details.html", customer_id=customer_id, field_list=field_list)
-    
+
 
 @app.route("/my_tasks")
 def my_tasks():
