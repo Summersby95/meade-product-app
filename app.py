@@ -351,13 +351,16 @@ def add_product_details(product_id):
         return redirect(url_for("login"))
 
 
+# Register Route
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if security.check_login():
+        # if the user is already logged in we don't want them registering again
         flash("You are already logged in")
         return redirect(url_for("get_upcoming"))
 
     if request.method == "POST":
+        # we check to see if the username exists in the database already
         user_exists = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()}
         )
@@ -365,13 +368,19 @@ def register():
         if user_exists:
             flash("This Username is taken!")
             return redirect(url_for("register"))
+        # we check to see if the password and password_repeat values match
         elif request.form.get("password") != request.form.get("password_repeat"):
             flash("Passwords do not match!")
             return redirect(url_for('register'))
+        # there is an environment variable with a hashed password
+        # the user must input this password to gain be allowed to register
+        # this is a security measure to prevent random people from being 
+        # able to create accounts
         elif not(check_password_hash(os.environ.get("MEADE_PASS"), request.form.get("meade_password"))):
             flash("Incorrect Meade Passcode!")
             return redirect(url_for('register'))
         else:
+            # if the form passes all checks then we create the user dictionary and insert it into the database
             user = {
                 "username": request.form.get("username"),
                 "f_name": request.form.get("f_name"),
