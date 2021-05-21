@@ -192,19 +192,27 @@ def product_details(customer_id):
     return render_template("commercial_product_details.html", customer_id=customer_id, field_list=field_list)
 
 
+# My Tasks Route
 @app.route("/my_tasks")
 def my_tasks():
     if security.check_login():
+        # if the user doesn't have a specific department then we don't need to filter on the department
         if session["department"] == "All":
             prod_fil = {}
         else:
             prod_fil = {"department": session["department"]}
 
+        # if the user is part of the commercial team, we only want to see products which have the 
+        # status of "Pending - Awaiting Commercial Sign Off"
         if session["role"] == "Commercial":
             role_fil = {"status": "Pending - Awaiting Commercial Sign Off"}
         else:
             role_fil = {}
 
+        # We add the filter dictionaries we've created above as well as a filter to check 
+        # if the product has an attribute equal to the users role (Commercial, Packaging, Operations...)
+        # if the product has that attribute then the details for the users role have already
+        # been completed and is not outstanding
         products = list(mongo.db.products.find({"$and": [prod_fil, role_fil, 
         {(session["role"].lower()): {"$exists": False}}]}, {
             "product_name": 1,
