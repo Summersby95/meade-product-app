@@ -52,10 +52,16 @@ def get_upcoming():
         return redirect(url_for("login"))
 
 
+# View Product Details Route
 @app.route("/view_product/<product_id>")
 def view_product(product_id):
     if security.check_login():
+        # Get the product document from the database using the product_id
         product = mongo.db.products.find_one({"_id": ObjectId(product_id)})
+        # Get a list of the roles from the roles table, we will use this to cycle
+        # Through to show different roles details for the product
+        # we dont include the admin/commercial/management roles as they dont have
+        # specific role details for a product
         roles = list(mongo.db.roles.find({
             "role_name": {"$nin": ["Admin", "Commercial", "Management"]}
         }))
