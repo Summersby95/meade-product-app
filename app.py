@@ -242,6 +242,32 @@ def add_product_details(product_id):
                 "$set": {"status": status}
             })
 
+            email_group = mongo.db.users.find({
+                "department": { "$in": [session["department"], "All"] },
+                "username": { "$ne": session["user"] }
+            }, {
+                "email": 1
+            })
+
+            email_group_array = []
+
+            for email in email_group:
+                email_group_array.append(email["email"])
+
+            message = """
+            A product has been updated.
+
+            Product Name: %s
+            Customer: %s
+            Department: %s
+            User: %s
+            
+            You can view the product here: %s
+            """ % (product["product_name"], product["customer"], product["department"], 
+            user["f_name"] + " " + user["l_name"], "https://meade-product-app.herokuapp.com" + url_for("view_product", product_id=product_id))
+
+            email_func.send_email(email_group_array, "A Product Has Been Updated", message)
+
             flash("Product Details Added Successfully")
             return redirect(url_for("my_tasks"))
 
