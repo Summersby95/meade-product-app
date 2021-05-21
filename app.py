@@ -440,9 +440,10 @@ def login():
 
     return render_template("login.html")
 
-
+# Log Out Route
 @app.route("/logout")
 def logout():
+    # we remove the session variables when the user logs out
     flash("You have been logged out")
     session.pop("user")
     session.pop("department")
