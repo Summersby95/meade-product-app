@@ -218,6 +218,21 @@ def add_product_details(product_id):
                 "$set": {role.lower(): details}
             })
 
+            outstanding_roles = []
+
+            for role in roles:
+                if not (role["role_name"].lower() in product):
+                    outstanding_roles.append(role["role_name"])
+            
+            if len(outstanding_roles) == 0:
+                status = "Pending - Awaiting Commercial Sign Off"
+            else:
+                status = "Pending - Awaiting " + (", ").join(outstanding_roles)
+            
+            mongo.db.products.update_one({"_id": ObjectId(product_id)}, {
+                "$set": {"status": status}
+            })
+
             flash("Product Details Added Successfully")
             return redirect(url_for("my_tasks"))
 
