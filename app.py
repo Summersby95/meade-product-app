@@ -225,6 +225,8 @@ def add_product_details(product_id):
                 "$set": {role.lower(): details}
             })
 
+            product = mongo.db.products.find_one({"_id": ObjectId(product_id)})
+
             outstanding_roles = []
 
             for role in roles:
