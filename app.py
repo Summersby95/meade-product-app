@@ -450,7 +450,7 @@ def logout():
     session.pop("role")
     return redirect(url_for("login"))
 
-
+# we start the app using the ip and port specified in the environment variables
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
