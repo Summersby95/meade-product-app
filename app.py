@@ -411,16 +411,21 @@ def register():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if security.check_login():
+        # if a user is already logged in we don't want them attempting to log in again
         flash("You are already logged in")
         return redirect(url_for("get_upcoming"))
 
     if request.method == "POST":
+        # we check that the user exists exists and if the password provided matches the 
+        # hash of the password in the database
         user_exists = mongo.db.users.find_one(
             {"username": request.form.get("username")}
         )
 
         if user_exists:
             if check_password_hash(user_exists["password"], request.form.get("password")):
+                # if it does then we set session variables for the user specifying their
+                # username, department and role
                 session["user"] = request.form.get("username")
                 session["department"] = user_exists["department"]
                 session["role"] = user_exists["role"]
