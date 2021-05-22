@@ -6,19 +6,22 @@
     <form action="{{ url_for('product_details', customer_id=customer_id) }}" method="post">
         <div class="card-panel">
             <div class="row">
+                <!-- Disabled Customer Input (Visual Indicatior for User) -->
                 <div class="input-field col s12 m6">
                     <input type="text" class="validate" name="customer" id="customer" value="{{ field_list.customer }}" disabled>
                     <label for="customer">Customer</label>
                 </div>
+                <!-- Disabled Department Input -->
                 <div class="input-field col s12 m6">
                     <input type="text" class="validate" name="department" id="department" value="{{ session.department }}" disabled>
                     <label for="department">Department</label>
                 </div>
             </div><hr><br>
             <div class="row">
-
+                {# we build the form fields dynamically from the field_list dictionary
+                    we only want the commercial details inputs for this form #}
                 {% for field in field_list.commercial_details %}
-
+                    {# we check the field_type attribute and create an input depending on what type it is #}
                     {% if field.field_type == "input" %} 
 
                         <div class="input-field col s12 m6">
@@ -37,6 +40,7 @@
 
                         <div class="input-field col s12 m6">
                             <select multiple name="{{ field.field_name }}" id="{{ field.field_name }}" required>
+                                {# if it's a multiselect/select we build the options from the options array #}
                                 {% for option in field.options %} 
                                     <option value="{{ option }}">{{ option }}</option>
                                 {% endfor %}
@@ -50,6 +54,7 @@
 
             </div>
             <div class="row">
+                <!-- submit button -->
                 <div class="col s12 center-align">
                     <button type="submit" class="btn-large green accent-3 center-align">
                         <i class="material-icons right">check</i> Submit
