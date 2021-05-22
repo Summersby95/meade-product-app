@@ -11,6 +11,7 @@
 </head>
 <body>
     <header>
+        <!-- navbar for desktop -->
         <nav class="nav-extended green accent-3">
             <div class="nav-wrapper">
                 <a href="" class="brand-logo left">
@@ -41,7 +42,7 @@
                 </ul>
             </div>
         </nav>
-
+        <!-- side nav for mobile -->
         <ul class="sidenav" id="mobile-sidenav">
             {% if session.user %} 
 
@@ -63,6 +64,7 @@
             {% endif %}
         </ul>
     </header>
+    <!-- flash alert messages section -->
     <section>
         {% with messages = get_flashed_messages() %}
             {% if messages %} 
@@ -74,6 +76,7 @@
             {% endif %} 
         {% endwith %}
     </section>
+    <!-- block content container -->
     <main class="container">
         {% block content %} 
         {% endblock %}
