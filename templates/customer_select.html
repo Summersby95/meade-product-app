@@ -6,9 +6,11 @@
     <form action="{{ url_for('customer_select') }}" method="POST">
         <div class="card-panel">
             <div class="row">
+                <!-- customer select input -->
                 <div class="input-field col s12">
                     <i class="material-icons prefix">domain</i>
                     <select name="customer" id="customer">
+                        <!-- cycle over customers list to generate options -->
                         {% for customer in customers %} 
                             <option value="{{ customer._id }}">{{ customer.customer_name }}</option>
                         {% endfor %}
@@ -16,6 +18,7 @@
                     <label for="customer">Customer</label>
                 </div>
             </div>
+            <!-- submit button -->
             <div class="row col s12 center-align">
                 <button type="submit" class="btn-large green accent-3 center-align">
                     <i class="material-icons right">check</i> Submit
