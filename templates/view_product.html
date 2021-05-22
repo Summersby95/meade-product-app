@@ -8,16 +8,19 @@
     {% if product %} 
 
         <div class="row" id="product-details">
-
+            {# we cycle through the product dictionary #}
             {% for field, value in product.items() %}
-
+                {# we don't want to display the id of the product from the database.
+                We also don't want to display if the value is mapping, ie an dictionary, 
+                because that means it's one of the roles details for the product which are 
+                displayed further down the page #}
                 {% if field != "_id" and value is not mapping %} 
                     <div class="col s12 m6 row">
                         <div class="col s4">
                             <strong>{{ field.replace("_", " ").title() }}</strong>
                         </div>
                         <div class="col s8">
-                            <!-- check if value is list or string -->
+                            {# check if value is list or string #}
                             {% if value is iterable and (value is not string and value is not mapping) %}
                                 {{ ", ".join(value) }}
                             {% else %}  
@@ -34,11 +37,11 @@
     {% endif %}
 
     <hr>
-
+    {# we cycle through the roles in our roles array #}
     {% for role in roles %} 
 
         <h4><i class="material-icons">card_giftcard</i> {{ role.role_name }} Details</h4>
-
+        {# we check if the there is an object in the product for the role #}
         {% if product[role.role_name.lower()] %} 
 
             <div class="row">
@@ -73,7 +76,7 @@
     {% endfor %}
     
     <br>
-
+    {# Provide options to edit details and print pdf version of form at bottom of view #}
     <div class="row">
         <div class="col s12 center-align">
             <a href="{{ url_for('add_product_details', product_id=product._id) }}" class="btn-large green accent-3 center-align">
