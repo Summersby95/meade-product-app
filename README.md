@@ -26,6 +26,14 @@ The goal of this project is to create an application that enforces a well-define
 
 ### User Goals
 
+* Have a centralized repository for specification information
+* Allow the creation of new products that follows a defined procedure that insures all information is collected from the various departments
+* Ability to change details for the product after submission
+* Email notifications/reminders of new products and upcoming products that require attention
+* Different form fields/structure depending on the customer/department to meet customer spec requirements
+* Easy to use navigation/intuitive design
+* Product specification information is easy to read/find
+
 ### User Stories
 
 ### Site Owner Goals
