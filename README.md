@@ -79,6 +79,16 @@ When considering what colours to use for the site I was concious of the fact tha
 
 Due to the professional nature of the site I wanted the font to be clean and easily legible. I felt the default Materialize font was perfect for this.
 
+### Process Flow
+
+The process flow diagram below was created using [Creately](https://creately.com/).
+
+![Process Flow](/static/images/process_flow.png)
+
+Understanding the process of new product acquisition was key to understanding and building an application that could solve the miscommunication problem evident in the workflow.
+
+After sitting down with stakeholders from the different departments in the company we agreed on the above process flow that the application should enforce on the new product acquisition process.
+
 ### Wireframing
 
 ### Data Structure
