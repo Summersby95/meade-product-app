@@ -439,6 +439,108 @@ The above example shows an example of a *multiselect* element. It contains the s
 
 The above example shows a *select* element. Like the *multiselect* element we looked at earlier, it has an *options_type* attribute to define where the *select*'s options should come from. However, in this instance we aren't building the options from a collection, instead we are expicitly stating the options in the field object, defined by the *options_type* of **options**. We then have an **options** array containing all the options we want to appear in the select field, in this case the options will be ***Yes*** and ***No***.
 
+#### Products Collection
+
+For the *products* collection, we have base details which are common to each product. These include the *product name, department, customer, status, start date, created by* and *created on*. These are necessary for every product regardless of customer or department. All this information is supplied by the *commercial* team when they create a new product and so we keep this information at the base level of the product as opposed to putting it in a *commercial* object on the product. This made most sense to me when designing the data structure.
+
+I initially considered removing the product header information altogether and simply keeping all details as attributes of an object of the role of the team that submitted the details like this:
+
+```javascript
+{
+    "_id":{
+        "$oid":"someid"
+    },
+    "commercial":[
+        "product_name":"Bananas",
+        "department":"Fruit",
+        "customer":"Aldi",
+        ...
+    ],
+    "packaging":{...},
+    "production":{...},
+    "operations":{...}
+}
+```
+
+I considered this approach initially because I needed to have some way to check what departments had submitted their information for the product and what ones were still outstanding.
+
+However, I felt this would look confusing for someone looking at the collection and make it awkward to use when simply trying to get the base details for a product.
+
+I instead went for a structure where all the *commercial* details for the product are considered base details of the product and all other role *(Packaging, Production, Operations)* information is stored as objects on the product. This looks like this:
+
+```javascript
+{
+    "_id":{
+        "$oid":"someid"
+    },
+    "product_name":"Bananas",
+    "department":"Fruit",
+    "customer":"Aldi",
+    ...,
+    "packaging":{...},
+    "production":{...},
+    "operations":{...}
+}
+```
+
+This does have it's trade-offs however, primarily when it comes to ease of access when displaying/editing the information in a product view as to iterate over it properly we have to check what the type of each attribute is.
+
+##### Product Example
+
+```javascript
+{
+    "_id":{
+        "$oid":"60a3d0939e9ff14ca5411ac0"
+    },
+    "product_name":"Loose Lemons",
+    "department":"Fruit",
+    "customer":"Aldi",
+    "status":"Pending - Awaiting Packaging",
+    "start_date":{
+        "$date":"2021-06-24T00:00:00.000Z"
+    },
+    "created_by":"James Summersby",
+    "created_on":{
+        "$date":"2021-05-18T15:34:59.785Z"
+    },
+    "case_count":"10",
+    "weight_per_unit":"200g",
+    "approved_origins":["Ireland"],
+    "approved_varieties":["Rooster","Hylander"],
+    "product_code":"84526",
+    "date_coding":"1-8 Days",
+    "operations":{
+        "storage_temperature":"3 degrees",
+        "shelf_life_display":"Best Before",
+        "applicable_defects":["Rots","Skin Defects"],
+        "known_allergen":"Yes"
+    },
+    "production":{
+        "added_by":"Production Test",
+        "date_added":{
+            "$date":"2021-05-21T10:43:28.605Z"
+        },
+        "declared_weight":"750g",
+        "tare_weight":"50g",
+        "min_weight":"800g",
+        "target_weight":"800g",
+        "max_weight":"850g"
+    },
+    "packaging":{
+        "packaging_type":"na",
+        "packaging_grade":"na",
+        "dimensions":"na",
+        "recyclable":"Yes",
+        "biodegradable":"Yes",
+        "inner_pack_details":["Machine No."]
+    }
+}
+```
+
+As you can see in the above example we have base details for the product stored at the same level as the *_id* of the product and then we store all other team information in objects of the team *(Packaging, Operations, Production)*. You can also see that the attributes have the same name as the *field_name* from the element that was created for the field.
+
+You can see a few objects are arrays which means that their fields were *multiselects*.
+
 ## Features
 
 ### Existing Features
