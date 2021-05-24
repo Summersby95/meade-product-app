@@ -379,6 +379,66 @@ I didn't want the application to have this burden and instead decided to store t
     ]
 }
 ```
+
+Let's have a look at this example in a bit more detail.
+
+```javascript
+"customer":"Aldi",
+"department":"Fruit",
+```
+
+The customer and department attributes, naturally, tell us which *customer* and *department* these fields are for.
+
+```javascript
+"commercial_details":[...],
+"packaging_details":[...],
+"operations_details":[...],
+...
+```
+
+The above arrays refer to the ***role*** *(Commercial, Production etc)* that the array's details refer to, ie, the *commercial_details* array contains the fields that the **Commercial** team over the product must complete, the *packaging_details* array contains the fields that the **Packaging** team must complete for the product etc.
+
+```javascript
+{
+    "field_name":"product_name",
+    "field_type":"input",
+    "input_type":"text"
+}
+```
+
+The above example shows a field, every field has a *field_name* which is used for the elements **name** and **id** when the element is built by the app. The *field_type* specifies what type of element the field is, *input, select, multiselect, date*. The *field_type* will determine what other attributes the field will have. Because this element is an input, we also specify an *input_type* which states whether the input is a *text* or *number* input.
+
+```javascript
+{
+    "field_name":"start_date",
+    "field_type":"date"
+}
+```
+
+The above example shows a *date input* example. We don't need any other attributes for the this input so that input field is complete.
+
+```javascript
+{
+    "field_name":"approved_origins",
+    "field_type":"multiselect",
+    "options_type":"table",
+    "table_name":"origins"
+}
+```
+
+The above example shows an example of a *multiselect* element. It contains the standard *field_name* and *field_type* however we also need to know what the **options** are for the multiselect. We could simply create an options array here with all the origins but as described earlier in the *One-To-Many* collections section, because *approved_origins* is likely to be needed by multiple customer/department combinations and because it is a long list that is likely to be updated/changed we want to instead put the *origins* list in it's own collection. But we still need to tell the field where to get it's **options** list from. Hence, we give the field an attribute of *options_type* which is equal, in this instance, to *table* which the application in turn interprets that it needs to find the list of options for this field from a collection (table). We then also have to specify the *(collection)* ***table_name*** which tells the application to build the options for this element from the **origins** collection.
+
+```javascript
+{
+    "field_name":"known_allergen",
+    "field_type":"select",
+    "options_type":"options",
+    "options":["Yes","No"]
+}
+```
+
+The above example shows a *select* element. Like the *multiselect* element we looked at earlier, it has an *options_type* attribute to define where the *select*'s options should come from. However, in this instance we aren't building the options from a collection, instead we are expicitly stating the options in the field object, defined by the *options_type* of **options**. We then have an **options** array containing all the options we want to appear in the select field, in this case the options will be ***Yes*** and ***No***.
+
 ## Features
 
 ### Existing Features
