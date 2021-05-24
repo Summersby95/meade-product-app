@@ -117,6 +117,12 @@ The navbar shows relevant links for the user and wraps to become a side nav on m
 
 The *Create Product* view is the view that the commercial team would see when they go to create a new product. It is a simple form template but the fields would adapt, depending on the customer the product is for, as different customers have different specification details for their products. The form fields would appear in two columns on desktop and wrap to a single column on mobile. Once the product is added, the user will be redirected to the *Upcoming Products* view with an alert message informing them that the product was successfully added. The form would contain a variety of elements including *multiselects* and *datepickers*.
 
+#### My Tasks View
+
+![My Tasks View](/static/images/tasks_wireframe.png)
+
+The *My Tasks* view displays the upcoming products which have not had details added by the current users department. As I will describe later in the *Data Strucure* section, each user has a department *(Fruit, Vegetables, Potatoes, etc.)* and a role *(Commercial, Packaging, Operations, Production)*. If an upcoming product does not have that role's information then it will be displayed here for the user so they can see what products they have to add information for.
+
 ### Data Structure
 
 ## Features
