@@ -36,6 +36,10 @@ The goal of this project is to create an application that enforces a well-define
 
 ### User Stories
 
+* As a quality manager, I often find it difficult to find/gather all relevant product information when new products/lines start because different departments that are responsible for different aspects of the product development don't communicate the information effectively. This leads to frustration on my teams part and leads to difficulties when inspecting produce as we aren't sure what we need to be checking for. A centralized/structured application that simplifies this process of information gathering and stores the information would be of great benefit to me and my team.
+* As a production manager, when a new product is due to be started I need to know a lot of different details about the product before I can start production on it. This information can include packaging details, quality information, product specification information and so on. This information is often maintained by different departments which makes gathering all the information troublesome and time consuming and can lead to mistakes when information isn't communicated effectively or assumptions are made. This miscommunication ultimately degrades customer confidence/satisfaction when we send produce that doesn't meet the required specification. We need a structured setup that makes this process easier for all parties. As my work often involves me walking around large warehouses and not at my desk, I need the information to be easily accessible on a mobile device so that I can access the information on the go.
+* As a commercial buyer I need the interface to be quick and easy to use and tell me what information I need to supply depending on the customer. I also need it to inform the other relevant departments when I create a new product.
+
 ### Site Owner Goals
 
 * As a site owner, I want the application to be easy to navigate and controls to feel intuitive.
