@@ -227,6 +227,158 @@ I also needed a *department* and *role* for each user. These attributes would be
     "role":"Commercial"
 }
 ```
+
+#### Form Fields Collection
+
+Because each customer and, sometimes, each department uses has different specification requirements, it was a requirement that all product detail forms had unique fields depending on the department/customer.
+
+There were a couple of options for how to manage this. One solution could've been to create unique form html templates for each department/customer combination. This would have worked but would have been difficult to maintain if specifications changed or if a new customer or department was added. A developer would have to manually go in and create a new route and template for the new customer/department combination and validate that the form submitted correctly with the appropriate fields.
+
+I didn't want the application to have this burden and instead decided to store the fields required for each customer/department combination in a collection.
+
+##### Form Field Example
+
+```javascript
+{
+    "_id":{
+        "$oid":"609e93516a5c9078cdd44341"
+    },
+    "customer":"Aldi",
+    "department":"Fruit",
+    "commercial_details":[
+        {
+            "field_name":"product_name",
+            "field_type":"input",
+            "input_type":"text"
+        },
+        {
+            "field_name":"start_date",
+            "field_type":"date"
+        },
+        {
+            "field_name":"case_count",
+            "field_type":"input",
+            "input_type":"number"
+        },
+        {
+            "field_name":"weight_per_unit",
+            "field_type":"input",
+            "input_type":"text"
+        },
+        {
+            "field_name":"approved_origins",
+            "field_type":"multiselect",
+            "options_type":"table",
+            "table_name":"origins"
+        },
+        {
+            "field_name":"approved_varieties",
+            "field_type":"multiselect",
+            "options_type":"table",
+            "table_name":"varieties"
+        },
+        {
+            "field_name":"product_code",
+            "field_type":"input",
+            "input_type":"number"
+        },{
+            "field_name":"date_coding",
+            "field_type":"input",
+            "input_type":"text"
+        }
+    ],
+    "packaging_details":[
+        {
+            "field_name":"packaging_type",
+            "field_type":"input","input_type":"text"
+        },
+        {
+            "field_name":"packaging_grade",
+            "field_type":"input",
+            "input_type":"text"
+        },
+        {
+            "field_name":"dimensions",
+            "field_type":"input",
+            "input_type":"text"
+        },
+        {
+            "field_name":"recyclable",
+            "field_type":"select",
+            "options_type":"options",
+            "options":["Yes","No"]
+        },
+        {
+            "field_name":"biodegradable",
+            "field_type":"select",
+            "options_type":"options",
+            "options":["Yes","No"]
+        },
+        {
+            "field_name":"inner_pack_details",
+            "field_type":"multiselect",
+            "options_type":"table",
+            "table_name":"pack_info"
+        }
+    ],
+    "operations_details":[
+        {
+            "field_name":"storage_temperature",
+            "field_type":"input",
+            "input_type":"text"
+        },
+        {
+            "field_name":"shelf_life_display",
+            "field_type":"select",
+            "options_type":"options",
+            "options":["Use By","Best Before","Best Before End"]
+        },
+        {
+            "field_name":"applicable_defects",
+            "field_type":"multiselect",
+            "options_type":"table",
+            "table_name":"defects"
+        },
+        {
+            "field_name":"specific_packing_information",
+            "field_type":"textarea"
+        },
+        {
+            "field_name":"known_allergen",
+            "field_type":"select",
+            "options_type":"options",
+            "options":["Yes","No"]
+        }
+    ],
+    "production_details":[
+        {
+            "field_name":"declared_weight",
+            "field_type":"input",
+            "input_type":"text"
+        },
+        {
+            "field_name":"tare_weight",
+            "field_type":"input",
+            "input_type":"text"
+        },
+        {
+            "field_name":"min_weight",
+            "field_type":"input",
+            "input_type":"text"
+        },
+        {
+            "field_name":"target_weight",
+            "field_type":"input",
+            "input_type":"text"
+        },
+        {
+            "field_name":"max_weight",
+            "field_type":"input",
+            "input_type":"text"
+        }
+    ]
+}
+```
 ## Features
 
 ### Existing Features
