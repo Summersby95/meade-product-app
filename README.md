@@ -205,6 +205,28 @@ The collections use the same attribute *name* to refer to the actual option name
 }
 ```
 
+#### User Collection
+
+When creating a template for a user object I realized I would need several attributes. The first attribute I needed was a *username* which the user could use to log in as well as be stored in a session variable to use later to query for different user attributes. I also needed a first and last name for the users to be used in the *Created By*/*Added By* fields in the product information collection. I felt this was preferable to just storing the users *username* as it might be difficult to decipher someones real name from simply a *username*. I also needed to store user's email addresses so that I could use them to send emails to about new products being created. I also needed to store a hash of the users password to secure the log in.
+
+I also needed a *department* and *role* for each user. These attributes would be used to determine the user's level of access and ability to create/add information for a product. For instance, a *Fruit* buyer cannot create a *Vegetable* product and a *Commercial* user cannot add *Packaging* information etc. There are roles, however, *(Packagaing, Operations)* that do not have a specific department, so I created a department *All* to refer to these users. I also needed to create an *Admin* role that was capable of editing all information.
+
+##### User Example
+
+```javascript
+{
+    "_id":{
+        "$oid":"609e4194439f6ab11e2e742b"
+    },
+    "username":"jamessummersby",
+    "f_name":"James",
+    "l_name":"Summersby",
+    "email":"jamessummersby@meadefarm.ie",
+    "password":"pbkdf2:sha256:123456$1234EXAMPLEHASH567890",
+    "department":"Fruit",
+    "role":"Commercial"
+}
+```
 ## Features
 
 ### Existing Features
