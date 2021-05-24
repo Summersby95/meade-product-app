@@ -127,6 +127,45 @@ The *My Tasks* view displays the upcoming products which have not had details ad
 
 This project required the use of a [MongoDB](https://www.mongodb.com/) non-relational database which I felt suited this project particularly well as it allowed for different objects/documents to have different attributes to another which was a requirement for the products which could have different attributes depending on the customer/department that the product was for. This structure would have been difficult to design with a traditional SQL relational database. I did, however, use some *relational* database techniques to reduce the need for maintenance going forward. These included creating tables for customers, departments and other select options which would have been repetitive to store as options arrays for each form field list. This meant that I didn't have to hard-code options for selects and so on.
 
+#### One-To-Many Collections
+
+##### Customers/Departments/Roles
+
+I wanted to reduce the need for future maintenance as much as reasonably possible. To accomplish this I made collections for customers as opposed to hard-coding them in selects. These attributes would be used in the *products/users/form_fields* tables to refer to the customers/departments/roles information.
+
+###### Customer Example
+
+```javascript
+{
+    "_id":{
+        "$oid":"609e74726a5c9078cdd4433b"
+        },
+    "customer_name":"Aldi"
+} 
+```
+
+###### Role Example
+
+```javascript
+{
+    "_id":{
+        "$oid":"609e3bc9234196db4a0429e0"
+        },
+    "role_name":"Commercial"
+}
+```
+
+###### Department Example
+
+```javascript
+{
+    "_id":{
+        "$oid":"609d5fa37140c981d74d658b"
+    },
+    "department_name":"Fruit"
+}
+```
+
 ## Features
 
 ### Existing Features
