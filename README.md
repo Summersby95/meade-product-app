@@ -573,6 +573,6 @@ You can see a few objects are arrays which means that their fields were *multise
 
 ## Credits
 
-https://jinja.palletsprojects.com/en/3.0.x/templates/#comparisons
-https://jinja.palletsprojects.com/en/3.0.x/templates/#comments
-https://stackoverflow.com/questions/11947325/how-to-test-for-a-list-in-jinja2
+[Jinja Comparisons](https://jinja.palletsprojects.com/en/3.0.x/templates/#comparisons)
+[Jinja Comments](https://jinja.palletsprojects.com/en/3.0.x/templates/#comments)
+[StackOverflow Jinja Test](https://stackoverflow.com/questions/11947325/how-to-test-for-a-list-in-jinja2)
