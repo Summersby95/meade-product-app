@@ -125,6 +125,8 @@ The *My Tasks* view displays the upcoming products which have not had details ad
 
 ### Data Structure
 
+This project required the use of a [MongoDB](https://www.mongodb.com/) non-relational database which I felt suited this project particularly well as it allowed for different objects/documents to have different attributes to another which was a requirement for the products which could have different attributes depending on the customer/department that the product was for. This structure would have been difficult to design with a traditional SQL relational database. I did, however, use some *relational* database techniques to reduce the need for maintenance going forward. These included creating tables for customers, departments and other select options which would have been repetitive to store as options arrays for each form field list. This meant that I didn't have to hard-code options for selects and so on.
+
 ## Features
 
 ### Existing Features
