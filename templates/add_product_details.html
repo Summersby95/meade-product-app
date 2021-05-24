@@ -34,9 +34,9 @@
     {% endif %}
 
     <hr>
-
+    
     {% for role in roles %} 
-
+        {# We want to show the details for the roles that the user is not adding/editing currently #}
         {% if role.role_name != session.role %} 
 
             <h4><i class="material-icons">card_giftcard</i> {{ role.role_name }} Details</h4>
@@ -77,12 +77,14 @@
     {% endfor %}
 
     <h4><i class="material-icons">card_giftcard</i> {{ session.role }} Details</h4>
-
+    <!-- create form element -->
     <form action="{{ url_for('add_product_details', product_id=product._id) }}" method="post">
         <div class="row">
             {% for field in field_list[(session.role.lower())+"_details"] %}
-
-                {% if (session.role.lower()) in product %} 
+                {# build form elements from field_list #}
+                {% if (session.role.lower()) in product %}
+                    {# check if the product object already has an attribute for the field and if it does, 
+                        set it as the value for the element #}
                     {% if field.field_name in product[(session.role.lower())] %}
                         {% set value = product[(session.role.lower())][field.field_name] %}
                     {% else %} 
@@ -150,6 +152,7 @@
 
             {% endfor %}
         </div>
+        <!-- submit button -->
         <div class="row">
             <div class="col s12 center-align">
                 <button class="btn-large green accent-3 center-align">
