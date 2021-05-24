@@ -103,6 +103,14 @@ After sitting down with stakeholders from the different departments in the compa
 
 For wireframing, I used [Balsamiq](https://balsamiq.com/). The site required a multiple page setup to handle the various forms/views that the application required. I felt that the site should focus purely on the information relevant to that page and not cluttered with excess distracting elements that would make the site bloated and unintuitive.
 
+#### Upcoming Products View
+
+![Upcoming Products View](/static/images/upcoming_products_wireframe.png)
+
+The upcoming products view is the default route for the application and displays all new products that are due to be started in the coming weeks/months. The products are divided into two categories, one for *Confirmed* products which are production ready and one for products that are *Pending* further information from other departments. The distinction between the two is important and highlights to the users which products are ready and which are not, the icons also assist with that. The two tables display the base details for the product, the name, division, customer, status, start date and created by attributes of the product.
+
+The navbar shows relevant links for the user and wraps to become a side nav on mobile. In the wireframes you can see that on mobile views I had initially thought to keep the horizontal nature of the tables while simply removing some of the less important attributes from the table so that it could fit on a mobile screen. This proved difficult to implement in practice however and I instead used the [Materialize Responsive Table class](https://materializecss.com/table.html) which converts the table to vertical headers and horizontally scrollable on mobile.
+
 ### Data Structure
 
 ## Features
