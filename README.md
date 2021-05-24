@@ -89,6 +89,16 @@ Understanding the process of new product acquisition was key to understanding an
 
 After sitting down with stakeholders from the different departments in the company we agreed on the above process flow that the application should enforce on the new product acquisition process.
 
+#### Process Flow Steps
+
+1. A member of the commercial team obtains a contract for a new product/line with a customer.
+2. The commercial team member creates a new product in the application and fills in all the information they have for the product at that point in time.
+3. This sends out notifications to all other relevant teams and departments to inform them of the new product.
+4. Other team members can log into the application and review the information submitted so far.
+5. They can then submit the information that they are responsible for to the application.
+6. This sends out another notification, notifying the relevant team members that a product has been updated.
+7. Once all departments have submitted their required information for the product, the commercial team can sign off on the product as *Production Ready*
+
 ### Wireframing
 
 ### Data Structure
