@@ -166,6 +166,45 @@ I wanted to reduce the need for future maintenance as much as reasonably possibl
 }
 ```
 
+##### Option Tables
+
+For selects/multiselects with a lot of options and that are used frequently across forms, such as *origins*, *varieties* and *defects*, it didn't make sense to create arrays with the same options repeated multiple times for different form fields. This would have made them difficult to maintain if a new origin or variety was added. As such, I felt it was necessary to create collections for them and join them to the select/multiselect field entry with the collection name.
+
+The collections use the same attribute *name* to refer to the actual option name which made it easier to build the options array when creating the options array for the forms.
+
+###### Origin Example
+
+```javascript
+{
+    "_id":{
+        "$oid":"609ea9576a5c9078cdd44343"
+    },
+    "name":"Ireland"
+}
+```
+
+###### Variety Example
+
+```javascript
+{
+    "_id":{
+        "$oid":"609ea9a46a5c9078cdd44348"
+    },
+    "name":"Pink Lady"
+}
+```
+
+###### Defect Example
+
+```javascript
+{
+    "_id":{
+        "$oid":"60a76b96a0a944d77be9b8bd"
+    },
+    "name":"Rots"
+}
+```
+
 ## Features
 
 ### Existing Features
