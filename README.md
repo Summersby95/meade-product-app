@@ -67,6 +67,10 @@ The goal of this project is to create an application that enforces a well-define
 
 ### Design Choices
 
+For the design of the website, I wanted the user interface to be simple, formal and minimalistic with icons to help visually convey to the user the meaning behind a section. The main purpose of the site is to display information about upcoming products and store product specification information. I considered the [Materialize CSS](https://materializecss.com/) and [Bootstrap](https://getbootstrap.com/) frameworks for this. Having used Bootstrap for my first two milestone projects, I felt that I should try my hands with Materialize to challenge myself. It also had the added benefit of having an icon library without the need to use [Font Awesome](https://fontawesome.com/). The responsive tables, grid layout, great inputs and easy to use colour classes were very useful.
+
+![Upcoming Products View](/static/images/upcoming_products_view.png)
+
 ### Wireframing
 
 ### Data Structure
