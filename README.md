@@ -101,6 +101,8 @@ After sitting down with stakeholders from the different departments in the compa
 
 ### Wireframing
 
+For wireframing, I used [Balsamiq](https://balsamiq.com/). The site required a multiple page setup to handle the various forms/views that the application required. I felt that the site should focus purely on the information relevant to that page and not cluttered with excess distracting elements that would make the site bloated and unintuitive.
+
 ### Data Structure
 
 ## Features
