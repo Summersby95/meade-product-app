@@ -75,6 +75,10 @@ For the design of the website, I wanted the user interface to be simple, formal 
 
 When considering what colours to use for the site I was concious of the fact that the site was for professional industry use and so should prioritize cleanly displaying information to the user above any artistic considerations. I felt a plain white background for the main body of the page was appropriate and black text. For the navigation section I wanted to display the company logo and as such I felt the colour of the navbar should match that. Given the green colour of the company logo I sought to match that and so used the [color classes](https://materializecss.com/color.html) in Materialize and settled on a *green accent-3* colour. For the colours of the buttons I wanted to use similar colours so I chose *green accent-3* again and *blue accent-3*.
 
+#### Fonts
+
+Due to the professional nature of the site I wanted the font to be clean and easily legible. I felt the default Materialize font was perfect for this.
+
 ### Wireframing
 
 ### Data Structure
