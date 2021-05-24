@@ -111,6 +111,12 @@ The upcoming products view is the default route for the application and displays
 
 The navbar shows relevant links for the user and wraps to become a side nav on mobile. In the wireframes you can see that on mobile views I had initially thought to keep the horizontal nature of the tables while simply removing some of the less important attributes from the table so that it could fit on a mobile screen. This proved difficult to implement in practice however and I instead used the [Materialize Responsive Table class](https://materializecss.com/table.html) which converts the table to vertical headers and horizontally scrollable on mobile.
 
+#### Create Product View
+
+![Create Product View](/static/images/create_product_wireframe.png)
+
+The *Create Product* view is the view that the commercial team would see when they go to create a new product. It is a simple form template but the fields would adapt, depending on the customer the product is for, as different customers have different specification details for their products. The form fields would appear in two columns on desktop and wrap to a single column on mobile. Once the product is added, the user will be redirected to the *Upcoming Products* view with an alert message informing them that the product was successfully added. The form would contain a variety of elements including *multiselects* and *datepickers*.
+
 ### Data Structure
 
 ## Features
