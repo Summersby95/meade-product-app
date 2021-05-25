@@ -366,6 +366,28 @@ def add_product_details(product_id):
         return redirect(url_for("login"))
 
 
+# Delete Product Route
+@app.route("/delete_product/<product_id>", methods=["GET", "POST"])
+def delete_product(product_id):
+    if security.check_login():
+        if session["role"] == "Commercial" or session["role"] == "Admin":
+            product = mongo.db.products.find_one({"_id": ObjectId(product_id)})
+
+            if request.method == "POST":
+                mongo.db.products.delete_one({"_id": ObjectId(product_id)})
+
+                flash("Product Successfully Deleted")
+                return redirect(url_for("get_upcoming"))
+
+            return render_template("delete_product.html", product=product)
+        else:
+            flash("You do not have permission to view this content")
+            return redirect(url_for('get_upcoming'))
+    else:
+        flash("Please login to view this content")
+        return redirect(url_for('login'))
+
+
 # Register Route
 @app.route("/register", methods=["GET", "POST"])
 def register():
