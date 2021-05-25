@@ -14,7 +14,7 @@
                     {# cycle through the first item in the products dictionary to build table header #}
                     {% for field, value in products[0].items() %}
 
-                        {% if field != "_id" %}
+                        {% if field != "_id" and field != "created_on" and field != "new" %}
                             {# transform the field name from db field name to coherent display name #}
                             <th>{{ field.replace("_", " ").title() }}</th>
 
@@ -41,7 +41,7 @@
                             {# iterate over the dict object of each project, get the field, value from each #}
                             {% for field, value in product.items() %}
                                 {# we don't want the "_id" value displaying #}
-                                {% if field != "_id" %}
+                                {% if field != "_id" and field != "created_on" and field != "new" %}
 
                                     <td>{{ value }}</td>
 
@@ -79,7 +79,7 @@
 
                     {% for field, value in products[0].items() %}
 
-                        {% if field != "_id" %}
+                        {% if field != "_id" and field != "created_on" and field != "new" %}
 
                             <th>{{ field.replace("_", " ").title() }}</th>
 
@@ -107,7 +107,7 @@
 
                             {% for field, value in product.items() %}
                             
-                                {% if field != "_id" %}
+                                {% if field != "_id" and field != "created_on" and field != "new" %}
 
                                     <td>{{ value }}</td>
 
