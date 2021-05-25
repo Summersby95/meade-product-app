@@ -280,6 +280,8 @@ def add_product_details(product_id):
                     details[field["field_name"]] = []
                     for value in request.form.getlist(field["field_name"]):
                         details[field["field_name"]].append(value)
+                elif field["field_type"] == "date":
+                    details[field["field_name"]] = datetime.strptime(request.form.get(field["field_name"]), '%d %B, %Y')
             
             # we then add the "added_by" and "date_added" fields to the dictionary so we know
             # when it was last updated
