@@ -108,8 +108,15 @@
                             {% for field, value in product.items() %}
                             
                                 {% if field != "_id" and field != "created_on" and field != "new" %}
+                                    
+                                    <td>
+                                        {% if field == "product_name" and product.new == True %} 
+                                            <span class="new badge"></span>
+                                        {% endif %}
 
-                                    <td>{{ value }}</td>
+                                        {{ value }}
+
+                                    </td>
 
                                 {% endif %}
 
