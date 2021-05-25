@@ -46,6 +46,11 @@ def get_upcoming():
         for product in products:
             product["start_date"] = product["start_date"].strftime("%d %B %Y")
 
+            # Check if the product was created in the last day, 
+            # if it was mark it to add a badge to it in the table
+            if (product["created_on"]).date() + timedelta(days=1) > (datetime.now()).date():
+                product["new"] = True
+
         return render_template("upcoming_products.html", products=products)
     else:
         # if the user is not logged in we redirect them to the login screen
