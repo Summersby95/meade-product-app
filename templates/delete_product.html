@@ -1,0 +1,35 @@
+{% extends "base.html" %} 
+{% block content %} 
+
+    <h3 class="center-align">
+        Delete Product <i class="material-icons">cancel</i>
+    </h3>
+
+    <div class="card">
+        <div class="card-content">
+            <form action="{{ url_for('delete_product', product_id=product._id) }}" method="post">
+                <h4 class="center-align">
+                    Are you sure you wish to delete this product?
+                </h4>
+                
+                <hr>
+
+                <h5 class="center-align">{{ product.product_name + " - " + product.department + " - " + product.customer }}</h5>
+
+                <br>
+
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <a href="{{ url_for('view_product', product_id=product._id) }}" class="btn-large center-align red accent-3">
+                            <i class="material-icons right">cancel</i> Cancel Deletion
+                        </a>
+                        <button type="submit" class="btn-large center-align green accent-3">
+                            <i class="material-icons right">check</i> Confirm Deletion
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
