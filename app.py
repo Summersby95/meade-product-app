@@ -285,9 +285,10 @@ def add_product_details(product_id):
             
             # we then add the "added_by" and "date_added" fields to the dictionary so we know
             # when it was last updated
-            details["added_by"] = user["f_name"] + " " + user["l_name"]
-            details["date_added"] = datetime.now()
-            
+            if role != "Commercial":
+                details["added_by"] = user["f_name"] + " " + user["l_name"]
+                details["date_added"] = datetime.now()
+
             # we then update the product and create an object of the role name which is equal to the 
             # dictionary we just created
             mongo.db.products.update_one({"_id": ObjectId(product_id)}, {
