@@ -262,7 +262,8 @@ def add_product_details(product_id):
             "role_name": {"$nin": ["Admin", "Commercial", "Management"]}
         }))
 
-        
+        # convert datetime start date to string
+        product["start_date"] = product["start_date"].strftime("%d %B, %Y")
 
         if request.method == "POST":
             # we need the user's first and last name to put in the "added_by" field
