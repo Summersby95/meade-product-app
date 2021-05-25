@@ -169,91 +169,96 @@
 
     {% endfor %}
 
-    <h4><i class="material-icons">card_giftcard</i> {{ session.role }} Details</h4>
-    <!-- create form element -->
-    <form action="{{ url_for('add_product_details', product_id=product._id) }}" method="post">
-        <div class="row">
-            {% for field in field_list[(session.role.lower())+"_details"] %}
-                {# build form elements from field_list #}
-                {% if (session.role.lower()) in product %}
-                    {# check if the product object already has an attribute for the field and if it does, 
-                        set it as the value for the element #}
-                    {% if field.field_name in product[(session.role.lower())] %}
-                        {% set value = product[(session.role.lower())][field.field_name] %}
+    {% if session.role != "Commercial" and session.role != "Admin" %} 
+
+        <h4><i class="material-icons">card_giftcard</i> {{ session.role }} Details</h4>
+        <!-- create form element -->
+        <form action="{{ url_for('add_product_details', product_id=product._id) }}" method="post">
+            <div class="row">
+                {% for field in field_list[(session.role.lower())+"_details"] %}
+                    {# build form elements from field_list #}
+                    {% if (session.role.lower()) in product %}
+                        {# check if the product object already has an attribute for the field and if it does, 
+                            set it as the value for the element #}
+                        {% if field.field_name in product[(session.role.lower())] %}
+                            {% set value = product[(session.role.lower())][field.field_name] %}
+                        {% else %} 
+                            {% set value = "" %} 
+                        {% endif %}
                     {% else %} 
-                        {% set value = "" %} 
+                        {% set value = "" %}
                     {% endif %}
-                {% else %} 
-                    {% set value = "" %}
-                {% endif %}
 
-                {% if field.field_type == "input" %} 
+                    {% if field.field_type == "input" %} 
 
-                    <div class="input-field col s12 m6">
-                        <input type="{{ field.input_type }}" class="validate" name="{{ field.field_name }}" id="{{ field.field_name }}" value="{{ value }}" required>
-                        <label for="{{ field.field_name }}">{{ field.field_name.replace("_", " ").title() }}</label>
-                    </div>
+                        <div class="input-field col s12 m6">
+                            <input type="{{ field.input_type }}" class="validate" name="{{ field.field_name }}" id="{{ field.field_name }}" value="{{ value }}" required>
+                            <label for="{{ field.field_name }}">{{ field.field_name.replace("_", " ").title() }}</label>
+                        </div>
 
-                {% elif field.field_type == "date" %}
+                    {% elif field.field_type == "date" %}
 
-                    <div class="input-field col s12 m6">
-                        <input type="text" class="datepicker validate" name="{{ field.field_name }}" id="{{ field.field_name }}" required>
-                        <label for="{{ field.field_name }}">{{ field.field_name.replace("_", " ").title() }}</label>
-                    </div>
+                        <div class="input-field col s12 m6">
+                            <input type="text" class="datepicker validate" name="{{ field.field_name }}" id="{{ field.field_name }}" required>
+                            <label for="{{ field.field_name }}">{{ field.field_name.replace("_", " ").title() }}</label>
+                        </div>
 
-                {% elif field.field_type == "multiselect" %}
+                    {% elif field.field_type == "multiselect" %}
 
-                    <div class="input-field col s12 m6">
-                        <select multiple name="{{ field.field_name }}" id="{{ field.field_name }}" required>
-                            
-                            {% for option in field.options %} 
+                        <div class="input-field col s12 m6">
+                            <select multiple name="{{ field.field_name }}" id="{{ field.field_name }}" required>
+                                
+                                {% for option in field.options %} 
 
-                                {% if value is iterable and (value is not string and value is not mapping) %}
-                                    {% if option in value %} 
+                                    {% if value is iterable and (value is not string and value is not mapping) %}
+                                        {% if option in value %} 
+                                            {% set sel = "selected" %} 
+                                        {% else %} 
+                                            {% set sel = "" %}
+                                        {% endif %}
+                                    {% else %} 
+                                        {% set sel = "" %} 
+                                    {% endif %}
+
+                                    <option value="{{ option }}" {{ sel }}>{{ option }}</option>
+                                {% endfor %}
+                            </select>
+                            <label for="{{ field.field_name }}">{{ field.field_name.replace("_", " ").title() }}</label>
+                        </div>
+                    
+                    {% elif field.field_type == "select" %}
+
+                        <div class="input-field col s12 m6">
+                            <select name="{{ field.field_name }}" id="{{ field.field_name }}" required>
+                                {% for option in field.options %} 
+                                    {% if option == value %}
                                         {% set sel = "selected" %} 
                                     {% else %} 
-                                        {% set sel = "" %}
-                                    {% endif %}
-                                {% else %} 
-                                    {% set sel = "" %} 
-                                {% endif %}
+                                        {% set sel = "" %} 
+                                    {% endif %} 
 
-                                <option value="{{ option }}" {{ sel }}>{{ option }}</option>
-                            {% endfor %}
-                        </select>
-                        <label for="{{ field.field_name }}">{{ field.field_name.replace("_", " ").title() }}</label>
-                    </div>
-                
-                {% elif field.field_type == "select" %}
+                                    <option value="{{ option }}" {{ sel }}>{{ option }}</option>
+                                {% endfor %}
+                            </select>
+                            <label for="{{ field.field_name }}">{{ field.field_name.replace("_", " ").title() }}</label>
+                        </div>
 
-                    <div class="input-field col s12 m6">
-                        <select name="{{ field.field_name }}" id="{{ field.field_name }}" required>
-                            {% for option in field.options %} 
-                                {% if option == value %}
-                                    {% set sel = "selected" %} 
-                                {% else %} 
-                                    {% set sel = "" %} 
-                                {% endif %} 
+                    {% endif %}
 
-                                <option value="{{ option }}" {{ sel }}>{{ option }}</option>
-                            {% endfor %}
-                        </select>
-                        <label for="{{ field.field_name }}">{{ field.field_name.replace("_", " ").title() }}</label>
-                    </div>
-
-                {% endif %}
-
-            {% endfor %}
-        </div>
-        <!-- submit button -->
-        <div class="row">
-            <div class="col s12 center-align">
-                <button class="btn-large green accent-3 center-align">
-                    <i class="material-icons right">check</i> Submit
-                </button>
+                {% endfor %}
             </div>
-        </div>
-    </form>
+            <!-- submit button -->
+            <div class="row">
+                <div class="col s12 center-align">
+                    <button class="btn-large green accent-3 center-align">
+                        <i class="material-icons right">check</i> Submit
+                    </button>
+                </div>
+            </div>
+        </form>
+
+    {% endif %}
+    
 
 
 {% endblock %}
