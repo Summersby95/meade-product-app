@@ -566,12 +566,18 @@ You can see a few objects are arrays which means that their fields were *multise
 * [Flask - Python](https://flask.palletsprojects.com/en/1.1.x/)
 * [Materialize v1 - CSS](https://materializecss.com/)
 * [emailJS](https://www.emailjs.com/)
+* [Balsamiq](https://balsamiq.com/)
+* [Creately](https://creately.com/)
 
 ## Testing
+
+For Testing information regarding this project please see the [TESTING.md](/TESTING.md) file.
 
 ## Deployment
 
 ## Credits
+
+### Helpful Links/Tutorials
 
 [Jinja Comparisons](https://jinja.palletsprojects.com/en/3.0.x/templates/#comparisons)
 [Jinja Comments](https://jinja.palletsprojects.com/en/3.0.x/templates/#comments)
