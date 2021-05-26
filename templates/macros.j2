@@ -1,1 +1,30 @@
 {% macro form_builder(field_array, product=None) %}
+    {% for field in field_array %}
+        {# build form elements from field_list #}
+        {% if product != None %}
+            {% if session.role != "Commercial" %}
+
+                {% if (session.role.lower()) in product %}
+                    {# check if the product object already has an attribute for the field and if it does, 
+                        set it as the value for the element #}
+                    {% if field.field_name in product[(session.role.lower())] %}
+                        {% set value = product[(session.role.lower())][field.field_name] %}
+                    {% else %} 
+                        {% set value = "" %} 
+                    {% endif %}
+                {% else %} 
+                    {% set value = "" %}
+                {% endif %}
+            
+            {% else %}
+
+                {% if field.field_name in product %}
+                    {% set value = product[field.field_name] %}
+                {% else %}
+                    {% set value = "" %}
+                {% endif %}
+            
+            {% endif %}
+        {% else %}
+            {% set value = "" %}
+        {% endif %}
