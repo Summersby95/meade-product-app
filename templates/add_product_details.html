@@ -108,32 +108,14 @@
         <!-- create form element -->
         <form action="{{ url_for('add_product_details', product_id=product._id) }}" method="post">
             <div class="row">
-                {% for field in field_list[(session.role.lower())+"_details"] %}
-                    {# build form elements from field_list #}
-                    {% if (session.role.lower()) in product %}
-                        {# check if the product object already has an attribute for the field and if it does, 
-                            set it as the value for the element #}
-                        {% if field.field_name in product[(session.role.lower())] %}
-                            {% set value = product[(session.role.lower())][field.field_name] %}
-                        {% else %} 
-                            {% set value = "" %} 
-                        {% endif %}
-                    {% else %} 
-                        {% set value = "" %}
-                    {% endif %}
-
-                    {% if field.field_type == "input" %} 
-
-                        <div class="input-field col s12 m6">
-                            <input type="{{ field.input_type }}" class="validate" name="{{ field.field_name }}" id="{{ field.field_name }}" value="{{ value }}" required>
-                            <label for="{{ field.field_name }}">{{ field.field_name.replace("_", " ").title() }}</label>
+                {% if field_list[(session.role.lower())+"_details"] is mapping %} 
+                    {% for sub_heading, sub_array in field_list[(session.role.lower())+"_details"].items() %} 
+                        <div class="col s12">
+                            <h5><strong><i>{{ sub_heading.replace("_", " ").title() }}</i></strong></h5>
                         </div>
-
-                    {% elif field.field_type == "date" %}
-
-                        <div class="input-field col s12 m6">
-                            <input type="text" class="datepicker validate" name="{{ field.field_name }}" id="{{ field.field_name }}" required>
-                            <label for="{{ field.field_name }}">{{ field.field_name.replace("_", " ").title() }}</label>
+                        {{ macros.form_builder(sub_array, product) }}
+                        <div class="col s12">
+                            <hr>
                         </div>
                     {% endfor %}
                 {% else %}
