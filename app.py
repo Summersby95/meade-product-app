@@ -366,13 +366,35 @@ def add_product_details(product_id):
             flash("Product Details Added Successfully")
             return redirect(url_for("my_tasks"))
 
-        for field in field_list[role.lower() + "_details"]:
-            if (field["field_type"] == "multiselect") or (field["field_type"] == "select"):
-                if field["options_type"] == "table":
-                    options_table = mongo.db[field["table_name"]].find()
-                    field["options"] = []
-                    for option in options_table:
-                        field["options"].append(option["name"])
+        if type(field_list[role.lower() + "_details"]) is dict:
+            for sub_head, sub_array in field_list[role.lower() + "_details"].items():
+                for field in sub_array:
+                    if (field["field_type"] == "multiselect") or (field["field_type"] == "select"):
+                        if field["options_type"] == "table":
+                            options_table = mongo.db[field["table_name"]].find()
+                            field["options"] = []
+                            for option in options_table:
+                                field["options"].append(option["name"])
+                    elif field["field_type"] == "date":
+                        if role.lower() in product:
+                            if sub_head in product[role.lower()]:
+                                if field["field_name"] in product[role.lower()][sub_head]:
+                                    product[role.lower()][sub_head][field["field_name"]] = product[role.lower()][sub_head][field["field_name"]].strftime("%d %B, %Y")
+
+        else:
+            for field in field_list[role.lower() + "_details"]:
+                if (field["field_type"] == "multiselect") or (field["field_type"] == "select"):
+                    if field["options_type"] == "table":
+                        options_table = mongo.db[field["table_name"]].find()
+                        field["options"] = []
+                        for option in options_table:
+                            field["options"].append(option["name"])
+                elif field["field_type"] == "date":
+                    if role.lower() in product:
+                        if field["field_name"] in product[role.lower()]:
+                            product[role.lower()][field["field_name"]] = product[role.lower()][field["field_name"]].strftime("%d %B, %Y")
+
+        
 
         return render_template("add_product_details.html", product=product, field_list=field_list, roles=roles)
     else:
