@@ -273,15 +273,29 @@ def add_product_details(product_id):
             details = {}
 
             # we cycle through the field_list and put all the details into the details dictionary
-            for field in field_list[role.lower()+"_details"]:
-                if field["field_type"] == "input" or field["field_type"] == "select":
-                    details[field["field_name"]] = request.form.get(field["field_name"])
-                elif field["field_type"] == "multiselect":
-                    details[field["field_name"]] = []
-                    for value in request.form.getlist(field["field_name"]):
-                        details[field["field_name"]].append(value)
-                elif field["field_type"] == "date":
-                    details[field["field_name"]] = datetime.strptime(request.form.get(field["field_name"]), '%d %B, %Y')
+            if type(field_list[role.lower()+"_details"]) is dict:
+                for sub_head, sub_array in field_list[role.lower()+"_details"].items():
+                    details[sub_head] = {}
+
+                    for field in sub_array:
+                        if field["field_type"] == "input" or field["field_type"] == "select":
+                            details[sub_head][field["field_name"]] = request.form.get(field["field_name"])
+                        elif field["field_type"] == "multiselect":
+                            details[sub_head][field["field_name"]] = []
+                            for value in request.form.getlist(field["field_name"]):
+                                details[sub_head][field["field_name"]].append(value)
+                        elif field["field_type"] == "date":
+                            details[sub_head][field["field_name"]] = datetime.strptime(request.form.get(field["field_name"]), '%d %B, %Y')        
+            else:
+                for field in field_list[role.lower()+"_details"]:
+                    if field["field_type"] == "input" or field["field_type"] == "select":
+                        details[field["field_name"]] = request.form.get(field["field_name"])
+                    elif field["field_type"] == "multiselect":
+                        details[field["field_name"]] = []
+                        for value in request.form.getlist(field["field_name"]):
+                            details[field["field_name"]].append(value)
+                    elif field["field_type"] == "date":
+                        details[field["field_name"]] = datetime.strptime(request.form.get(field["field_name"]), '%d %B, %Y')
             
             # we then add the "added_by" and "date_added" fields to the dictionary so we know
             # when it was last updated
