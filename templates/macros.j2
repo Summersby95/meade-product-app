@@ -1,4 +1,4 @@
-{% macro form_builder(field_array, product=None) %}
+{% macro form_builder(field_array, product=None, context=None) %}
     {% for field in field_array %}
         {# build form elements from field_list #}
         {% if product != None %}
