@@ -80,7 +80,7 @@
                         <div class="col s12">
                             <h5><strong><i>{{ sub_heading.replace("_", " ").title() }}</i></strong></h5>
                         </div>
-                        {{ macros.form_builder(sub_array, product) }}
+                        {{ macros.form_builder(sub_array, product, context=sub_heading) }}
                         <div class="col s12">
                             <hr>
                         </div>
