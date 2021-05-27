@@ -1,3 +1,5 @@
+/* esversion: 6 */
+
 $(document).ready(function() {
     $('.sidenav').sidenav({
         edge: "right"
@@ -10,5 +12,8 @@ $(document).ready(function() {
         i18n: {
             done: "Select"
         }
+    });
+    $(("#print_button")).click(() => { 
+        window.print();
     });
 });
