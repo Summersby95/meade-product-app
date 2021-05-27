@@ -27,22 +27,7 @@
 
             <div class="row">
 
-                {% for field, value in product[role.role_name.lower()].items() %} 
-
-                    <div class="col s12 m6 row">
-                        <div class="col s4">
-                            <strong>{{ field.replace("_", " ").title() }}</strong>
-                        </div>
-                        <div class="col s8">
-                            {% if value is iterable and (value is not string and value is not mapping) %}
-                                {{ ", ".join(value) }}
-                            {% else %}  
-                                {{ value }}
-                            {% endif %} 
-                        </div>
-                    </div>
-
-                {% endfor %}
+                {{ macros.view_builder(product[role.role_name.lower()].items()) }}
 
             </div>
 
