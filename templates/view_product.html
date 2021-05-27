@@ -43,7 +43,7 @@
     
     <br>
     {# Provide options to edit details and print pdf version of form at bottom of view #}
-    <div class="row">
+    <div class="row" id="button_div">
         <div class="col s12 center-align">
             {% if session.role == "Commercial" and session.department == product.department %}
                 <a href="{{ url_for('delete_product', product_id=product._id) }}" class="btn-large red accent-3 center-align">
@@ -53,9 +53,9 @@
             <a href="{{ url_for('add_product_details', product_id=product._id) }}" class="btn-large green accent-3 center-align">
                 <i class="material-icons right">edit</i> Edit Details
             </a>
-            <a href="#" class="btn-large blue accent-3 center-align">
+            <button type="button" id="print_button" class="btn-large blue accent-3 center-align">
                 <i class="material-icons right">local_printshop</i> PDF Form
-            </a>
+            </button>
         </div>
     </div>
 
