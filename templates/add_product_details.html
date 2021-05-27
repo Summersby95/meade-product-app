@@ -12,25 +12,7 @@
 
             <div class="row" id="product-details">
 
-                {% for field, value in product.items() %}
-
-                    {% if field != "_id" and value is not mapping %} 
-                        <div class="col s12 m6 row">
-                            <div class="col s4">
-                                <strong>{{ field.replace("_", " ").title() }}</strong>
-                            </div>
-                            <div class="col s8">
-                                <!-- check if value is list or string -->
-                                {% if value is iterable and (value is not string and value is not mapping) %}
-                                    {{ ", ".join(value) }}
-                                {% else %} 
-                                    {{ value }}
-                                {% endif %} 
-                            </div>
-                        </div>
-                    {% endif %}
-
-                {% endfor %}
+                {{ macros.view_builder(product.items(), context="Commercial") }}
 
             </div>
         
