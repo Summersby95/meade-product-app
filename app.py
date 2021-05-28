@@ -285,7 +285,21 @@ def add_product_details(product_id):
                             for value in request.form.getlist(field["field_name"]):
                                 details[sub_head][field["field_name"]].append(value)
                         elif field["field_type"] == "date":
-                            details[sub_head][field["field_name"]] = datetime.strptime(request.form.get(field["field_name"]), '%d %B, %Y')        
+                            details[sub_head][field["field_name"]] = datetime.strptime(request.form.get(field["field_name"]), '%d %B, %Y')
+                        elif field["field_type"] == "spec_grid":
+                            grid_options = []
+                            grid_table = mongo.db[field["table_name"]].find()
+
+                            for option in grid_table:
+                                grid_options.append(option["name"].lower().replace(" ", "_"))
+                            
+                            for option in grid_options:
+                                details[sub_head][option] = {
+                                    "rag":request.form.get(option+"_rag"),
+                                    "tolerance":request.form.get(option+"_tol"),
+                                    "comments":request.form.get(option+"_com")
+                                }
+                                
             else:
                 for field in field_list[role.lower()+"_details"]:
                     if field["field_type"] == "input" or field["field_type"] == "select":
