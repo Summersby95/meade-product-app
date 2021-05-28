@@ -126,9 +126,39 @@
                                 {% set value = "" %}
                             {% endif %}
 
+                            <tr>
+                                <td>{{ spec }}</td>
+                                <td>
+                                    <select class="validate" name="{{ spec.replace(' ', '_').lower() }}_rag" id="{{ spec.replace(' ', '_').lower() }}_rag">
+                                        {% set rag_options = ["Green","Amber","Red"] %}
+                                        {% for rag_opt in rag_options %}
+                                            {% if value.rag == rag_opt %}
+                                                {% set sel = "selected" %}
+                                            {% else %}
+                                                {% set sel = "" %}
+                                            {% endif %}
+
+                                            <option value="{{ rag_opt }}" {{ sel }}>{{ rag_opt }}</option>
+                                        {% endfor %}
+                                        
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="number" class="validate" name="{{ spec.replace(' ', '_').lower() }}_tol" id="{{ spec.replace(' ', '_').lower() }}_tol" value="{{ value.tolerance }}">
+                                </td>
+                                <td>
+                                    <input type="text" class="validate" name="{{ spec.replace(' ', '_').lower() }}_com" id="{{ spec.replace(' ', '_').lower() }}_com" value="{{ value.comments }}">
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
         {% endif %}
 
     {% endfor %}
+    
 {% endmacro %}
 
 {% macro view_builder(product_details, context=None) %}
