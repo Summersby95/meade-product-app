@@ -396,6 +396,11 @@ def add_product_details(product_id):
                             if sub_head in product[role.lower()]:
                                 if field["field_name"] in product[role.lower()][sub_head]:
                                     product[role.lower()][sub_head][field["field_name"]] = product[role.lower()][sub_head][field["field_name"]].strftime("%d %B, %Y")
+                    elif field["field_type"] == "spec_grid":
+                        options_table = mongo.db[field["table_name"]].find()
+                        field["options"] = []
+                        for option in options_table:
+                            field["options"].append(option["name"])
 
         else:
             for field in field_list[role.lower() + "_details"]:
