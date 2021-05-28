@@ -108,6 +108,24 @@
                             <th>Comments</th>
                         </tr>
                     </thead>
+
+                    <tbody>
+                        {% for spec in field.options %}
+
+                            {% if session.role.lower() in product %}
+                                {% if field.field_name in product[session.role.lower()] %}
+                                    {% if spec.replace(' ', '_').lower() in product[session.role.lower()][field.field_name] %}
+                                        {% set value = product[session.role.lower()][field.field_name][spec.replace(' ', '_').lower()] %}
+                                    {% else %}
+                                        {% set value = "" %}
+                                    {% endif %}
+                                {% else %}
+                                    {% set value = "" %}
+                                {% endif %}
+                            {% else %}
+                                {% set value = "" %}
+                            {% endif %}
+
         {% endif %}
 
     {% endfor %}
