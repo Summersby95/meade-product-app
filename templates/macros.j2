@@ -200,23 +200,23 @@
             {% else %}
 
                 {% for sub_field, sub_val in value.items() %} 
-            {% for sub_field, sub_val in value.items() %} 
-                {% for sub_field, sub_val in value.items() %} 
 
-                <div class="col s12 m6 row">
-                    <div class="col s4">
-                        <strong>{{ sub_field.replace("_", " ").title() }}</strong>
+                    <div class="col s12 m6 row">
+                        <div class="col s4">
+                            <strong>{{ sub_field.replace("_", " ").title() }}</strong>
+                        </div>
+                        <div class="col s8">
+                            {% if sub_val is iterable and (sub_val is not string and sub_val is not mapping) %}
+                                {{ ", ".join(sub_val) }}
+                            {% else %}  
+                                {{ sub_val }}
+                            {% endif %} 
+                        </div>
                     </div>
-                    <div class="col s8">
-                        {% if sub_val is iterable and (sub_val is not string and sub_val is not mapping) %}
-                            {{ ", ".join(sub_val) }}
-                        {% else %}  
-                            {{ sub_val }}
-                        {% endif %} 
-                    </div>
-                </div>
 
-            {% endfor %}
+                {% endfor %}
+
+            {% endif %}
 
         {% elif value is not mapping and field != "_id" %} 
             <div class="col s12 m6 row">
