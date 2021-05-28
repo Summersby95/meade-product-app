@@ -1,4 +1,4 @@
-/* esversion: 6 */
+/* jshint esversion: 6 */
 
 $(document).ready(function() {
     $('.sidenav').sidenav({
