@@ -344,6 +344,8 @@ def add_product_details(product_id):
             # "Pending - Awaiting " followed by the roles that have yet to submit information
             if len(outstanding_roles) == 0:
                 status = "Pending - Awaiting Commercial Sign Off"
+            elif len(outstanding_roles) > 2:
+                status = "Pending - Awaiting Many"
             else:
                 status = "Pending - Awaiting " + (", ").join(outstanding_roles)
             
