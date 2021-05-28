@@ -170,7 +170,38 @@
                 <h5><strong><i>{{ field.replace("_", " ").title() }}</i></strong></h5>
             </div>
 
+            {% if field == "quality_specification" %}
+
+                <div class="col s12">
+                    <table class="striped responsive-table">
+                        <thead>
+                            <tr>
+                                <th>Defect</th>
+                                <th>R/A/G</th>
+                                <th>Tolerance (%)</th>
+                                <th>Comments</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for defect, def_details in value.items() %}
+
+                                <tr>
+                                    <th>{{ defect.replace("_", " ").title() }}
+                                    <td>{{ def_details.rag }}</td>
+                                    <td>{{ def_details.tolerance }}</td>
+                                    <td>{{ def_details.comments }}</td>
+                                </tr>
+
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            {% else %}
+
+                {% for sub_field, sub_val in value.items() %} 
             {% for sub_field, sub_val in value.items() %} 
+                {% for sub_field, sub_val in value.items() %} 
 
                 <div class="col s12 m6 row">
                     <div class="col s4">
