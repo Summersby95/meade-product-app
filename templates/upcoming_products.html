@@ -5,66 +5,7 @@
 
     <h4>Confirmed <i class="material-icons">check</i></h4>
 
-    <table class="highlight responsive-table">
-        <thead>
-
-            {% if products %}
-                    
-                <tr>
-                    {# cycle through the first item in the products dictionary to build table header #}
-                    {% for field, value in products[0].items() %}
-
-                        {% if field != "_id" and field != "created_on" and field != "new" %}
-                            {# transform the field name from db field name to coherent display name #}
-                            <th>{{ field.replace("_", " ").title() }}</th>
-
-                        {% endif %}
-
-                    {% endfor %}
-
-                    <th>Actions</th>
-
-                </tr>
-
-            {% endif %}
-
-        </thead>
-        <tbody>
-
-            {% if products %}
-                {# cycle through all products in products list #}
-                {% for product in products %}
-                    {# In the first table we only want to see products that have the status "Complete - Production Ready" #}
-                    {% if product.status == "Complete - Production Ready" %}
-                    
-                        <tr>
-                            {# iterate over the dict object of each project, get the field, value from each #}
-                            {% for field, value in product.items() %}
-                                {# we don't want the "_id" value displaying #}
-                                {% if field != "_id" and field != "created_on" and field != "new" %}
-
-                                    <td>{{ value }}</td>
-
-                                {% endif %}
-
-                            {% endfor %}
-                            {# at the end of each product row we create a link that will direct the user to the view_product view for the product #}
-                            <td>
-                                <a href="{{ url_for('view_product', product_id=product._id) }}" class="btn waves-effect green accent-3">
-                                    <i class="material-icons right">format_list_bulleted</i> View Product
-                                </a>
-                            </td>
-
-                        </tr>
-
-                    {% endif %}
-
-                {% endfor %}
-
-            {% endif %}
-
-        </tbody>
-    </table>
+    
 
     <br><hr>
 
