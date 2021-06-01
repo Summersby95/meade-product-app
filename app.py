@@ -53,6 +53,15 @@ def get_upcoming():
         pending_products = []
         # we convert the start_date, which is a datetime object in the database, to a string
         for product in products:
+            if (product["start_date"].date() < (datetime.now()).date() + timedelta(days=7)):
+                if product["status"] == "Completed - Production Ready":
+                    product["colour"] = "green"
+                else:
+                    product["colour"] = "red"
+            elif (product["start_date"].date() < (datetime.now()).date() + timedelta(days=14)):
+                if product["status"] != "Completed - Production Ready":
+                    product["colour"] = "yellow"
+
             product["start_date"] = product["start_date"].strftime("%d %B %Y")
 
             # Check if the product was created in the last day, 
