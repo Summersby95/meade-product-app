@@ -17,79 +17,9 @@
 
     <h4>Pending Approval <i class="material-icons">report</i></h4>
 
-    <table class="highlight responsive-table">
-        <thead>
-
-            {% if products %}
-                    
-                <tr>
-
-                    {% for field, value in products[0].items() %}
-
-                        {% if field != "_id" and field != "created_on" and field != "new" %}
-
-                            <th>{{ field.replace("_", " ").title() }}</th>
-
-                        {% endif %}
-
-                    {% endfor %}
-
-                    <th>Actions</th>
-                    <th></th>
-
-                </tr>
-
+    {% endif %} 
             {% endif %}
-
-        </thead>
-        <tbody>
-
-            {% if products %}
-
-                {% for product in products %}
-
-                    {% if product.status != "Complete - Production Ready" %}
-                    
-                        <tr>
-
-                            {% for field, value in product.items() %}
-                            
-                                {% if field != "_id" and field != "created_on" and field != "new" %}
-                                    
-                                    <td>
-                                        {% if field == "product_name" and product.new == True %} 
-                                            <span class="new badge"></span>
-                                        {% endif %}
-
-                                        {{ value }}
-
-                                    </td>
-
-                                {% endif %}
-
-                            {% endfor %}
-
-                            <td>
-                                <a href="{{ url_for('view_product', product_id=product._id) }}" class="btn waves-effect green accent-3">
-                                    <i class="material-icons right">format_list_bulleted</i> View Product
-                                </a>
-                            </td>
-                            {# for the products that are not yet complete we also add the option to be able to add/edit the details of the product #}
-                            <td>
-                                <a href="{{ url_for('add_product_details', product_id=product._id) }}" class="btn waves-effect blue accent-3">
-                                    <i class="material-icons right">edit</i> Add Details
-                                </a>
-                            </td>
-
-                        </tr>
-
-                    {% endif %}
-
-                {% endfor %}
-
-            {% endif %}
-
-        </tbody>
-    </table>
+    {% endif %} 
+    
 
 {% endblock %}
