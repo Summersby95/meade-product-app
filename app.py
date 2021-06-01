@@ -49,6 +49,8 @@ def get_upcoming():
             ('start_date', pymongo.ASCENDING)
         ]))
 
+        completed_products = []
+        pending_products = []
         # we convert the start_date, which is a datetime object in the database, to a string
         for product in products:
             product["start_date"] = product["start_date"].strftime("%d %B %Y")
