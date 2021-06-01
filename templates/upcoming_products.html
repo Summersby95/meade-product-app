@@ -17,8 +17,10 @@
 
     <h4>Pending Approval <i class="material-icons">report</i></h4>
 
-    {% endif %} 
-            {% endif %}
+    {% if pending_products|length %} 
+        {{ macros.table_builder(pending_products, context="pending") }}
+    {% else %} 
+        <h5 class="center-align">No Upcoming Pending Products Found</h5>
     {% endif %} 
     
 
