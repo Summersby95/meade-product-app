@@ -68,8 +68,13 @@ def get_upcoming():
             # if it was mark it to add a badge to it in the table
             if (product["created_on"]).date() + timedelta(days=1) > (datetime.now()).date():
                 product["new"] = True
+            
+            if product["status"] == "Completed - Production Ready":
+                completed_products.append(product)
+            else:
+                pending_products.append(product)
 
-        return render_template("upcoming_products.html", products=products)
+        return render_template("upcoming_products.html", completed_products=completed_products, pending_products=pending_products)
     else:
         # if the user is not logged in we redirect them to the login screen
         flash("Please login to view this content")
