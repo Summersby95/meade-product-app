@@ -241,3 +241,29 @@
 {% macro table_builder(product_list, context=None) %}
 
     <table class="highlight responsive-table">
+        <thead>
+
+            {% if product_list %}
+                    
+                <tr>
+                    {# cycle through the first item in the products dictionary to build table header #}
+                    {% for field, value in product_list[0].items() %}
+
+                        {% if field != "_id" and field != "created_on" and field != "new" and field != "colour" %}
+                            {# transform the field name from db field name to coherent display name #}
+                            <th>{{ field.replace("_", " ").title() }}</th>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                    <th>Actions</th>
+                    {% if context == "pending" %}
+                        <th></th>
+                    {% endif %}
+
+                </tr>
+
+            {% endif %}
+
+        </thead>
