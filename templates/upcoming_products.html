@@ -6,6 +6,11 @@
 
     <h4>Confirmed <i class="material-icons">check</i></h4>
 
+    {% if completed_products|length %} 
+        {{ macros.table_builder(completed_products) }}
+    {% else %}
+        <h5 class="center-align">No Upcoming Confirmed Products Found</h5>
+    {% endif %}
     
 
     <br><hr>
