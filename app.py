@@ -30,7 +30,14 @@ def get_upcoming():
     if security.check_login():
         # get product list from products table, we only want certain columns, the rest will be
         # viewable in the view_product route, we also order by start_date to show urgent ones first
-        products = list(mongo.db.products.find({}, {
+        products = list(mongo.db.products.find({ "$or": [{
+            "$and": [
+                {"start_date": {"$gte": datetime.today() + timedelta(days=-1)}}, 
+                {"status": "Completed - Production Ready"}
+            ]
+        }, {
+            "status": {"$regex": "Pending*"}
+        }]}, {
             "product_name": 1,
             "department": 1,
             "customer": 1,
