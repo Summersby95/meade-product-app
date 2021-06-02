@@ -1,0 +1,45 @@
+{% extends "base.html" %} 
+{% import "macros.j2" as macros %} 
+{% block content %}
+
+    <h3 class="center-align">Product Sign Off</h3>
+
+    <h4><i class="material-icons">credit_card</i> Commercial Details</h4>
+
+    {% if product %} 
+
+        <div class="row" id="product-details">
+            {# we cycle through the product dictionary #}
+
+            {{ macros.view_builder(product.items(), context="Commercial") }}
+
+        </div>
+
+    {% endif %}
+
+    <hr>
+    {# we cycle through the roles in our roles array #}
+    {% for role in roles %} 
+
+        <h4><i class="material-icons">card_giftcard</i> {{ role.role_name }} Details</h4>
+        {# we check if the there is an object in the product for the role #}
+        {% if product[role.role_name.lower()] %} 
+
+            <div class="row">
+
+                {{ macros.view_builder(product[role.role_name.lower()].items()) }}
+
+            </div>
+
+        {% else %} 
+
+            <h5 class="center-align">No {{ role.role_name }} Details Submitted Yet</h5>
+
+        {% endif %}
+
+        <hr>
+
+    {% endfor %}
+    
+    <br>
+
