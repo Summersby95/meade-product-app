@@ -95,6 +95,9 @@ def view_product(product_id):
         roles = list(mongo.db.roles.find({
             "role_name": {"$nin": ["Admin", "Commercial", "Management"]}
         }))
+
+        functions.date_to_string(product)
+
         return render_template("view_product.html", product=product, roles=roles)
     else:
         flash("Please login to view this content")
