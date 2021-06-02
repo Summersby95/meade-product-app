@@ -418,11 +418,6 @@ def add_product_details(product_id):
                             field["options"] = []
                             for option in options_table:
                                 field["options"].append(option["name"])
-                    elif field["field_type"] == "date":
-                        if role.lower() in product:
-                            if sub_head in product[role.lower()]:
-                                if field["field_name"] in product[role.lower()][sub_head]:
-                                    product[role.lower()][sub_head][field["field_name"]] = product[role.lower()][sub_head][field["field_name"]].strftime("%d %B, %Y")
                     elif field["field_type"] == "spec_grid":
                         options_table = mongo.db[field["table_name"]].find()
                         field["options"] = []
@@ -437,11 +432,6 @@ def add_product_details(product_id):
                         field["options"] = []
                         for option in options_table:
                             field["options"].append(option["name"])
-                elif field["field_type"] == "date":
-                    if role.lower() in product:
-                        if field["field_name"] in product[role.lower()]:
-                            product[role.lower()][field["field_name"]] = product[role.lower()][field["field_name"]].strftime("%d %B, %Y")
-
         
 
         return render_template("add_product_details.html", product=product, field_list=field_list, roles=roles)
