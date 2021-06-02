@@ -8,5 +8,9 @@ $(document).ready(function() {
 
     let signaturePad = new SignaturePad(canvas);
 
+    $("#clear-sig").click(() => {
+        signaturePad.clear();
+    });
+
 
 });
