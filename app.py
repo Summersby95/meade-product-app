@@ -9,6 +9,7 @@ from bson.objectid import ObjectId
 import pymongo
 from werkzeug.security import generate_password_hash, check_password_hash
 import email_func
+import functions
 import security
 if os.path.exists("env.py"):
     import env
