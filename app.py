@@ -290,7 +290,7 @@ def add_product_details(product_id):
         }))
 
         # convert datetime start date to string
-        product["start_date"] = product["start_date"].strftime("%d %B, %Y")
+        functions.date_to_string(product)
 
         if request.method == "POST":
             # we need the user's first and last name to put in the "added_by" field
