@@ -206,7 +206,9 @@
                             <strong>{{ sub_field.replace("_", " ").title() }}</strong>
                         </div>
                         <div class="col s8">
-                            {% if sub_val is iterable and (sub_val is not string and sub_val is not mapping) %}
+                            {% if sub_field == "signature" %}
+                                <img src="{{ sub_val }}" class="responsive-img signature-img">
+                            {% elif sub_val is iterable and (sub_val is not string and sub_val is not mapping) %}
                                 {{ ", ".join(sub_val) }}
                             {% else %}  
                                 {{ sub_val }}
