@@ -12,5 +12,9 @@ $(document).ready(function() {
         signaturePad.clear();
     });
 
+    $(window).resize(() => {
+        canvas.height = 200;
+        canvas.width = canvas.offsetWidth;
+    });
 
 });
