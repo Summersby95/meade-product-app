@@ -477,6 +477,21 @@ def sign_off(product_id):
                 "role_name": {"$nin": ["Admin", "Commercial", "Management"]}
             }))
 
+            if request.method == "POST":
+                mongo.db.products.update_one({"_id": ObjectId(product_id)}, {
+                    "$set": {
+                        "sign_off": {
+                            "signature": request.form.get("signature-input"),
+                            "submitted_on": datetime.now(),
+                            "submitted_by": session["user"]
+                        }, 
+                        "status": "Completed - Production Ready"
+                    }
+                })
+                
+                flash("Product Signed Off Successfully")
+                return redirect(url_for("get_upcoming"))
+
             return render_template("sign_off.html", product=product, roles=roles)
         else:
             flash("You do not have permission to view this content")
