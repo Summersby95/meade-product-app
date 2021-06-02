@@ -31,3 +31,7 @@
 .no-display {
     display: none;
 }
+
+.signature-img {
+    border: 2px solid black;
+}
