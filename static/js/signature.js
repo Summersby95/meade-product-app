@@ -17,4 +17,14 @@ $(document).ready(function() {
         canvas.width = canvas.offsetWidth;
     });
 
+    $("#submit-sig").click((e) => {
+        e.preventDefault(e);
+
+        if (signaturePad.isEmpty()) {
+            $("#signature-notification").html("Signature Field Cannot Be Empty!").addClass("red-text");
+        } else {
+            $("#signature-input").val(signaturePad.toDataURL());
+            $("#signature-form").submit();
+        }
+    });
 });
