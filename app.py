@@ -467,6 +467,21 @@ def delete_product(product_id):
         flash("Please login to view this content")
         return redirect(url_for('login'))
 
+# Commercial Sign Off Route
+@app.route("/sign_off/<product_id>", methods=["GET", "POST"])
+def sign_off(product_id):
+    if security.check_login():
+        if session["role"] == "Commercial" or session["role"] == "Admin":
+            product = mongo.db.products.find_one({"_id": ObjectId(product_id)})
+            roles = list(mongo.db.roles.find({
+                "role_name": {"$nin": ["Admin", "Commercial", "Management"]}
+            }))
+
+            return render_template("sign_off.html", product=product, roles=roles)
+        else:
+            flash("You do not have permission to view this content")
+            return redirect(url_for('get_upcoming'))
+
 
 # Register Route
 @app.route("/register", methods=["GET", "POST"])
