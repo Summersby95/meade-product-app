@@ -51,9 +51,21 @@
                 <div class="signature-pad-div col s12 m6 offset-m3">
                     <canvas id="signature-pad"></canvas>
                 </div>
+                <div class="col s12 center-align">
+                    <a href="{{ url_for('view_product', product_id=product._id) }}" class="btn-large red accent-3">
+                        <i class="material-icons right">clear</i> Cancel
+                    </a>
+                    <button type="button" class="btn-large blue accent-3" id="clear-sig">
+                        <i class="material-icons right">clear_all</i> Clear
+                    </button>
+                    <button type="submit" id="submit-sig" class="btn-large green accent-3">
+                        <i class="material-icons right">check</i> Submit
+                    </button>
+                </div>
             </div>
         </div>
     </form>
+{% endblock %} 
 {% block scripts %} 
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
     <script src="{{ url_for('static', filename='js/signature.js') }}"></script>
