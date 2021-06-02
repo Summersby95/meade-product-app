@@ -292,9 +292,15 @@
                         </td>
                         {% if context == "pending" %}
                             <td>
-                                <a href="{{ url_for('add_product_details', product_id=product._id) }}" class="btn waves-effect blue accent-3">
-                                    <i class="material-icons right">edit</i> Add Details
-                                </a>
+                                {% if product.status == "Pending - Awaiting Commercial Sign Off" and (session.role == "Commercial" or session.role == "Admin") %}
+                                    <a href="{{ url_for('sign_off', product_id=product._id) }}" class="btn waves-effect purple accent-3">
+                                        <i class="material-icons right">border_color</i> Sign Off
+                                    </a>
+                                {% else %}
+                                    <a href="{{ url_for('add_product_details', product_id=product._id) }}" class="btn waves-effect blue accent-3">
+                                        <i class="material-icons right">edit</i> Add Details
+                                    </a>
+                                {% endif %}
                             </td>
                         {% endif %}
 
