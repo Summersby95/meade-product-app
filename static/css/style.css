@@ -22,3 +22,12 @@
 .flashes h4 {
     font-family: 'Nunito Sans';
 }
+
+#signature-pad {
+    border: 2px solid black;
+    width: 100%;
+}
+
+.no-display {
+    display: none;
+}
