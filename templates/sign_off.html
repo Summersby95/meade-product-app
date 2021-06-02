@@ -48,9 +48,14 @@
     <form action="{{ url_for('sign_off', product_id=product._id) }}" method="post" id="signature-form">
         <div class="card-panel">
             <div class="row">
+                <div class="col s12">
+                    <h5 id="signature-notification" class="center-align">Please draw your signature in the field below.</h5>
+                    <hr>
+                </div>
                 <div class="signature-pad-div col s12 m6 offset-m3">
                     <canvas id="signature-pad"></canvas>
                 </div>
+                <input type="text" id="signature-input" name="signature-input" class="no-display">
                 <div class="col s12 center-align">
                     <a href="{{ url_for('view_product', product_id=product._id) }}" class="btn-large red accent-3">
                         <i class="material-icons right">clear</i> Cancel
