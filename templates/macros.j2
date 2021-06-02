@@ -164,7 +164,7 @@
 {% macro view_builder(product_details, context=None) %}
 
     {% for field, value in product_details %} 
-        {% if value is mapping and context == None %}
+        {% if value is mapping and (context == None or field == "sign_off") %}
 
             <div class="col s12">
                 <h5><strong><i>{{ field.replace("_", " ").title() }}</i></strong></h5>
