@@ -291,7 +291,7 @@ def add_product_details(product_id):
 
         # we get a list of roles to cycle through when we are building the details tabs
         roles = list(mongo.db.roles.find({
-            "role_name": {"$nin": ["Admin", "Commercial", "Management"]}
+            "role_name": {"$nin": ["Admin", "Management"]}
         }))
 
         # convert datetime start date to string
