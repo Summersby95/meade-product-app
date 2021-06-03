@@ -137,18 +137,15 @@ def product_details(field_list_id):
     if not(security.check_login()):
         flash("Please login to view this content")
         return redirect(url_for("login"))
-    elif session["role"] != "Commercial":
+    elif session["role"] not in ["Commercial", "Admin"]:
         flash("You do not have permission to create products")
         return redirect(url_for("get_upcoming"))
     else:
-        # get customer name using customer_id passed to url
-        customer_name = mongo.db.customers.find_one({"_id": ObjectId(customer_id)})["customer_name"]
-
         # get field_list from form_fields table, searching on the customer name and department
-        field_list = mongo.db.form_fields.find_one({
-            "customer": customer_name, 
-            "department": session["department"]
-        })
+        field_list = mongo.db.form_fields.find_one({"_id": ObjectId(field_list_id)})
+
+        # get customer name using customer_id passed to url
+        customer_name = field_list["customer"]
 
         if request.method == "POST":
             user = mongo.db.users.find_one({"username": session["user"]})
