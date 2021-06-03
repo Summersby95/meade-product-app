@@ -4,7 +4,7 @@
 
     <h3 class="center-align">Create Product <i class="material-icons">control_point</i></h3>
 
-    <form action="{{ url_for('product_details', customer_id=customer_id) }}" method="post">
+    <form action="{{ url_for('product_details', field_list_id=field_list._id) }}" method="post">
         <div class="card-panel">
             <div class="row">
                 <!-- Disabled Customer Input (Visual Indicatior for User) -->
