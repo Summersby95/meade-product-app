@@ -153,7 +153,7 @@ def product_details(field_list_id):
             # Create product base details, common for all new products
             product = {
                 "product_name": request.form.get("product_name"),
-                "department": session["department"],
+                "department": field_list["department"],
                 "customer": customer_name,
                 "status": "Pending - Awaiting Many",
                 "start_date": datetime.strptime(request.form.get("start_date"), '%d %B, %Y'),
