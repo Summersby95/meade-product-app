@@ -45,7 +45,7 @@
     {# Provide options to edit details and print pdf version of form at bottom of view #}
     <div class="row" id="button_div">
         <div class="col s12 center-align">
-            {% if session.role == "Commercial" and session.department == product.department %}
+            {% if (session.role == "Commercial" and session.department == product.department) or session.role == "Admin" %}
                 <a href="{{ url_for('delete_product', product_id=product._id) }}" class="btn-large red accent-3 center-align">
                     <i class="material-icons right">cancel</i> Delete Product
                 </a>
