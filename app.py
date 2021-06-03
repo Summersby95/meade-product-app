@@ -132,8 +132,8 @@ def customer_select():
 
 
 # Create Product Product Details Route
-@app.route("/create_product/product_details/<customer_id>", methods=["GET", "POST"])
-def product_details(customer_id):
+@app.route("/create_product/product_details/<field_list_id>", methods=["GET", "POST"])
+def product_details(field_list_id):
     if not(security.check_login()):
         flash("Please login to view this content")
         return redirect(url_for("login"))
