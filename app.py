@@ -258,6 +258,10 @@ def my_tasks():
             ('start_date', pymongo.ASCENDING)
         ]))
 
+        for product in products:
+            functions.product_mark(product)
+            functions.date_to_string(product)
+
         return render_template("my_tasks.html", products=products)
     else:
         flash("Please login to view this content")
