@@ -126,8 +126,9 @@ def customer_select():
                 url_for("product_details", field_list_id=field_list["_id"])
             )
 
+        departments = mongo.db.departments.find().sort('department_name', pymongo.ASCENDING)
         customers = mongo.db.customers.find().sort('customer_name', pymongo.ASCENDING)
-        return render_template("customer_select.html", customers=customers)
+        return render_template("customer_select.html", customers=customers, departments=departments)
 
 
 # Create Product Product Details Route
