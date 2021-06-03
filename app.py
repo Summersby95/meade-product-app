@@ -221,7 +221,7 @@ def product_details(field_list_id):
                 for option in options_table:
                     field["options"].append(option["name"])
 
-    return render_template("commercial_product_details.html", customer_id=customer_id, field_list=field_list)
+    return render_template("commercial_product_details.html", field_list=field_list)
 
 
 # My Tasks Route
