@@ -108,6 +108,20 @@ def customer_select():
         # correct fields we must first get the user to select the customer
         # the department is defined by the users attributes
         if request.method == "POST":
+            if session["role"] == "Admin":
+                department = request.form.get("department")
+            else:
+                department = session["department"]
+
+            field_list = mongo.db.form_fields.find_one({
+                "department": department,
+                "customer": request.form.get("customer")
+            }, {"_id": 1})
+
+            if field_list is None:
+                flash("Invalid Department/Customer Combination")
+                return redirect(url_for("get_upcoming"))
+
             return redirect(
                 url_for("product_details", customer_id=request.form.get("customer"))
             )
