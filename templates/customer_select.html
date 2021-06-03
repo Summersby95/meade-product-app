@@ -17,6 +17,18 @@
                     </select>
                     <label for="customer">Customer</label>
                 </div>
+                {% if session.role == "Admin" %} 
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">folder_shared</i>
+                        <select name="department" id="department">
+                            <!-- cycle over customers list to generate options -->
+                            {% for department in departments %} 
+                                <option value="{{ department.department_name }}">{{ department.department_name }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="department">Department</label>
+                    </div>
+                {% endif %}
             </div>
             <!-- submit button -->
             <div class="row col s12 center-align">
