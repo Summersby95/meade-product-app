@@ -123,7 +123,7 @@ def customer_select():
                 return redirect(url_for("get_upcoming"))
 
             return redirect(
-                url_for("product_details", customer_id=request.form.get("customer"))
+                url_for("product_details", field_list_id=field_list["_id"])
             )
 
         customers = mongo.db.customers.find().sort('customer_name', pymongo.ASCENDING)
