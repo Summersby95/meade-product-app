@@ -34,10 +34,21 @@
                     
                     {% else %}
 
-            <form action="{{ url_for('add_product_details', product_id=product._id) }}" method="post">
-                <div class="row">
-                    
-                    {{ macros.form_builder(field_list[(session.role.lower())+"_details"], product) }}
+                        {% if product[role.role_name.lower()] %} 
+
+                            {{ macros.view_builder(product[role.role_name.lower()].items()) }}
+                        
+                        {% elif role.role_name == "Commercial" %}
+
+                            {{ macros.view_builder(product.items(), context="Commercial") }}
+            
+                        {% else %} 
+            
+                            <h5 class="center-align">No {{ role.role_name }} Details Submitted Yet</h5>
+            
+                        {% endif %}
+
+                    {% endif %}
 
                 </div>
 
