@@ -26,7 +26,7 @@
 
                         <li><a href="{{ url_for('get_upcoming') }}">Home</a></li>
                         <li><a href="{{ url_for('get_upcoming') }}">View Upcoming Products</a></li>
-                        {% if session.role == "Commercial" %}
+                        {% if session.role == "Commercial" or session.role == "Admin" %}
 
                             <li><a href="{{ url_for('customer_select') }}">Create New Product</a></li>
 
@@ -49,7 +49,7 @@
 
                 <li><a href="{{ url_for('get_upcoming') }}">Home</a></li>
                 <li><a href="{{ url_for('get_upcoming') }}">View Upcoming Products</a></li>
-                {% if session.role == "Commercial" %}
+                {% if session.role == "Commercial" or session.role == "Admin" %}
 
                     <li><a href="{{ url_for('customer_select') }}">Create New Product</a></li>
 
