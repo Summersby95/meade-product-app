@@ -11,64 +11,11 @@
         {# Table built very much like table in upcoming products view #}
         <thead>
 
-            {% if products %}
-                    
-                <tr>
+    <hr>
 
-                    {% for field, value in products[0].items() %}
+    {{ macros.table_builder(products, context="pending") }}
 
-                        {% if field != "_id" %}
-
-                            <th>{{ field.replace("_", " ").title() }}</th>
-
-                        {% endif %}
-
-                    {% endfor %}
-
-                    <th>Actions</th>
-                    <th></th>
-
-                </tr>
-
-            {% endif %}
-
-        </thead>
-        <tbody>
-
-            {% if products %}
-
-                {% for product in products %}
-                    
-                    <tr>
-
-                        {% for field, value in product.items() %}
-
-                            {% if field != "_id" %}
-
-                                <td>{{ value }}</td>
-
-                            {% endif %}
-
-                        {% endfor %}
-
-                        <td>
-                            <a href="{{ url_for('view_product', product_id=product._id) }}" class="btn waves-effect green accent-3">
-                                <i class="material-icons right">format_list_bulleted</i> View Product
-                            </a>
-                        </td>
-                        <td>
-                            <a href="{{ url_for('add_product_details', product_id=product._id) }}" class="btn waves-effect blue accent-3">
-                                <i class="material-icons right">edit</i> Add Details
-                            </a>
-                        </td>
-
-                    </tr>
-
-                {% endfor %}
-
-            {% endif %}
-
-        </tbody>
-    </table>
-
+{% endblock %}
+{% block scripts %} 
+    <script src="{{ url_for('static', filename='js/my_tasks.js') }}"></script>
 {% endblock %}
