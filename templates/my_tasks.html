@@ -2,15 +2,15 @@
 {% import "macros.j2" as macros %}
 {% block content %} 
 
-    <h3 class="center-align">My Tasks</h3>
+    <h3 class="center-align">My Tasks <i class="material-icons small">dashboard</i></h3>
 
-    <h5>The Following Products Require <strong><i>{{ session.role }}</i></strong> Details</h5>
+    <h5><strong>Logged in as: <i class="material-icons left">person</i></strong>{{ session.user }}</h5>
+    <h5><strong>Department: <i class="material-icons left">folder_shared</i></strong>{{ session.department }}</h5>
+    <h5><strong>Role: <i class="material-icons left">remove_red_eye</i></strong>{{ session.role }}</h5>
 
     <hr>
 
-    <table class="highlight responsive-table">
-        {# Table built very much like table in upcoming products view #}
-        <thead>
+    <h5>The Following Products Require <strong><i>{{ session.role }}</i></strong> Details</h5>
 
     <hr>
 
