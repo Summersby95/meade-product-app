@@ -2,7 +2,7 @@
     {% for field in field_array %}
         {# build form elements from field_list #}
         {% if product != None %}
-            {% if session.role != "Commercial" %}
+            {% if context != "Commercial" %}
 
                 {% if (session.role.lower()) in product %}
                     {# check if the product object already has an attribute for the field and if it does, 
