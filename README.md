@@ -583,3 +583,4 @@ For Testing information regarding this project please see the [TESTING.md](/TEST
 [Jinja Comments](https://jinja.palletsprojects.com/en/3.0.x/templates/#comments)
 [StackOverflow Jinja Test](https://stackoverflow.com/questions/11947325/how-to-test-for-a-list-in-jinja2)
 [Signature Pad](https://github.com/szimek/signature_pad)
+[Quotable API](https://github.com/lukePeavey/quotable)
