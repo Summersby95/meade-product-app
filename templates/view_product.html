@@ -21,7 +21,7 @@
     {# we cycle through the roles in our roles array #}
     {% for role in roles %} 
 
-        <h4><i class="material-icons">card_giftcard</i> {{ role.role_name }} Details</h4>
+        <h4><i class="material-icons">{{ role.role_logo }}</i> {{ role.role_name }} Details</h4>
         {# we check if the there is an object in the product for the role #}
         {% if product[role.role_name.lower()] %} 
 
