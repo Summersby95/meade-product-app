@@ -284,9 +284,10 @@ def add_product_details(product_id):
 
         # we get the field_list by searching with the customer and department
         # we only want the fields that are relevant for this user's role
+
         field_list = mongo.db.form_fields.find_one({
             "$and": [{"customer": customer}, {"department": department}]
-        }, {(role.lower() + "_details"): 1})
+        })
 
         # we get a list of roles to cycle through when we are building the details tabs
         roles = list(mongo.db.roles.find({
