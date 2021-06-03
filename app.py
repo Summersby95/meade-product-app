@@ -252,7 +252,8 @@ def my_tasks():
             "customer": 1,
             "status": 1,
             "start_date": 1,
-            "created_by": 1
+            "created_by": 1,
+            "created_on": 1
         }).sort([
             ('start_date', pymongo.ASCENDING)
         ]))
