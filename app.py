@@ -97,7 +97,7 @@ def customer_select():
     if not(security.check_login()):
         flash("Please login to view this content")
         return redirect(url_for("login"))
-    elif session["role"] != "Commercial":
+    elif session["role"] not in ["Commercial", "Admin"]:
         # Only a member of the commercial team has permission to create products
         flash("You do not have permission to create products")
         return redirect(url_for("get_upcoming"))
