@@ -302,13 +302,18 @@ def add_product_details(product_id):
             user = mongo.db.users.find_one({"username": session["user"]})
 
             # we start with an empty details dictionary
-            details = {}
+            update_details = {}
 
-            # we cycle through the field_list and put all the details into the details dictionary
-            if type(field_list[role.lower()+"_details"]) is dict:
-                for sub_head, sub_array in field_list[role.lower()+"_details"].items():
-                    details[sub_head] = {}
+            for role_obj in roles:
+                if role in [role_obj["role_name"], "Admin"]:
+                    update_details[role_obj["role_name"].lower()] = functions.update_dict_builder(field_list[(role_obj["role_name"].lower())+"_details"], request, mongo)
+                    if role != "Commercial":
+                        update_details[role_obj["role_name"].lower()]["added_by"] = user["f_name"] + " " + user["l_name"]
+                        update_details[role_obj["role_name"].lower()]["date_added"] = datetime.now() 
 
+            if "commercial" in update_details.keys():
+                for key, value in update_details["commercial"].items():
+                    update_details[key] = value
                 del update_details["commercial"]
 
             # we then update the product and create an object of the role name which is equal to the 
