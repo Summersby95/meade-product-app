@@ -37,5 +37,36 @@ def process_field_list(field_dict, mongo_conn):
                         sub_field["options"] = []
                         for option in options_table:
                             sub_field["options"].append(option["name"])
-                    
+
+
+
+def update_dict_builder(field_list, request_pass, mongo_conn):
+    details = {}
+    if isinstance(field_list, list):
+        for field in field_list:
+            if field["field_type"] == "input" or field["field_type"] == "select":
+                details[field["field_name"]] = request_pass.form.get(field["field_name"])
+            elif field["field_type"] == "multiselect":
+                details[field["field_name"]] = []
+                for value in request_pass.form.getlist(field["field_name"]):
+                    details[field["field_name"]].append(value)
+            elif field["field_type"] == "date":
+                details[field["field_name"]] = datetime.strptime(request_pass.form.get(field["field_name"]), '%d %B, %Y')
+            elif field["field_type"] == "spec_grid":
+                grid_options = []
+                grid_table = mongo_conn.db[field["table_name"]].find()
+
+                for option in grid_table:
+                    grid_options.append(option["name"].lower().replace(" ", "_"))
                 
+                for option in grid_options:
+                    details[option] = {
+                        "rag":request_pass.form.get(option+"_rag"),
+                        "tolerance":request_pass.form.get(option+"_tol"),
+                        "comments":request_pass.form.get(option+"_com")
+                    }
+    elif isinstance(field_list, dict):
+        for sub_field, sub_val in field_list.items():
+            details[sub_field] = update_dict_builder(sub_val, request_pass, mongo_conn)
+    
+    return details
