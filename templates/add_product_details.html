@@ -67,39 +67,6 @@
 
         </form>
 
-        
-
-        <!-- {% if session.role != "Commercial" and session.role != "Admin" %}
-
-            <div class="row" id="product-details">
-
-                {{ macros.view_builder(product.items(), context="Commercial") }}
-
-            </div>
-        
-        {% else %}
-
-            <form action="{{ url_for('add_product_details', product_id=product._id) }}" method="post">
-                <div class="row">
-                    
-                    {{ macros.form_builder(field_list[(session.role.lower())+"_details"], product) }}
-
-                </div> -->
-                <!-- submit button -->
-                <!-- <div class="row">
-                    <div class="col s12 center-align">
-                        <button class="btn-large green accent-3 center-align">
-                            <i class="material-icons right">check</i> Submit
-                        </button>
-                        <a href="{{ url_for('view_product', product_id=product._id) }}" class="btn-large red accent-3 center-align">
-                            <i class="material-icons right">cancel</i> Cancel
-                        </a>
-                    </div>
-                </div>
-            </form>
-
-        {% endif %} -->
-
     {% endif %}
 
 {% endblock %}
