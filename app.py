@@ -309,49 +309,10 @@ def add_product_details(product_id):
                 for sub_head, sub_array in field_list[role.lower()+"_details"].items():
                     details[sub_head] = {}
 
-                    for field in sub_array:
-                        if field["field_type"] == "input" or field["field_type"] == "select":
-                            details[sub_head][field["field_name"]] = request.form.get(field["field_name"])
-                        elif field["field_type"] == "multiselect":
-                            details[sub_head][field["field_name"]] = []
-                            for value in request.form.getlist(field["field_name"]):
-                                details[sub_head][field["field_name"]].append(value)
-                        elif field["field_type"] == "date":
-                            details[sub_head][field["field_name"]] = datetime.strptime(request.form.get(field["field_name"]), '%d %B, %Y')
-                        elif field["field_type"] == "spec_grid":
-                            grid_options = []
-                            grid_table = mongo.db[field["table_name"]].find()
-
-                            for option in grid_table:
-                                grid_options.append(option["name"].lower().replace(" ", "_"))
-                            
-                            for option in grid_options:
-                                details[sub_head][option] = {
-                                    "rag":request.form.get(option+"_rag"),
-                                    "tolerance":request.form.get(option+"_tol"),
-                                    "comments":request.form.get(option+"_com")
-                                }
-                                
-            else:
-                for field in field_list[role.lower()+"_details"]:
-                    if field["field_type"] == "input" or field["field_type"] == "select":
-                        details[field["field_name"]] = request.form.get(field["field_name"])
-                    elif field["field_type"] == "multiselect":
-                        details[field["field_name"]] = []
-                        for value in request.form.getlist(field["field_name"]):
-                            details[field["field_name"]].append(value)
-                    elif field["field_type"] == "date":
-                        details[field["field_name"]] = datetime.strptime(request.form.get(field["field_name"]), '%d %B, %Y')
-            
-            # we then add the "added_by" and "date_added" fields to the dictionary so we know
-            # when it was last updated
-            if role != "Commercial":
-                details["added_by"] = user["f_name"] + " " + user["l_name"]
-                details["date_added"] = datetime.now()
+                del update_details["commercial"]
 
             # we then update the product and create an object of the role name which is equal to the 
             # dictionary we just created
-            if role != "Commercial":
                 mongo.db.products.update_one({"_id": ObjectId(product_id)}, {
                     "$set": {role.lower(): details}
                 })
