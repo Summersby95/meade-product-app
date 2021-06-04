@@ -2,15 +2,15 @@
     {% for field in field_array %}
         {# build form elements from field_list #}
         {% if product != None %}
-            {% if context != "Commercial" %}
+            {% if role != "Commercial" %}
 
-                {% if (session.role.lower()) in product %}
+                {% if (role.lower()) in product %}
                     {# check if the product object already has an attribute for the field and if it does, 
                         set it as the value for the element #}
                     {% if context != None %} 
-                        {% if context in product[(session.role.lower())] %}
-                            {% if field.field_name in product[(session.role.lower())][context] %}
-                                {% set value = product[(session.role.lower())][context][field.field_name] %}
+                        {% if context in product[(role.lower())] %}
+                            {% if field.field_name in product[(role.lower())][context] %}
+                                {% set value = product[(role.lower())][context][field.field_name] %}
                             {% else %}
                                 {% set value = "" %}
                             {% endif %}
@@ -18,8 +18,8 @@
                             {% set value = "" %}
                         {% endif %}
                     {% else %}
-                        {% if field.field_name in product[(session.role.lower())] %}
-                            {% set value = product[(session.role.lower())][field.field_name] %}
+                        {% if field.field_name in product[(role.lower())] %}
+                            {% set value = product[(role.lower())][field.field_name] %}
                         {% else %} 
                             {% set value = "" %} 
                         {% endif %}
