@@ -330,7 +330,7 @@ def add_product_details(product_id):
 
             # we cycle through the roles and check if an object of the role exists within the product
             for role in roles:
-                if not (role["role_name"].lower() in product):
+                if not (role["role_name"].lower() in product) and role["role_name"] != "Commercial":
                     outstanding_roles.append(role["role_name"])
             
             # if there are no outstanding roles left to input information then the product is ready 
