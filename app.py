@@ -318,13 +318,9 @@ def add_product_details(product_id):
 
             # we then update the product and create an object of the role name which is equal to the 
             # dictionary we just created
-                mongo.db.products.update_one({"_id": ObjectId(product_id)}, {
-                    "$set": {role.lower(): details}
-                })
-            else:
-                mongo.db.products.update_one({"_id": ObjectId(product_id)}, {
-                    "$set": details
-                })
+            mongo.db.products.update_one({"_id": ObjectId(product_id)}, {
+                "$set": update_details
+            })
 
             # after updating we get the product object from the database again so that we can check 
             # what roles have submitted their information and which have not
