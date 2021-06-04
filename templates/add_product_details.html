@@ -21,15 +21,13 @@
                                 <div class="col s12">
                                     <h5><strong><i>{{ sub_heading.replace("_", " ").title() }}</i></strong></h5>
                                 </div>
-                                {{ macros.form_builder(sub_array, product, context=sub_heading) }}
+                                {{ macros.form_builder(sub_array, role.role_name, product, context=sub_heading) }}
                                 <div class="col s12">
                                     <hr>
                                 </div>
                             {% endfor %}
-                        {% elif role.role_name == "Commercial" %} 
-                            {{ macros.form_builder(field_list[(role.role_name.lower())+"_details"], product, context="Commercial") }}
                         {% else %}
-                            {{ macros.form_builder(field_list[(role.role_name.lower())+"_details"], product) }}
+                            {{ macros.form_builder(field_list[(role.role_name.lower())+"_details"], role.role_name, product) }}
                         {% endif %}
                     
                     {% else %}
