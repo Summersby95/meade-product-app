@@ -39,7 +39,6 @@ def process_field_list(field_dict, mongo_conn):
                             sub_field["options"].append(option["name"])
 
 
-
 def update_dict_builder(field_list, request_pass, mongo_conn):
     details = {}
     if isinstance(field_list, list):
