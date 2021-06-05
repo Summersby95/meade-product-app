@@ -78,10 +78,36 @@
         {% endwith %}
     </section>
     <!-- block content container -->
-    <main class="container">
+    <main>
+        <div class="container">
+            {% block content %} 
         {% block content %} 
-        {% endblock %}
+            {% block content %} 
+            {% endblock %}
+        </div>
+        
     </main>
+    <!-- footer section -->
+    <footer class="page-footer green accent-3">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 center-align">
+                    <h5>Links</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="https://www.facebook.com/meadefarm/" target="_blank">Facebook</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://www.linkedin.com/company/meade-potato-company/" target="_blank">LinkedIn</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://twitter.com/meadepotatocom?lang=en" target="_blank">Twitter</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://github.com/Summersby95/meade-product-app" target="_blank">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2021 Meade Farm Group
+            </div>
+        </div>
+    </footer>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
