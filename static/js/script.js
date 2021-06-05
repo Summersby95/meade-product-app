@@ -16,4 +16,5 @@ $(document).ready(function() {
     $(("#print_button")).click(() => { 
         window.print();
     });
+    $('.tabs').tabs();
 });
