@@ -1,0 +1,77 @@
+{% extends "base.html" %} 
+{% block content %} 
+<div class="row">
+    <div class="col s12">
+        <div class="card grey lighten-3">
+            <div class="card-image">
+                <img class="activator" src="{{ url_for('static', filename='images/platter.jpg') }}">
+                <span class="card-title">Welcome to the Meade Product App.</span>
+            </div>
+            <div class="card-content">
+                <span class="card-title activator">Description<i class="material-icons right">more_vert</i></span>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title">Meade Product App<i class="material-icons right">close</i></span>
+                <p>
+                    The MPA is a bespoke internal system for new product development, 
+                    designed to ensure full product specification information is gathered 
+                    before the production starts. 
+                </p>
+                <p>
+                    The application is currently not open to external vistiors. If you are an 
+                    employee of <i>Meade Farm Group</i> and have been registered to use the site 
+                    please <a href="{{ url_for('login') }}">Login</a>. 
+                </p>
+                <p>
+                    If you are an employee of Meade Farm Group and have not been issued a login please 
+                    contact a member of the IT team who will assist you in getting an account created. 
+                </p>
+                <p>
+                    If you are an external visitor and would like a demo or showcase of the application 
+                    please email jamessummersby@meadefarm.ie.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col s12">
+        <div class="card grey lighten-3">
+            <div class="card-tabs">
+                <ul class="tabs tabs-fixed-width grey lighten-5">
+                    <li class="tab"><a href="#tab1" class="active">Effective Communication</a></li>
+                    <li class="tab"><a href="#tab2">All Specs</a></li>
+                    <li class="tab"><a href="#tab3">Process Simplified</a></li>
+                </ul>
+            </div>
+            <div class="card-content">
+                <div id="tab1">
+                    <img class="responsive-img" src="{{ url_for('static', filename='images/process_flow.png') }}" alt="">
+                    <hr>
+                    <p>
+                        When products are added or updated all stakeholders are informed so that no-one 
+                        is left in the dark.
+                    </p>
+                </div>
+                <div id="tab2">
+                    <img class="responsive-img" src="{{ url_for('static', filename='images/spec_info.png') }}" alt="">
+                    <hr>
+                    <p>
+                        Find all the information you need for a product in one place. From packaging 
+                        information to technical specs, you can find it all here.
+                    </p>
+                </div>
+                <div id="tab3">
+                    <img class="responsive-img" src="{{ url_for('static', filename='images/process_view.png') }}" alt="">
+                    <hr>
+                    <p>
+                        Rest at ease knowing that the pre-defined product development process ensures that 
+                        all information is collected from the various departments without you having to pick 
+                        up the phone.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -15,7 +15,7 @@
         <!-- navbar for desktop -->
         <nav class="nav-extended green accent-3">
             <div class="nav-wrapper">
-                <a href="" class="brand-logo left">
+                <a href="{{ url_for('home') }}" class="brand-logo left">
                     <img src="{{ url_for('static', filename='images/meade_farm_logo.png') }}" alt="Meade Farm Logo" class="responsive-img">
                 </a>
                 <a href="#" data-target="mobile-sidenav" class="sidenav-trigger right">
@@ -24,7 +24,7 @@
                 <ul class="right hide-on-med-and-down">
                     {% if session.user %} 
 
-                        <li><a href="{{ url_for('get_upcoming') }}">Home</a></li>
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
                         <li><a href="{{ url_for('get_upcoming') }}">View Upcoming Products</a></li>
                         {% if session.role == "Commercial" or session.role == "Admin" %}
 
@@ -47,7 +47,7 @@
         <ul class="sidenav" id="mobile-sidenav">
             {% if session.user %} 
 
-                <li><a href="{{ url_for('get_upcoming') }}">Home</a></li>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
                 <li><a href="{{ url_for('get_upcoming') }}">View Upcoming Products</a></li>
                 {% if session.role == "Commercial" or session.role == "Admin" %}
 
