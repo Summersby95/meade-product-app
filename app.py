@@ -25,6 +25,10 @@ mongo = PyMongo(app)
 
 # Default Route
 @app.route("/")
+def home():
+    return render_template("index.html")
+
+@app.route("/get_upcoming")
 def get_upcoming():
     # The check login function (in the security.py file) checks that the user is logged in
     # All views are locked to the user unless they are logged in, they will be directed to the login screen
