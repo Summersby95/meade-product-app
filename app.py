@@ -300,8 +300,18 @@ def add_product_details(product_id):
         # the form for adding product details will differ depending on the product and the role 
         # of the user
         role = session["role"]
+
+        # check if product id passed is a valid objectid, redirect if not
+        if not ObjectId.is_valid(product_id):
+            flash("Invalid Product Id")
+            return redirect(url_for("get_upcoming"))
         
         product = mongo.db.products.find_one({"_id": ObjectId(product_id)})
+
+        # check if the requested product_id exists, redirect if not
+        if product == None:
+            flash("Product Does Not Exist")
+            return redirect(url_for("get_upcoming"))
 
         # we get the customer and department from the product object
         customer = product["customer"]
