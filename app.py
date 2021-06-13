@@ -156,8 +156,18 @@ def product_details(field_list_id):
         flash("You do not have permission to create products")
         return redirect(url_for("get_upcoming"))
     else:
+        # check if valid object id
+        if not ObjectId.is_valid(field_list_id):
+            flash("Invalid Field List Id")
+            return redirect(url_for("get_upcoming"))
+
         # get field_list from form_fields table, searching on the customer name and department
         field_list = mongo.db.form_fields.find_one({"_id": ObjectId(field_list_id)})
+
+        # check if field list exists
+        if field_list == None:
+            flash("Form Does Not Exist")
+            return redirect(url_for("get_upcoming"))
 
         # get customer name using customer_id passed to url
         customer_name = field_list["customer"]
