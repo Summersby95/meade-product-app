@@ -424,7 +424,17 @@ def add_product_details(product_id):
 def delete_product(product_id):
     if security.check_login():
         if session["role"] == "Commercial" or session["role"] == "Admin":
+            # check if product id passed is a valid objectid, redirect if not
+            if not ObjectId.is_valid(product_id):
+                flash("Invalid Product Id")
+                return redirect(url_for("get_upcoming"))
+
             product = mongo.db.products.find_one({"_id": ObjectId(product_id)})
+
+            # check if the requested product_id exists, redirect if not
+            if product == None:
+                flash("Product Does Not Exist")
+                return redirect(url_for("get_upcoming"))
 
             if request.method == "POST":
                 mongo.db.products.delete_one({"_id": ObjectId(product_id)})
