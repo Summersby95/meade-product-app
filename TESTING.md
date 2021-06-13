@@ -12,4 +12,3 @@
   * Fix: refactor jinja template building into macro functions for detail views/table views/form builders
 * Admin not able to edit all details due to poor form building logic
   * Fix: rewrite add product details logic
-
