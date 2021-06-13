@@ -77,8 +77,19 @@ def get_upcoming():
 @app.route("/view_product/<product_id>")
 def view_product(product_id):
     if security.check_login():
+        # check if product id passed is a valid objectid, redirect if not
+        if not ObjectId.is_valid(product_id):
+            flash("Invalid Product Id")
+            return redirect(url_for("get_upcoming"))
+        
         # Get the product document from the database using the product_id
         product = mongo.db.products.find_one({"_id": ObjectId(product_id)})
+
+        # check if the requested product_id exists, redirect if not
+        if product == None:
+            flash("Product Does Not Exist")
+            return redirect(url_for("get_upcoming"))
+        
         # Get a list of the roles from the roles table, we will use this to cycle
         # Through to show different roles details for the product
         # we dont include the admin/commercial/management roles as they dont have
