@@ -455,7 +455,23 @@ def delete_product(product_id):
 def sign_off(product_id):
     if security.check_login():
         if session["role"] == "Commercial" or session["role"] == "Admin":
+            # check if product id passed is a valid objectid, redirect if not
+            if not ObjectId.is_valid(product_id):
+                flash("Invalid Product Id")
+                return redirect(url_for("get_upcoming"))
+
             product = mongo.db.products.find_one({"_id": ObjectId(product_id)})
+
+            # check if the requested product_id exists, redirect if not
+            if product == None:
+                flash("Product Does Not Exist")
+                return redirect(url_for("get_upcoming"))
+
+            # Check if product has correct status to allow sign off
+            if product["status"] != "Pending - Awaiting Commercial Sign Off":
+                flash("Product Not Ready For Sign Off")
+                return redirect(url_for("get_upcoming"))
+            
             roles = list(mongo.db.roles.find({
                 "role_name": {"$nin": ["Admin", "Commercial", "Management"]}
             }))
