@@ -46,7 +46,7 @@
         {% if field.field_type == "input" %} 
 
             <div class="input-field col s12 m6">
-                <input type="{{ field.input_type }}" class="validate" name="{{ field.field_name }}" id="{{ field.field_name }}" value="{{ value }}" required>
+                <input type="{{ field.input_type }}" class="validate" name="{{ field.field_name }}" id="{{ field.field_name }}" pattern="{{ field.pattern }}" title="{{ field.title }}" value="{{ value }}" required>
                 <label for="{{ field.field_name }}">{{ field.field_name.replace("_", " ").title() }}</label>
             </div>
 
