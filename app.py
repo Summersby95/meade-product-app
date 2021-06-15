@@ -293,6 +293,29 @@ def my_tasks():
         return redirect(url_for("login"))
 
 
+@app.route("/all_products")
+def all_products():
+    if security.check_login():
+        products = list(mongo.db.products.find({}, {
+            "product_name": 1,
+            "department": 1,
+            "customer": 1,
+            "status": 1,
+            "start_date": 1,
+            "created_by": 1,
+            "created_on": 1
+        }).sort([
+            ('product_name', pymongo.ASCENDING)
+        ]))
+
+        for product in products:
+            functions.date_to_string(product)
+        
+        return render_template("all_products.html", products=products)
+    else:
+        flash("Please login to view this content")
+        return redirect(url_for("login"))
+
 # Add Product Details Route
 @app.route("/add_product_details/<product_id>", methods=["GET", "POST"])
 def add_product_details(product_id):
