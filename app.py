@@ -609,6 +609,7 @@ def login():
 
     return render_template("login.html")
 
+
 # Log Out Route
 @app.route("/logout")
 def logout():
@@ -618,6 +619,17 @@ def logout():
     session.pop("department")
     session.pop("role")
     return redirect(url_for("login"))
+
+
+@app.errorhandler(404)
+def not_found(e):
+    return render_template('404.html'), 404
+
+
+@app.errorhandler(503)
+def server_error(e):
+    return render_template('503.html'), 503
+
 
 # we start the app using the ip and port specified in the environment variables
 if __name__ == "__main__":
