@@ -34,3 +34,16 @@ def test_mongo():
     except BaseException:
         raise ConnectionError("Invalid Mongo URI Connection String")
 
+
+def test_db():
+    try:
+        assert os.environ.get("MONGO_DBNAME") in client.list_database_names(
+        ), "Database '{}' does not exist".format(
+                os.environ.get("MONGO_DBNAME"))
+    except BaseException:
+        raise ConnectionError("Connection could not be made")
+
+
+db = client[os.environ.get("MONGO_DBNAME")]
+
+
