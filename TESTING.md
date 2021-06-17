@@ -87,3 +87,74 @@ The Best Practices score was impacted by the same reasons as outlined above.
 #### My Tasks Page
 
 ![My Tasks Lighthouse Score](/static/images/tasks-lighthouse.png)
+
+## Feature Testing
+
+### Create Product
+
+![Create Product](/static/images/create-product.png)
+
+Users can create products according to customer/department specifications.
+
+### Login/Register
+
+![Register](/static/images/register.png)
+
+Users can login/register with their credentials.
+
+### Upcoming Products View
+
+![Upcoming Products Demo](/static/images/upcoming_products_demo.png)
+
+Users can easily view upcoming products, divided into confirmed and pending approval, they can add their details, view the product and sign off on the product.
+
+### Email Notifications
+
+![Email Notifications](/static/images/email-notifications.png)
+
+Email notifications are sent to users to notify them of new products being created/updated.
+
+### Product Details View
+
+![Product Details](/static/images/product-view.png)
+
+Users can view all submitted details for the product.
+
+### Customer/Department Specific Forms
+
+![Form Data Structure](/static/images/form-structure.png)
+
+The form data structure allows inputs to be generated from the Mongo BSON Objects so that forms can be created and updated with ease rather than new views/templates having to be created.
+
+### Structured New Product Development Process
+
+![Development Process](/static/images/process_flow.png)
+
+The structured process means that every department is allowed an input before a product is signed off for production.
+
+### Printable PDF with custom style rules
+
+[PDF Example](/static/misc/product_details.pdf)
+
+![Print Example](/static/images/print.png)
+
+Printable product details mean that the product details can be printed off easily and given to operatives who need the information.
+
+### Digital Signature Sign Off
+
+![Sign Off](/static/images/signoff.png)
+
+A digital signoff canvas element allows users to sign off before a product is designated as production ready.
+
+### Admin Functionality
+
+![Admin Functionality](/static/images/admin.png)
+
+Admin logins allow admins to go in and make edits on any products when other users are unable to.
+
+### My Tasks View
+
+![My Tasks](/static/images/my-tasks.png)
+
+The my tasks view allows users to easily see what products require their attention. It provides an inspirational quote to increase motivation and productivity!
+
