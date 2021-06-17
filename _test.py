@@ -47,3 +47,14 @@ def test_db():
 db = client[os.environ.get("MONGO_DBNAME")]
 
 
+def test_collections():
+    colls = ["customers", "defects", "departments", "form_fields", "origins",
+             "pack_info", "products", "roles"]
+    for coll in colls:
+        try:
+            assert coll in db.list_collection_names(
+            ), "Collection '{}' does not exist in database".format(coll)
+        except BaseException:
+            raise ConnectionError("Connection could not be made")
+
+
