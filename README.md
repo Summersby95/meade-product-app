@@ -545,7 +545,32 @@ You can see a few objects are arrays which means that their fields were *multise
 
 ### Existing Features
 
+* Create Product functionality
+* Login/Register functionality
+* Upcoming Products view
+* Email Notifications
+* Product details view
+* Forms that generate fields depending on the customer/department
+* Users can submit the details pertinent to their department only
+* Structured/well defined new product development process
+* Printable pdf with custom style rules
+* Staged progress for product completion that ensures all information is captured
+* Digital signature sign off
+* Admin functionality to edit all fields
+* Intuitive design and easy to understand and use
+* User verification that ensures only users with the correct roles/permissions can access/edit content
+* My tasks view where users can see their tasks easily
+* Daily quotes API that shows inspirational quotes to users
+
 ### Future Potential Features
+
+* Image upload capabilities
+* Integration with our ERP (Enterprise Resource Planner)
+* Allow reactivation of products that are completion but have been made in active
+* Allow users to add own Varieties/Origins
+* Add more Unit tests
+* Allow users to create own forms for customers/departments
+* Serverside scripting to automatically send updates when product start dates are approaching
 
 ## Technologies Used
 
