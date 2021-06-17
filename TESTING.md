@@ -167,3 +167,23 @@ The my tasks view allows users to easily see what products require their attenti
 * As a commercial buyer I need the interface to be quick and easy to use and tell me what information I need to supply depending on the customer. I also need it to inform the other relevant departments when I create a new product.
   * The easy to use and intuitive application design makes creating new products and viewing product information easy and straight forward.
 
+## Manual Testing
+
+Manual testing was conducted using Chrome and the Dev Tools. Testing involved creating multiple users to check various user that the process flow defined was being achieved as different users from different departments would have different access.
+
+It also involved creating multiple new products in the app and testing various inputs to make sure they acted accordingly.
+
+### Form Validation
+
+One of the main areas I was concerened about was form validation given the size of the forms that were required to be submitted. 
+
+Also, given the fact that the forms were being build from a database as opposed to being hard coded in a template proved challenging as I not only wanted to be able to enforce a format for different inputs but also have a way of communicating the required input format to the user.
+
+A [W3 Schools Demo](https://www.w3schools.com/tags/tryit.asp?filename=tryhtml5_input_pattern) proved very useful as it showed that using *pattern* and *title* attributes on inputs I could achieve the desired effect.
+
+With this knowledge I amended my form fields data structure to include pattern and title attributes for all the inputs. Creating the regex patterns for the various input types was difficult but worked out and was helped using the [regexr](https://regexr.com/) tool.
+
+The end result was that I was able to provide form validation and user feedback to inform them of the required format
+
+![Form Validation](/static/images/form-validation.png)
+
