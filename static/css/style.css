@@ -1,5 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600&display=swap');
 
+/* body, main, footer element style rules */
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+footer {
+    margin-top: 30px;
+}
+
+/* nav style rules */
 .nav-extended .nav-wrapper .brand-logo {
     bottom: 0;
     top: 0;
@@ -14,14 +30,13 @@
         height: 55px;
     }
 }
-/* 
-#product-details {
-    line-height: 40px;
-} */
 
+/* flash messages style rule */
 .flashes h4 {
     font-family: 'Nunito Sans';
 }
+
+/* signature pad style rules */
 
 #signature-pad {
     border: 2px solid black;
@@ -36,16 +51,9 @@
     border: 2px solid black;
 }
 
-body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-}
-
-main {
-    flex: 1 0 auto;
-}
-
-footer {
-    margin-top: 30px;
+/* home image style rule */
+.home-image {
+    max-width: 400px;
+    max-height: 400px;
+    margin: auto;
 }

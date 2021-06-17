@@ -1,3 +1,4 @@
+/* print specific style rules */
 nav, #button_div, footer {
     display: none;
 }
