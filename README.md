@@ -593,12 +593,30 @@ You can see a few objects are arrays which means that their fields were *multise
 * [emailJS](https://www.emailjs.com/)
 * [Balsamiq](https://balsamiq.com/)
 * [Creately](https://creately.com/)
+* [pytest](https://docs.pytest.org/en/6.2.x/)
+* [Signature Pad](https://github.com/szimek/signature_pad)
 
 ## Testing
 
 For Testing information regarding this project please see the [TESTING.md](/TESTING.md) file.
 
 ## Deployment
+
+The database for this project is a MongoDB created using Mongo Atlas.
+
+To create a database similar to this one:
+
+1. Navigate to [MongoDB](https://www.mongodb.com/)
+2. *Sign In* or *Create an Account*
+3. Create a new project folder.
+![Mongo Create Project](/static/images/mongo-create-project.png)
+4. On the next page click *Create Project*
+5. In the project folder, click the *Build a Cluster* button
+![Cluster Build](/static/images/cluster-build.png)
+6. Choose the FREE *Shared Cluster* option and choose the region closest to yours.
+7. Once created, 
+
+This project was deployed using [Heroku](https://www.heroku.com/)
 
 ## Credits
 
