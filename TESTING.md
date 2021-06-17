@@ -187,3 +187,23 @@ The end result was that I was able to provide form validation and user feedback 
 
 ![Form Validation](/static/images/form-validation.png)
 
+## Unit Testing
+
+A number of unit tests were designed and implemented to assist in the deployment for any user who wishes to clone the repository.
+
+All tests can be run using the following command after all *requirements.txt* python libraries have been installed.
+
+```javascript
+pytest
+```
+
+The tests:
+
+* Check for an *env.py* file and that all required environment variables are present
+* Check the MongoURI connection string to make sure it is valid
+* Check the database connection to ensure the database specified in the environment variable exists
+* Check that the require collections for the application exist
+* Checks if a product exists in the products collection and if it's structure is valid
+* Checks the form fields collection and it's structure
+
+You can view the test functions [here](_test.py)
