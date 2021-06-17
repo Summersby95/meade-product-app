@@ -3,6 +3,7 @@ import smtplib
 if os.path.exists("env.py"):
     import env
 
+
 def send_email(to_list, subject, message):
     email_login = os.environ.get("EMAIL_LOGIN")
     email_pass = os.environ.get("EMAIL_PASS")
