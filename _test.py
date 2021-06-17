@@ -23,3 +23,14 @@ def test_vars_exist():
         assert os.path.exists("env.py"), "Create an env.py file"
 
 
+client = pymongo.MongoClient(
+    os.environ.get("MONGO_URI"),
+    serverSelectionTimeoutMS=5000)
+
+
+def test_mongo():
+    try:
+        client.server_info()
+    except BaseException:
+        raise ConnectionError("Invalid Mongo URI Connection String")
+
