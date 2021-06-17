@@ -52,3 +52,38 @@ I used the [Pylint](https://pypi.org/project/pylint/) and [pycodestyle](https://
 
 There are only two outstanding warnings from pycodestyle for my *env.py* (not in this repo) for the MongoURI and a hashed passcode that are too long but I left as they were as they are environment variables.
 
+## Lighthouse Testing
+
+Using the Chrome Dev Tools, I was able to use the *Lighthouse Report* generator which highlighted a number of issues.
+
+* Site should have *meta* description. **Fix:** Add *meta* description to base template.
+* Largest Contentful Paint > 4.5 seconds on home page. **Fix:** Remove some of the images in the card section. I tried resizing the image on the home page to load faster but it proved difficult to bring down the time. In the end I removed a detailed, colourful picture in favour of a simpler, smaller size image that would load faster. I felt I had to do this as the LCP score was severely hampering my performance score on this page.
+* Images should have *alt* attributes. **Fix:** Add *alt* attributes to images.
+
+### Lighthouse Scores
+
+#### Home Page
+
+![Home Page Lighthouse Score](/static/images/home-lighthouse.png)
+
+#### Upcoming Products Page
+
+![Upcoming Products Lighthouse Score](/static/images/table-lighthouse.png)
+
+The orange *87* score for *Best Practices* was due to a *Does not use HTTPS* notice which I was unable to resolve due to the nature of the deployment on Heroku.
+
+![Best Practices Score](/static/images/heroku-score.png)
+
+#### Form Pages
+
+![Form Lighthouse Score](/static/images/form-lighthouse.png)
+
+Unfortunately, due to large form fields and lots of elements and options, the performance score for the *Create Product* page was poor and the work required to make any substantial improvement to the score by potentially splitting the information into multiple forms was too big a task to fix given the time constraints.
+
+One of the accessibility issues was poor contrast ratios between text and the underlying elements. I fixed this by changing the color of the nav and footer elements.
+
+The Best Practices score was impacted by the same reasons as outlined above.
+
+#### My Tasks Page
+
+![My Tasks Lighthouse Score](/static/images/tasks-lighthouse.png)
