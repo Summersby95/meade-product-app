@@ -58,3 +58,20 @@ def test_collections():
             raise ConnectionError("Connection could not be made")
 
 
+def test_product():
+    product = db.products.find_one()
+    keys = [
+        "product_name",
+        "department",
+        "customer",
+        "status",
+        "start_date",
+        "created_by"]
+    if product is not None:
+        for key in keys:
+            assert key in product.keys(), \
+                "Product object is missing '{}' key".format(key)
+    else:
+        raise FileNotFoundError("No product objects in collection")
+
+
