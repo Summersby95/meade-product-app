@@ -75,3 +75,20 @@ def test_product():
         raise FileNotFoundError("No product objects in collection")
 
 
+def test_form_fields():
+    field_list = db.form_fields.find_one()
+    keys = [
+        "customer",
+        "department",
+        "commercial_details",
+        "packaging_details",
+        "operations_details",
+        "technical_details",
+        "prophet_details"]
+    if field_list is not None:
+        for key in keys:
+            for key in keys:
+                assert key in field_list.keys(), \
+                    "Form field object is missing '{}' key".format(key)
+    else:
+        raise FileNotFoundError("No Form Field objects in collection")
