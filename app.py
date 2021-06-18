@@ -319,19 +319,33 @@ def my_tasks():
         # if the product has that attribute then the details for the users
         # role have already
         # been completed and is not outstanding
-        products = list(mongo.db.products.find(
-            {"$and": [prod_fil, role_fil,
-             {(session["role"].lower()): {"$exists": False}}]}, {
-                "product_name": 1,
-                "department": 1,
-                "customer": 1,
-                "status": 1,
-                "start_date": 1,
-                "created_by": 1,
-                "created_on": 1
-            }).sort([
-                ('start_date', pymongo.ASCENDING)
-            ]))
+        if session["role"] != "Admin":
+            products = list(mongo.db.products.find(
+                {"$and": [prod_fil, role_fil,
+                {(session["role"].lower()): {"$exists": False}}]}, {
+                    "product_name": 1,
+                    "department": 1,
+                    "customer": 1,
+                    "status": 1,
+                    "start_date": 1,
+                    "created_by": 1,
+                    "created_on": 1
+                }).sort([
+                    ('start_date', pymongo.ASCENDING)
+                ]))
+        else:
+            products = list(mongo.db.products.find(
+                {"status": {"$ne": "Completed - Production Ready"}}, {
+                    "product_name": 1,
+                    "department": 1,
+                    "customer": 1,
+                    "status": 1,
+                    "start_date": 1,
+                    "created_by": 1,
+                    "created_on": 1
+                }).sort([
+                    ('start_date', pymongo.ASCENDING)
+                ]))
 
         for product in products:
             functions.product_mark(product)
