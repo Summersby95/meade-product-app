@@ -641,6 +641,16 @@ The my tasks view shows all products that require details for the logged in user
 
 *Admins* will see all pending products, *Commercial* users will see products that are awaiting sign off.
 
+## Development Process
+
+During the development process I used a Kanban board to keep track of all tasks that I had to accomplish and the status of each. I created this board using [GitHub Projects](https://docs.github.com/en/issues/organizing-your-work-with-project-boards/managing-project-boards/about-project-boards)
+
+You can view the Kanban board I used [here](https://github.com/Summersby95/meade-product-app/projects/1).
+
+![Kanban Board](/static/images/kanban.png)
+
+I held multiple meetings with the stakeholders in the project to discuss progress and demo the application and added *To do*'s to the Kanban board and added features to the application.
+
 ## Features
 
 ### Existing Features
