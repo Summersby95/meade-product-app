@@ -12,13 +12,14 @@
 6. [Testing](#testing)
 7. [Running Locally](#running-locally)
 8. [Deployment](#deployment)
-9. [Credits](#credits)
+9. [Project Outcome](#project-outcome)
+10. [Credits](#credits)
 
 ## Project Inception
 
 [Deployed Site](http://meade-product-app.herokuapp.com/)
 
-At time of writing, I am currently employed by Meade Farm Group, a fresh goods processor based in the Republic of Ireland, servicing the retail food sector, supplying fresh goods to the likes of Lidl and Aldi amongst others. Due to the rapidly changing and dynamic industry the company competes in, we often take on new products or lines at short notice. The pace at which new products/lines are introduced by the commercial team often means that information is often lost in translation between departments which can lead to the members of staff more directly involved in the processing of the new product/line lack the required information (barcodes, specs, varieties etc.) to process the product correctly. This can lead to produce being sent to customers that does not meet it's requirements and, sometimes, to rejections which negatively impacts customer trust and satisfaction in the company. It also leaves employees/departments left in the dark disgruntled and frustrated.
+At time of writing, I am currently employed by [Meade Farm Group](https://www.meadefarm.ie/), a fresh goods processor based in the Republic of Ireland, servicing the retail food sector, supplying fresh goods to the likes of Lidl and Aldi amongst others. Due to the rapidly changing and dynamic industry the company competes in, we often take on new products or lines at short notice. The pace at which new products/lines are introduced by the commercial team often means that information is often lost in translation between departments which can lead to the members of staff more directly involved in the processing of the new product/line lack the required information (barcodes, specs, varieties etc.) to process the product correctly. This can lead to produce being sent to customers that does not meet it's requirements and, sometimes, to rejections which negatively impacts customer trust and satisfaction in the company. It also leaves employees/departments left in the dark disgruntled and frustrated.
 
 To solve this it was decided that a formal, structured system for logging new products/lines being undertaken was required to reduce eliminate this miscommunication deficit. Having developed other bespoke, locally-hosted applications for the company through the use of php, mysql and xampp, I decided that this project was suitable to test my ability with Flask, MongoDB and Heroku.
 
@@ -844,6 +845,28 @@ This project was deployed using [Heroku](https://www.heroku.com/). You can follo
 16. Once the build has finished it should have succeeded. If it failed, click the *View build log* button and attempt to resolve the errors.
 17. If the build succeeded, click the *Open App* button at the top right of the page and you should be able to view your newly deployed application.
 
+## Project Outcome
+
+This project is currently actively deployed internally within the company, hosted on a local server. It is used daily by dozens of users who now rely on it to access and view product information and actively assists in the production process within the company.
+
+Thanks to the projects deployment:
+
+* Users are wasting less time spent manually trying to gather product information needed for production.
+* There have been no rejections due to missing product information since deployment
+* Users are less frustrated and more productive because the application reduces stress by recording and maintaining all product information
+* The email notifications mean no time is wasted communicating product changes/updates
+
+I was very pleased to receive a lot of very positive user feedback including:
+
+* The application is very simple to use and easy to navigate
+* All product information is easy to find
+* The forms are easy to use and understand
+* The application means I don't have to waste time calling 10 people trying to get information, it's all there
+
+All of these are a testament to the applications capabilties. Meade Farm Group is a company that has previously seen the IT department within the company, which I am a member of, as a cost of production rather than an asset that actively benefits the company. But, because of the demonstrated ability of the application and it's measurable benefits, both in time and direct monetary savings, the application has proven to the company as a whole that the IT department is an asset that actively increases profitability and employee satisfaction within the company.
+
+If you would like to speak to my manager to verify the validity of the above statements you may email my manager at stephenboylan@meadefarm.ie.
+
 ## Credits
 
 You can find links to all of the libraries and frameworks I used in the [Technologies Used](#technologies-used) section.
@@ -862,7 +885,7 @@ You can find links to all of the libraries and frameworks I used in the [Technol
 ### Special Thanks
 
 * Caleb Mbakwe, my mentor, whose advice, mentorship and guidance was invaluable on this project.
-* My manager, Stephen Boylan and colleague, Pawel Puszer for their support, feedback and for picking up the IT slacked when I was too busy focusing on this.
+* My manager, Stephen Boylan and colleague, Pawel Puszer for their support, feedback and for picking up the IT slack while I was too busy focusing on this.
 * Tim Nelson, for his helpful feedback during one of our masterclasses.
 * Meade Farm Group, my managers, co-workers and colleagues who gave me the opportunity to work on this project for the company and who told me what they wanted in this application and had faith in me to deliver for them.
-* The amazing coding community worldwide whose open-source projects and platforms made this possible (:
+* The amazing coding community worldwide whose open-source projects and platforms made this possible, you're the real heroes (:
