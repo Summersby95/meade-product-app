@@ -1,5 +1,6 @@
 /* jshint esversion: 6 */
 
+// signature pad sign off function
 $(document).ready(function() {
     let canvas = document.getElementById("signature-pad");
 
