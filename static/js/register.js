@@ -1,5 +1,6 @@
 /* jshint esversion: 6 */
 
+// validates correct role/department combination selected
 $(document).ready(() => {
     $("#role").change(() => {
         if ($("#role").val() == "Commercial") {
