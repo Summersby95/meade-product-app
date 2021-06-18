@@ -239,8 +239,7 @@ def product_details(field_list_id):
             # of the "All" department
             # we also only want the email attribute of the users
             email_group = mongo.db.users.find({
-                "department": {"$in": [session["department"], "All"]},
-                "username": {"$ne": session["user"]}
+                "department": {"$in": [session["department"], "All"]}
             }, {
                 "email": 1
             })
@@ -476,8 +475,7 @@ def add_product_details(product_id):
             })
 
             email_group = mongo.db.users.find({
-                "department": {"$in": [session["department"], "All"]},
-                "username": {"$ne": session["user"]}
+                "department": {"$in": [product["department"], "All"]}
             }, {
                 "email": 1
             })
