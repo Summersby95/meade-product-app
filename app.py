@@ -380,9 +380,8 @@ def all_products():
         flash("Please login to view this content")
         return redirect(url_for("login"))
 
+
 # Add Product Details Route
-
-
 @app.route("/add_product_details/<product_id>", methods=["GET", "POST"])
 def add_product_details(product_id):
     if security.check_login():
@@ -402,6 +401,14 @@ def add_product_details(product_id):
         if product is None:
             flash("Product Does Not Exist")
             return redirect(url_for("get_upcoming"))
+
+        if session["department"] not in [product["department"], "All"]:
+            flash("You do not have permission to edit this product")
+            return redirect(url_for('get_upcoming'))
+        
+        if product["status"] == "Completed - Production Ready":
+            flash("Cannot edit Production Ready product")
+            return redirect(url_for('get_upcoming'))
 
         # we get the customer and department from the product object
         customer = product["customer"]
