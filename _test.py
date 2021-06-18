@@ -43,7 +43,10 @@ def test_db():
         raise ConnectionError("Connection could not be made")
 
 
-db = client[os.environ.get("MONGO_DBNAME")]
+if os.path.exists("env.py"):
+    db = client[os.environ.get("MONGO_DBNAME")]
+else:
+    db = client["None"]
 
 
 def test_collections():
