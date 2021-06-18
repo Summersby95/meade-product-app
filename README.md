@@ -742,14 +742,14 @@ You can find links to all of the libraries and frameworks I used in the [Technol
 
 ### Helpful Links/Tutorials
 
-[Jinja Comparisons](https://jinja.palletsprojects.com/en/3.0.x/templates/#comparisons)
-[Jinja Comments](https://jinja.palletsprojects.com/en/3.0.x/templates/#comments)
-[StackOverflow Jinja Test](https://stackoverflow.com/questions/11947325/how-to-test-for-a-list-in-jinja2)
-[Signature Pad](https://github.com/szimek/signature_pad)
-[Quotable API](https://github.com/lukePeavey/quotable)
-[Largest Contentful Paint (LCP)](https://web.dev/lcp/)
-[pytest](https://docs.pytest.org/en/6.2.x/)
-[RegExr](https://regexr.com/)
+* [Jinja Comparisons](https://jinja.palletsprojects.com/en/3.0.x/templates/#comparisons)
+* [Jinja Comments](https://jinja.palletsprojects.com/en/3.0.x/templates/#comments)
+* [StackOverflow Jinja Test](https://stackoverflow.com/questions/11947325/how-to-test-for-a-list-in-jinja2)
+* [Signature Pad](https://github.com/szimek/signature_pad)
+* [Quotable API](https://github.com/lukePeavey/quotable)
+* [Largest Contentful Paint (LCP)](https://web.dev/lcp/)
+* [pytest](https://docs.pytest.org/en/6.2.x/)
+* [RegExr](https://regexr.com/)
 
 ### Special Thanks
 
