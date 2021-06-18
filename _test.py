@@ -12,7 +12,6 @@ def test_vars_exist():
         "SECRET_KEY",
         "MONGO_URI",
         "MONGO_DBNAME",
-        "MEADE_PASS",
         "EMAIL_LOGIN",
         "EMAIL_PASS"]
     if os.path.exists("env.py"):
