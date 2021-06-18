@@ -175,6 +175,16 @@ Manual testing was conducted using Chrome and the Dev Tools. Testing involved cr
 
 It also involved creating multiple new products in the app and testing various inputs to make sure they acted accordingly.
 
+Two of the most notable problems encountered were:
+
+### User Validation/Access Privileges
+
+Due to the access orientated nature of the project, making sure users had correct access privileges was essential. Achieving this required a lot of testing, logging in as different users and trying to access routes that they weren't allowed to use and seeing if the user validation checks worked accordingly. It involved adding multiple checks to different routes where to ensure that all access privileges were behaving appropriately.
+
+On the view upcoming products table initially I had no checks determining if the *Add Details* button should display. This resulted in users being able to access edit functionalities for products that they had weren't allowed to.
+
+I was forced to add checks to verify the users department matched the product department in the template and display a *Not Allowed* button if they saw the product in a table.
+
 ### Form Validation
 
 One of the main areas I was concerened about was form validation given the size of the forms that were required to be submitted.
