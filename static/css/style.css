@@ -57,3 +57,10 @@ footer {
     max-height: 400px;
     margin: auto;
 }
+
+/* button style rule */
+@media (max-width: 600px) {
+    .btn-large {
+        margin-top: 10px;
+    }
+}
