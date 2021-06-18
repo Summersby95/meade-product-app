@@ -543,6 +543,102 @@ As you can see in the above example we have base details for the product stored 
 
 You can see a few objects are arrays which means that their fields were *multiselects*.
 
+## Application Logic
+
+The business logic that underpins the application is bespoke and while the interactions that a user can make are immediately evident to the user upon login, I feel the need to explain the logic in a bit more detail so that a non-Meade Farm employee will understand the reasoning behind it.
+
+### Users
+
+When a user registers, they are required to select a *role* and *department*. A *role* is their job within the company, e.g. *Commercial* is responsible for buying/selling produce, *Production* is responsible for the physical *production* of the product, etc. A *department* is the sub division of the company the employee works under, e.g. *Fruit* deal with *fruit* products, *Vegetables* deal with *vegetable* products, etc.
+
+We have a number of *roles* that a user can be in terms of the application process who have distinct access/information they have to submit during the new product development process. *Commercial* is one of these roles. In Meade Farm Group, a commercial employee has a specific *department* that they work under, *Fruit, Vegetables, Potatoes etc*, as such when a new *commercial* user is registering they must select their department. This will determine what products they can create, ie, they are restricted to being able to create products for their *department*.
+
+All *roles* excluding *commercial* are **not** specific to a single *department*, hence why there is the *All* department, signifying users whose *role* responsibilities are over multiple or *all* departments.
+
+### Customers
+
+We have a variety of customers, *Aldi, Lidl, Iceland, Dunnes Stores etc*, that we supply produce for. When a new product is created, the specification and information required for the product depends on the *customer* and also the *department* that the product falls under.
+
+This is why we have a *form_fields* collection that stores the form details for each *customer/department* combination. These are then built using a jinja macro.
+
+### Product Creation
+
+As you will have seen in the process flow diagram above, the first step in the new product development workflow occurs when a member of the *commercial* team obtains a new contract for a product line. Once they have the details of this contract, they will create a new product in the application.
+
+Because *Commercial* users belong to a specific *department* they are not prompted to select a department when creating a new product. They simply have to select the *customer* the product is for so the application can fetch the relevant form field list for the *customer/department* combination.
+
+*Admin* users are not *department* specific, so when they are creating a new product they must select the *department* that the product is for.
+
+*Commercial* and *Admin* users are the only users with the ability to create new products. No other users have the authority or ability to start a new product.
+
+### Product Updating/Adding Details
+
+![Allowed Edit](/static/images/allowed-edit.png)
+
+Once a new product is created, a notification email is sent to users in the same *department* as the product and to all users in the *All* department. The product is also given the status of *Pending - Awaiting Many*.
+
+Only users from the product's *department* or the *All department* can edit/add details for a product. As you can see above The current user is a *Fruit* user and so besides the *View Product* button on products that have a different department to theirs they see a *Not Allowed* button, meaning they cannot edit it. For products that they are in the same *department* of they can add details relevant to their *role*.
+
+*Users* who are a member of the *All* department can add their *role* details to any product.
+
+When adding details/editing a product, a user can only edit/add details relevant to their *role*, i.e, a *Commercial* user can edit *commercial* details but cannot add *operations* details, likewise a *Packaging* user can add/edit *packaging* details but cannot add/edit *commercial* or *technical* details etc.
+
+If the details for the product already exist they are displayed in the fields and will be updated when the form is submitted.
+
+*Admin* users can add details for all *roles* and for any *department*.
+
+### Sign Off/Moved To Completed
+
+![Outstanding Products Highlight](/static/images/outstanding-highlight.png)
+
+When a product is updated or details are added for a product, the application checks which roles still have to submit details. If the number of outstanding *roles* to submit details is two or less it will concatenate the *role* names together for the status to show *Pending - Awaiting role1, role2* as you can see in the example above. If a product is awaiting only *Packaging* and *Technical* information, the status will be updated to *Pending - Awaiting Packaging, Technical*. If greater than two *roles* have two submit details for the product, it's status will remain *Pending - Awaiting Many*.
+
+When all information for the product has been submitted, the product's status changes to *Pending - Awaiting Commercial Sign Off*. At this point, instead of seeing an *Add Details* button beside the *View Product* button in the *Upcoming Products/My Tasks* tables, *Commercial* and *Admin* users will instead see a *Sign Off* button which will direct them to the sign off template where they can submit a digital signature to confirm the product is production ready. At this point, the product's status is changed to *Completed - Production Ready* and moves to the *Confirmed* table.
+
+![Sign Off](/static/images/signoff.png)
+
+If the product is still pending then users can still go in and edit the product, however, once the product has been signed off and confirmed, no edits can be made.
+
+### Deleting Products
+
+![Delete Access](/static/images/delete-access.png)
+
+A product can be deleted via the *Product View*, the button will be at the bottom of the page. A product can only be deleted by a *Commercial* user from the same department as the product or by and *Admin*.
+
+![Delete Confirm](/static/images/delete-confirm.png)
+
+The user will be prompted for confirmation before a product is deleted.
+
+### Table Logic
+
+There are three different product table views in the application, I will now explain the purpose and logic of each.
+
+#### Upcoming Products
+
+![Upcoming Products](/static/images/upcoming_products_demo.png)
+
+The upcoming products table view shows two tables, one for *Confirmed - Production Ready* products and another for all *Pending* products. The tables show all upcoming products regardless of department or customer or status. They are ordered by ascending start date.
+
+*Confirmed* products remain in the table until their start date has passed. *Confirmed* products with a start date less than a week in the future will be highlighted green.
+
+All *Pending* products are visible in the *Pending Approval* section, regardless of their start date or even if the date has passed. If the start date is less than a week away or has passed, a pending product will be highlighted red, if the start date is less than two weeks away it will be highlighted yellow.
+
+The purpose of this section is to highlight what products require attention and what is happening around the factory.
+
+#### All Products
+
+![All Products](/static/images/all-products.png)
+
+The all products view shows all products, not filtered by department or customer or status, ordered by *Product Name*. Users can go here to view products that no longer appear in the upcoming products table because their start date has passed and the product was *Confirmed*.
+
+#### My Tasks
+
+![My Tasks](/static/images/my-tasks-demo.png)
+
+The my tasks view shows all products that require details for the logged in users *role*/*department*. It shows only products which do not have details that can be submitted by the logged in user.
+
+*Admins* will see all pending products, *Commercial* users will see products that are awaiting sign off.
+
 ## Features
 
 ### Existing Features
