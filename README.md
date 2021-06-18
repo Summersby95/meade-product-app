@@ -1,6 +1,6 @@
 # Meade Product App
 
-![Meade Farm Logo](/static/images/meade_farm_logo.png)
+![Site Showcase](/static/images/responsiveness.png)
 
 ## Contents
 
