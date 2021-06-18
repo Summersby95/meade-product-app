@@ -175,7 +175,7 @@ It also involved creating multiple new products in the app and testing various i
 
 ### Form Validation
 
-One of the main areas I was concerened about was form validation given the size of the forms that were required to be submitted. 
+One of the main areas I was concerened about was form validation given the size of the forms that were required to be submitted.
 
 Also, given the fact that the forms were being build from a database as opposed to being hard coded in a template proved challenging as I not only wanted to be able to enforce a format for different inputs but also have a way of communicating the required input format to the user.
 
