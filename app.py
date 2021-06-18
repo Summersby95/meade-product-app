@@ -321,15 +321,16 @@ def my_tasks():
         # been completed and is not outstanding
         if session["role"] != "Admin":
             products = list(mongo.db.products.find(
-                {"$and": [prod_fil, role_fil,
-                {(session["role"].lower()): {"$exists": False}}]}, {
-                    "product_name": 1,
-                    "department": 1,
-                    "customer": 1,
-                    "status": 1,
-                    "start_date": 1,
-                    "created_by": 1,
-                    "created_on": 1
+                {"$and": [
+                    prod_fil, role_fil,
+                    {(session["role"].lower()): {"$exists": False}}]}, {
+                        "product_name": 1,
+                        "department": 1,
+                        "customer": 1,
+                        "status": 1,
+                        "start_date": 1,
+                        "created_by": 1,
+                        "created_on": 1
                 }).sort([
                     ('start_date', pymongo.ASCENDING)
                 ]))
@@ -405,7 +406,7 @@ def add_product_details(product_id):
         if session["department"] not in [product["department"], "All"]:
             flash("You do not have permission to edit this product")
             return redirect(url_for('get_upcoming'))
-        
+
         if product["status"] == "Completed - Production Ready":
             flash("Cannot edit Production Ready product")
             return redirect(url_for('get_upcoming'))
@@ -590,7 +591,8 @@ def sign_off(product_id):
             if product is None:
                 flash("Product Does Not Exist")
                 return redirect(url_for("get_upcoming"))
-            
+
+            # check if user has permission to edit product
             if session["department"] not in [product["department"], "All"]:
                 flash("You do not have permission to edit this product")
                 return redirect(url_for('get_upcoming'))
