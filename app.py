@@ -672,7 +672,9 @@ def register():
         ('department_name', pymongo.ASCENDING)
     ]))
 
-    roles = list(mongo.db.roles.find().sort('role_name', pymongo.ASCENDING))
+    roles = list(mongo.db.roles.find({
+        "role_name": {"$ne": "Admin"}
+        }).sort('role_name', pymongo.ASCENDING))
 
     return render_template(
         "register.html",
