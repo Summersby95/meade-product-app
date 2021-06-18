@@ -738,6 +738,8 @@ This project was deployed using [Heroku](https://www.heroku.com/). You can follo
 
 ## Credits
 
+You can find links to all of the libraries and frameworks I used in the [Technologies Used](#technologies-used) section.
+
 ### Helpful Links/Tutorials
 
 [Jinja Comparisons](https://jinja.palletsprojects.com/en/3.0.x/templates/#comparisons)
@@ -745,3 +747,14 @@ This project was deployed using [Heroku](https://www.heroku.com/). You can follo
 [StackOverflow Jinja Test](https://stackoverflow.com/questions/11947325/how-to-test-for-a-list-in-jinja2)
 [Signature Pad](https://github.com/szimek/signature_pad)
 [Quotable API](https://github.com/lukePeavey/quotable)
+[Largest Contentful Paint (LCP)](https://web.dev/lcp/)
+[pytest](https://docs.pytest.org/en/6.2.x/)
+[RegExr](https://regexr.com/)
+
+### Special Thanks
+
+* Caleb Mbakwe, my mentor, whose advice, mentorship and guidance was invaluable on this project.
+* My manager, Stephen Boylan and colleague, Pawel Puszer for their support, feedback and for picking up the IT slacked when I was too busy focusing on this.
+* Tim Nelson, for his helpful feedback during one of our masterclasses.
+* Meade Farm Group, my managers, co-workers and colleagues who gave me the opportunity to work on this project for the company and who told me what they wanted in this application and had faith in me to deliver for them.
+* The amazing coding community worldwide whose open-source projects and platforms made this possible (:
