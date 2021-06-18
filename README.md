@@ -616,7 +616,28 @@ To create a database similar to the one used in this project:
 5. In the project folder, click the *Build a Cluster* button
 ![Cluster Build](/static/images/cluster-build.png)
 6. Choose the FREE *Shared Cluster* option and choose the region closest to yours.
-7. Once created, 
+7. Once created and the cluster has finished provisioning, click on the *collections* button
+8. Once there, click the *Add My Own Data* button.
+![Add Data](/static/images/add-data.png)
+9. In the new window, enter a name for your new database and use one of the collection names from the collections I described [above](#data-structure).
+![DB Setup](/static/images/test-db.png)
+10. Once you have created your database and collection, use the *Insert Document* button to insert an entry into the collection. I have provided examples above of the datastructure for each collection.
+11. Click the *plus* icon beside your database name in the left hand column to create another collection.
+![Create Collection](/static/images/collection.png)
+12. Repeat steps, 9-12 until you have created all required collections for this project. I would encourage you to have at least one document in each collection.
+13. Next, we need to configure network access and database access for your newly created database.
+14. Under the *Security* heading in the left hand side navigation, click the *Network Access* tab
+15. When there, click the *Add IP Address* button.
+![Network Access](/static/images/network-access.png)
+16. In the window that pops up click the *Allow Access From Anywhere* button and then click the *Confirm* button.
+17. Next, click on the *Database Access* tab under the *Security* section.
+![Database Access](/static/images/database-access.png)
+18. Make sure the *Password* authentication method is selected.
+19. In the *Password Authentication* form, create a new user name for the database and either type a password of your choosing or use the *Autogenerate Secure Password* button to generate the password for you.
+20. Make a note of both the user name and password before going further, you will need these credentials to connect to your database from the application.
+21. Ensure the *Database User Privileges* is set to *Read and write to any database*
+22. Click *Create User*
+
 
 This project was deployed using [Heroku](https://www.heroku.com/)
 
