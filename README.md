@@ -6,11 +6,13 @@
 
 1. [Project Inception](#project-inception)
 2. [UX](#ux)
-3. [Features](#features)
-4. [Technologies](#technologies)
-5. [Testing](#testing)
-6. [Deployment](#deployment)
-7. [Credits](#credits)
+3. [Application Logic](#application-logic)
+4. [Features](#features)
+5. [Technologies](#technologies-used)
+6. [Testing](#testing)
+7. [Running Locally](#running-locally)
+8. [Deployment](#deployment)
+9. [Credits](#credits)
 
 ## Project Inception
 
