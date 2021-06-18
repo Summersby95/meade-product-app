@@ -45,10 +45,15 @@
                 {# Department Select #}
                 <div class="input-field col s12 m6">
                     <i class="material-icons prefix">label</i>
-                    <select id="department" name="department" class="validate" required>
+                    <select id="department" name="department" class="validate" disabled required>
                         <option value="" disabled selected>Choose your department</option>
                         {% for department in departments %} 
-                            <option value="{{ department.department_name }}">{{ department.department_name }}</option>
+                            {% if department.department_name == "All" %}
+                                {% set sel = "selected" %}
+                            {% else %} 
+                                {% set sel = "" %}
+                            {% endif %}
+                            <option value="{{ department.department_name }}" {{ sel }}>{{ department.department_name }}</option>
                         {% endfor %}
                     </select>
                     <label for="department">Department</label>
