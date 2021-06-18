@@ -42,7 +42,7 @@
         {% else %}
             {% set value = "" %}
         {% endif %}
-
+        {# Build input depending on input type #}
         {% if field.field_type == "input" %} 
 
             <div class="input-field col s12 m6">
@@ -96,7 +96,7 @@
                 </select>
                 <label for="{{ field.field_name }}">{{ field.field_name.replace("_", " ").title() }}</label>
             </div>
-
+        {# spec grid is a special type of field input using a table structure #}
         {% elif field.field_type == "spec_grid" %}
             <div class="col s12 row">
                 <table class="striped responsive-table">
@@ -161,6 +161,7 @@
     
 {% endmacro %}
 
+{# The view builder macro builds a product view #}
 {% macro view_builder(product_details, context=None) %}
 
     {% for field, value in product_details %} 
@@ -169,7 +170,7 @@
             <div class="col s12">
                 <h5><strong><i>{{ field.replace("_", " ").title() }}</i></strong></h5>
             </div>
-
+            {# checks for specific fields to see if they require special view cases #}
             {% if field == "quality_specification" %}
 
                 <div class="col s12">
