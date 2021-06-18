@@ -638,6 +638,76 @@ To create a database similar to the one used in this project:
 21. Ensure the *Database User Privileges* is set to *Read and write to any database*
 22. Click *Create User*
 
+Once you have completed the above steps, use the steps below to clone the repo and set up the project to run on your machine.
+
+1. Open an empty window in the text editor of your choice.
+![Visual Studio Code](/static/images/vs-code-window.png)
+2. Your text editor should have an option similar to *Clone Git Repository*. Click on that button.
+3. Copy and Paste the following link in the field that opens after clicking that button. [GitHub Repo Link](https://github.com/Summersby95/meade-product-app.git)
+![Clone Repo](/static/images/clone-repo.png)
+4. Select a folder on your computer to download the cloned repository.
+5. Once downloaded, open the project folder in your editor
+![Project Folder](/static/images/project-folder.png)
+6. Open a new terminal in your editor.
+7. Type the following command into the terminal.
+
+```python
+pip install -r requirements.txt
+```
+
+![Pip Install](/static/images/pip-install.png)
+8. Once that is done, type the following command into the terminal
+
+```python
+pytest
+```
+
+At this stage, you should see a the following in your terminal:
+
+![pytest 1](/static/images/pytest1.png)
+
+This is informing us that we haven't created our *env.py* file and so it cannot verify our connection or collection structure is configured properly.
+9. We now need to create our *env.py* file. In the base directory of the folder create a new file called *env.py*.
+10. Copy and Paste the following example *env.py* code into the file.
+
+```python
+import os
+
+os.environ.setdefault("IP", "0.0.0.0")
+os.environ.setdefault("PORT", "5000")
+os.environ.setdefault("SECRET_KEY", "abc123")
+os.environ.setdefault("MONGO_URI", "mongotesturi")
+os.environ.setdefault("MONGO_DBNAME", "testdb")
+os.environ.setdefault("EMAIL_LOGIN", "test@gmail.com")
+os.environ.setdefault("EMAIL_PASS", "abc123")
+```
+
+![env.py example](/static/images/env.png)
+11. You do not need to change the IP or PORT environment variables. The first one that we need to change is the *SECRET_KEY*.
+12. Head over to [RandomKeygen](https://randomkeygen.com/) and grab a *Fort Knox* password and replace the *SECRET_KEY* value of *abc123* with the password you have grabbed.
+13. Next, we need to get our *MONGO_URI* from our created cluster.
+14. Open your MongoDB web client, click on the *Clusters* tab, and click on the *Connect* button on the cluster you created your database in.
+![Connect Cluster](/static/images/connect-cluster.png)
+15. In the pop up window, click *Connect your application*.
+16. In the *Driver* dropdown on the next window, select *Python* and for *Version* select *3.6 or later*
+17. Copy the MongoURI connection string and paste it in the *env.py* file to replace the *mongotesturi* string in the example above.
+![MongoURI](/static/images/mongo-uri.png)
+18. Replace the *root* part of the connection string with the username that you chose for your database access user.
+19. Replace the ```<password>``` part of the connection string with the password you chose for your database user.
+20. Replace the *myFirstDatabase* with the name you chose for your database.
+21. Replace the *MONGO_DBNAME* value of *testdb* with the same database name.
+22. Back in the terminal of your editor, run the ```pytest``` command again.
+23. If all is working as it should be you should see something similar to below.
+![pytest2](/static/images/pytest2.png)
+24. You can ignore the warnings from the test, if there are no errors in the terminal this means the connection is valid and you have set up your database correctly
+25. If you receive any errors in the terminal, please read the error carefully and traceback through the steps above to resolve it. Ensure you have followed all the steps outlined above.
+26. Next, you will need to create a Gmail accout to act as the sending email address for the application.
+27. The email address must be a Gmail account. The emails can be sent to any email address domain but the sending email address domain to be stored in the environment variables must be a Gmail account.
+28. Once you have created the account, navigate to the [Account Security](https://myaccount.google.com/security) of your account and enable *Less secure app access*. This setting is required for the *smtp* email function.
+![Email Access](/static/images/email-access.png)
+29. Once this is done, replace the *EMAIL_LOGIN* and *EMAIL_PASS* environment variables with your new email address and password respectively.
+30. If all is working correctly, simply type ```py app.py``` into the terminal and the server will start.
+31. Navigate to ```localhost:5000``` to open the app and enjoy. Change the *5000* to the appropriate port if you specified a different port in your environment variables.
 
 This project was deployed using [Heroku](https://www.heroku.com/)
 
