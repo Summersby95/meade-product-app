@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 
 
+# This functions checks for datetime objects and converts them to string
 def date_to_string(conv_dict):
     for field, value in conv_dict.items():
         if isinstance(value, datetime):
@@ -9,6 +10,8 @@ def date_to_string(conv_dict):
             date_to_string(value)
 
 
+# This function will mark a product with a colour depending on it's date
+# and status
 def product_mark(product):
     if (product["start_date"].date() < (
             datetime.now()).date() + timedelta(days=7)):
@@ -28,6 +31,8 @@ def product_mark(product):
         product["new"] = True
 
 
+# This function will check for select, multiselects and spec
+# grids, if there are any it will build their option arrays
 def process_field_list(field_dict, mongo_conn):
     for value in field_dict.values():
         if isinstance(value, dict):
@@ -46,6 +51,8 @@ def process_field_list(field_dict, mongo_conn):
                             sub_field["options"].append(option["name"])
 
 
+# This function will build the update object that needs to be
+# passed to the mongo query
 def update_dict_builder(field_list, request_pass, mongo_conn):
     details = {}
     if isinstance(field_list, list):
