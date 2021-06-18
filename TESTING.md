@@ -18,6 +18,8 @@
   * Fix: add regex pattern and title attributes to the form structure in mongodb which then are applied through the form builder macro to provide input validation.
 * HTML validator giving warning saying section lacks heading
   * Fix: section was for flash messages, add check to verify there is messages before creating the section element
+* Users with improper access to certain routes
+  * Fix: Add more validation to check users credentials before allowing them to edit/create products
 
 ## Validator Testing
 
