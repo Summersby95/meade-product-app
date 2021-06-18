@@ -1,5 +1,6 @@
 /* jshint esversion: 6 */
 
+// initialize materialize elements
 $(document).ready(function() {
     $('.sidenav').sidenav({
         edge: "right"
