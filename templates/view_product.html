@@ -50,9 +50,11 @@
                     <i class="material-icons right">cancel</i> Delete Product
                 </a>
             {% endif %}
-            <a href="{{ url_for('add_product_details', product_id=product._id) }}" class="btn-large green accent-3 center-align">
-                <i class="material-icons right">edit</i> Edit Details
-            </a>
+            {% if (session.department == product.department or session.department == "All") and product.status != "Completed - Production Ready" %} 
+                <a href="{{ url_for('add_product_details', product_id=product._id) }}" class="btn-large green accent-3 center-align">
+                    <i class="material-icons right">edit</i> Edit Details
+                </a>
+            {% endif %}
             <button type="button" id="print_button" class="btn-large blue accent-3 center-align">
                 <i class="material-icons right">local_printshop</i> PDF Form
             </button>
