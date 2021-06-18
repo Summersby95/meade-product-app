@@ -5,6 +5,7 @@ if os.path.exists("env.py"):
     import env
 
 
+# checks for environment variables
 def test_vars_exist():
     envs = [
         "IP",
@@ -27,6 +28,7 @@ client = pymongo.MongoClient(
     serverSelectionTimeoutMS=5000)
 
 
+# tests mongo connection
 def test_mongo():
     try:
         client.server_info()
@@ -34,6 +36,7 @@ def test_mongo():
         raise ConnectionError("Invalid Mongo URI Connection String")
 
 
+# checks if database exists
 def test_db():
     try:
         assert os.environ.get("MONGO_DBNAME") in client.list_database_names(
@@ -49,6 +52,7 @@ else:
     db = client["None"]
 
 
+# checks if collections all collections required exist
 def test_collections():
     colls = ["customers", "defects", "departments", "form_fields", "origins",
              "pack_info", "products", "roles"]
@@ -60,6 +64,7 @@ def test_collections():
             raise ConnectionError("Connection could not be made")
 
 
+# checks if product structure is correct
 def test_product():
     product = db.products.find_one()
     keys = [
@@ -77,6 +82,7 @@ def test_product():
         raise FileNotFoundError("No product objects in collection")
 
 
+# checks if form fields structure is correct
 def test_form_fields():
     field_list = db.form_fields.find_one()
     keys = [
