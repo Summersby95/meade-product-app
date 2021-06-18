@@ -573,9 +573,8 @@ def delete_product(product_id):
         flash("Please login to view this content")
         return redirect(url_for('login'))
 
+
 # Commercial Sign Off Route
-
-
 @app.route("/sign_off/<product_id>", methods=["GET", "POST"])
 def sign_off(product_id):
     if security.check_login():
@@ -591,6 +590,10 @@ def sign_off(product_id):
             if product is None:
                 flash("Product Does Not Exist")
                 return redirect(url_for("get_upcoming"))
+            
+            if session["department"] not in [product["department"], "All"]:
+                flash("You do not have permission to edit this product")
+                return redirect(url_for('get_upcoming'))
 
             # Check if product has correct status to allow sign off
             if product["status"] != "Pending - Awaiting Commercial Sign Off":
