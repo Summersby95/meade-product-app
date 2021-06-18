@@ -602,11 +602,11 @@ You can see a few objects are arrays which means that their fields were *multise
 
 For Testing information regarding this project please see the [TESTING.md](/TESTING.md) file.
 
-## Deployment
+## Running Locally
 
-The database for this project is a MongoDB created using Mongo Atlas.
+To run this project locally you will first need to set up a database for all the data for this project. The database for this project is a MongoDB created using Mongo Atlas.
 
-To create a database similar to this one:
+To create a database similar to the one used in this project:
 
 1. Navigate to [MongoDB](https://www.mongodb.com/)
 2. *Sign In* or *Create an Account*
