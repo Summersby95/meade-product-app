@@ -199,6 +199,24 @@ The end result was that I was able to provide form validation and user feedback 
 
 ![Form Validation](/static/images/form-validation.png)
 
+### Responsiveness Testing
+
+Using Chrome Dev Tools, I was able to assess the responsiveness of the site on all pages. I created products, edited products, deleted products, created accounts and used different logins to assess the overall responsiveness of the site.
+
+This testing highlighted a few issues:
+
+* Product tables not working well on small screen sizes
+  * Fix: Add *responsive-table* materialize class to tables to make them horizontally scrollable
+![Scrollable Table](/static/images/scrollable-table.png)
+* Footer element causing overflow
+  * Fix: add custom style rules for body, main and footer elements
+* Buttons spaced too close together on mobile views
+**Before**
+![Button Spacing](/static/images/button-spacing.png)
+  * Fix: add media query style rule to add margin to buttons on mobile devices
+**After**
+![Button Spacing After](/static/images/button-spacing-after.png)
+
 ## Unit Testing
 
 A number of unit tests were designed and implemented to assist in the deployment for any user who wishes to clone the repository.
