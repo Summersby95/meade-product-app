@@ -648,14 +648,6 @@ def register():
                 request.form.get("password_repeat"):
             flash("Passwords do not match!")
             return redirect(url_for('register'))
-        # there is an environment variable with a hashed password
-        # the user must input this password to gain be allowed to register
-        # this is a security measure to prevent random people from being
-        # able to create accounts
-        elif not(check_password_hash(os.environ.get("MEADE_PASS"),
-                 request.form.get("meade_password"))):
-            flash("Incorrect Meade Passcode!")
-            return redirect(url_for('register'))
         else:
             # if the form passes all checks then we create the user dictionary
             # and insert it into the database
