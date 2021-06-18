@@ -709,7 +709,32 @@ os.environ.setdefault("EMAIL_PASS", "abc123")
 30. If all is working correctly, simply type ```py app.py``` into the terminal and the server will start.
 31. Navigate to ```localhost:5000``` to open the app and enjoy. Change the *5000* to the appropriate port if you specified a different port in your environment variables.
 
-This project was deployed using [Heroku](https://www.heroku.com/)
+## Deployment
+
+This project was deployed using [Heroku](https://www.heroku.com/). You can follow the following steps to deploy your project to Heroku. The following steps assume that you have created the database as described above and have your *env.py* file created and populated.
+
+1. Create a Heroku account and login.
+2. Click the *New* button up the top right of the screen and select *Create New App*
+3. Choose an app name and region for the application deployment.
+![New App](/static/images/new-app.png)
+4. Click *Create App*
+5. Under the *Deploy* tab in the *Deployment Method* section click *Connect To GitHub*
+6. Login to your *GitHub* account if you aren't already
+7. Search for the name of the repo that you have created for this application.
+![Repo Connected](/static/images/repo-connected.png)
+8. Once selected, connect the repo to the application
+9. Once done, navigate to the *Settings* tab in the application.
+10. In the *Config Vars* section, click *Reveal Config Vars*
+11. For each of the enviroment variables in your *env.py* file, add a new *KEY, VALUE*
+![Config Vars](/static/images/config-vars.png)
+12. Once done, navigate back to the *Deploy* tab, in the *Automatic Deploys* section, select the branch of the repo that you want to deploy and click the *Enable Automatic Deploys* button
+![Automatic Deploys](/static/images/automatic-deploys.png)
+13. This should trigger a deployment to initiate.
+14. Navigate to the *Overview* tab.
+15. In the *Latest Activity* section, you should see the newest build in progress.
+![Activity Feed](/static/images/activity.png)
+16. Once the build has finished it should have succeeded. If it failed, click the *View build log* button and attempt to resolve the errors.
+17. If the build succeeded, click the *Open App* button at the top right of the page and you should be able to view your newly deployed application.
 
 ## Credits
 
