@@ -11,6 +11,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import email_func
 import functions
 import security
+from waitress import serve
 if os.path.exists("env.py"):
     import env
 
@@ -745,7 +746,9 @@ def server_error(e):
     return render_template('503.html'), 503
 
 
-# we start the app using the ip and port specified in the environment variables
-if __name__ == "__main__":
-    app.run(host=os.environ.get("IP"),
-            port=int(os.environ.get("PORT")))
+serve(
+    app,
+    host='0.0.0.0',
+    port=8080,
+    threads=1
+)
