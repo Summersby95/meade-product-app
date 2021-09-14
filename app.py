@@ -745,10 +745,14 @@ def not_found(e):
 def server_error(e):
     return render_template('503.html'), 503
 
-
-serve(
-    app,
-    host='0.0.0.0',
-    port=8080,
-    threads=1
-)
+if 'LOCAL' in os.environ:
+    serve(
+        app,
+        host='0.0.0.0',
+        port=8080,
+        threads=1
+    )
+else:
+    if __name__ == "__main__":
+        app.run(host=os.environ.get("IP"),
+                port=int(os.environ.get("PORT")))
