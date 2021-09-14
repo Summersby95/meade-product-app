@@ -746,12 +746,10 @@ def server_error(e):
     return render_template('503.html'), 503
 
 if 'LOCAL' in os.environ:
-    serve(
-        app,
-        host='0.0.0.0',
-        port=8080,
-        threads=1
-    )
+    serve(app,
+          host=os.environ.get("IP"),
+          port=int(os.environ.get("PORT")),
+          threads=1)
 else:
     if __name__ == "__main__":
         app.run(debug=('LOCAL' in os.environ),
